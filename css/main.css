@@ -20,9 +20,13 @@ font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   font-size: small;
   text-align: center;
 }
-
 h1, h2, h3, h4, h5, h6 {
-  font-size: 100%; }
+  font-size: 100%;
+  }
+
+h1 { font-size: 130%; }
+h2 { font-size: 110%; }
+h3 { font-size: 100%; }
 
 h1 { margin-bottom: 1em; }
 p { margin: 1em 0; }
@@ -123,40 +127,3 @@ a:visited { color: #a0a; }
   border: 0;
 }
 
-/*****************************************************************************/
-/*
-/* Posts
-/*
-/*****************************************************************************/
-
-/* standard */
-.post pre {
-  border: 1px solid #ddd;
-  background-color: #eef;
-  padding: 0 .4em;
-}
-
-.post ul, .post ol {
-  margin-left: 1.35em;
-}
-
-.post code {
-  border: 1px solid #ddd;
-  background-color: #eef;
-  padding: 0 .2em;
-}
-
-.post pre code {
-  border: none;
-}
-
-/* terminal */
-.post pre.terminal {
-  border: 1px solid #000;
-  background-color: #333;
-  color: #FFF;
-}
-
-.post pre.terminal code {
-  background-color: #333;
-}

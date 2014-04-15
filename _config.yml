@@ -1,4 +1,4 @@
-name: Andri
+name: Exercices de style
 markdown: redcarpet
 pygments: true
 paginate: 10 # pagination basted on number of posts
