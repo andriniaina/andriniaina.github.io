@@ -1,0 +1,9 @@
+img.icon {
+	vertical-align: middle;
+	margin:0;
+}
+
+#post-pagination ul {
+	list-style: none;
+	display:none;
+}
