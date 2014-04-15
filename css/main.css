@@ -14,7 +14,9 @@ html, body { height: 100%; }
 
 body {
   background-color: #FFF;
-  font: 13.34px Helvetica, Arial, sans-serif;
+  font-family: Georgia, Garamond, serif;
+  font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   font-size: small;
   text-align: center;
 }
@@ -57,10 +59,10 @@ a:visited { color: #a0a; }
 
 .site {
   font-size: 115%;
-  text-align: justify;
-  width: 42em;
+  text-align: left;
+  width: 56em;
   margin: 3em auto 2em;
-  line-height: 1.5em;
+  line-height: 1.3em;
 }
 
 .header a {
