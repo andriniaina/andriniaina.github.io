@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: jekyll update
+categories: EN languages
 title: Solving a problem with various languages
 ---
 
