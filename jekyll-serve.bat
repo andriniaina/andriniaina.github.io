@@ -10,4 +10,4 @@ SET RUBY_BIN=
 REM Display Ruby version
 chcp 65001
 ruby.exe -v
-jekyll serve --watch
+jekyll serve --watch --drafts
