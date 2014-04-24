@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<html>
+<head>
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet/less" type="text/css" href="css/styles.less" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
+
+
+<script type="text/javascript">
+     less.env = "development";
+     less.watch();
+</script>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Solving a problem with various languages - Exercices de style</title>
+        <meta name="viewport" content="width=device-width">
+    </head>
+
+
+
+<body>
+
+          <header>
+            <h1 class="title"><a href="/">Exercices de style</a></h1>
+<!--            <a class="extra" href="/">home</a>-->
+          </header>
+
+		  <div class="content">
+          <h1 class="post-title">Solving a problem with various languages</h1>
+<p class="meta">15 Apr 2014</p>
+
+<div class="post">
+<p>The idea of the following posts are to show the differences and strength of different languages (elegance, readability, conciseness).</p>
+
+<p>I will try to use my best syntax for each language  but you will notice that I am most of time biased towards concise languages like F# or python :)</p>
+
+<p>I will regularly update the post with different problems.</p>
+
+<h1>Project Euler <a href="http://projecteuler.net/problem=1">problem 1</a></h1>
+
+<blockquote>
+<p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. </p>
+
+<p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
+</blockquote>
+
+<h2>F#</h2>
+<h3>Yeah some title</h3>
+<h4>Yeah some title</h4>
+
+<p>It's the most concise language I know.</p>
+<div class="highlight"><pre><code class="fsharp language-fsharp" data-lang="fsharp"><span class="k">let</span> <span class="nv">isMultipleOf</span> <span class="n">n</span> <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">let</span> <span class="nv">isMultipleOf3or5</span> <span class="n">i</span> <span class="o">=</span> <span class="n">isMultipleOf</span> <span class="mi">3</span> <span class="n">i</span> <span class="o">||</span> <span class="n">isMultipleOf</span> <span class="mi">5</span> <span class="n">i</span>
+
+<span class="n">seq</span> <span class="o">{</span><span class="mi">1</span><span class="o">..</span><span class="mi">999</span><span class="o">}</span>
+    <span class="o">|&gt;</span> <span class="nn">Seq</span><span class="p">.</span><span class="n">filter</span> <span class="n">isMultipleOf3or5</span>
+    <span class="o">|&gt;</span> <span class="nn">Seq</span><span class="p">.</span><span class="n">sum</span>
+</code></pre></div>
+<p>So elegant!
+Note that we could have defined curried versions of <code>isMultipleOf</code> by writing: <code>let isMultipleOf3 = isMultipleOf 3</code> </p>
+
+<h2>Python</h2>
+<div class="highlight"><pre><code class="python language-python" data-lang="python"><span class="k">def</span> <span class="nf">isMultipleOf</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">i</span><span class="p">):</span> <span class="k">return</span> <span class="n">i</span> <span class="o">%</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">isMultipleOf3or5</span> <span class="p">(</span><span class="n">i</span><span class="p">):</span> <span class="k">return</span> <span class="n">isMultipleOf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="o">||</span> <span class="n">isMultipleOf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+
+<span class="nb">sum</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">isMultipleOf3or5</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)))</span>
+<span class="c"># range(1, 1000) does not include 1000. How odd.</span>
+</code></pre></div>
+<p>Without F#'s <code>|&gt;</code> operator that inverts the position of the argument and the function, and therefore lets you read from left to right, it's less natural in my opinion. But it's still readable.</p>
+
+<h2>C#</h2>
+
+<p>Still elegant thanks to Linq but so verbose... You can see why I prefer to use other .NET languages when I have the choice.</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">numbersTo</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">var</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span> <span class="p">)</span>
+        <span class="k">yield</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">bool</span> <span class="nf">isMultipleOf</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">i</span> <span class="p">%</span> <span class="n">n</span> <span class="p">==</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// using the simpler "functional" style instead of imperative code</span>
+    <span class="p">(</span>
+        <span class="k">from</span> <span class="n">n</span> <span class="k">in</span> <span class="nf">numbersTo</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span>
+        <span class="k">where</span> <span class="nf">isMultipleOf</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">||</span> <span class="n">isMultipleOf</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="k">select</span> <span class="n">n</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="n">Sum</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>So; many; lines; of; code;</p>
+
+<p>At least you don't have to write imperative-style code like in javascript:</p>
+
+<h2>javascript</h2>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">isMultipleOf</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">i</span><span class="o">%</span><span class="nx">n</span><span class="o">==</span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">isMultipleOf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="o">||</span> <span class="nx">isMultipleOf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="nx">i</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>After having practiced F# these last years, I really miss the functional helpers like filter/map/reduce. Also, there seem to be so many ways to introduce bugs just because of the language:
+(mutable <code>sum</code> variable,  manual imperative loops, weak typing, no compilation and therefore no type checking, ...)</p>
+
+<p>I really like javascript but to be honest it's maybe the worst language for algorithms (<a href="http://www.typescriptlang.org/">typescript</a> solves some of its problems)...
+Even C++ seems better:</p>
+
+<h2>C++</h2>
+<div class="highlight"><pre><code class="c++ language-c++" data-lang="c++"><span class="k">static</span> <span class="kt">bool</span> <span class="nf">isMultipleOf</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">i</span><span class="o">%</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">_tmain</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">_TCHAR</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isMultipleOf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">||</span> <span class="n">isMultipleOf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Mandatory type declarations, imperative programming, no simple way to define sequences/enumerables, ...</p>
+
+<p>Fortunately, it's compiled and statically typed</p>
+
+</div>
+
+
+
+
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+<a title="Tweet" class="addthis_button_twitter at300b" href="#"><span class=" at300bs at15nc at15t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+<a title="LinkedIn" class="addthis_button_linkedin at300b" href="http://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=ra-534e46e257aaa7aa&amp;source=tbx32-300&amp;lng=fr-FR&amp;s=linkedin&amp;url=http%3A%2F%2Flocalhost%3A4000%2Fen%2Flanguages%2F2014%2F04%2F15%2Fproject-euler.html&amp;title=Solving%20a%20problem%20with%20various%20languages%20-%20Exercices%20de%20style&amp;ate=AT-ra-534e46e257aaa7aa/-/-/535975e5c3f56ddb/2&amp;frommenu=1&amp;uid=535975e5adb1ee2d&amp;ct=1&amp;pre=http%3A%2F%2Flocalhost%3A4000%2F&amp;tt=0&amp;captcha_provider=nucaptcha" target="_blank"><span class=" at300bs at15nc at15t_linkedin"><span class="at_a11y">Share on linkedin</span></span></a>
+<a title="Reddit" class="addthis_button_reddit at300b" href="http://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=ra-534e46e257aaa7aa&amp;source=tbx32-300&amp;lng=fr-FR&amp;s=reddit&amp;url=http%3A%2F%2Flocalhost%3A4000%2Fen%2Flanguages%2F2014%2F04%2F15%2Fproject-euler.html&amp;title=Solving%20a%20problem%20with%20various%20languages%20-%20Exercices%20de%20style&amp;ate=AT-ra-534e46e257aaa7aa/-/-/535975e5c3f56ddb/3&amp;frommenu=1&amp;uid=535975e5766fce19&amp;ct=1&amp;pre=http%3A%2F%2Flocalhost%3A4000%2F&amp;tt=0&amp;captcha_provider=nucaptcha" target="_blank"><span class=" at300bs at15nc at15t_reddit"><span class="at_a11y">Share on reddit</span></span></a>
+<a title="Google+" class="addthis_button_google_plusone_share at300b" href="http://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=ra-534e46e257aaa7aa&amp;source=tbx32-300&amp;lng=fr-FR&amp;s=google_plusone_share&amp;url=http%3A%2F%2Flocalhost%3A4000%2Fen%2Flanguages%2F2014%2F04%2F15%2Fproject-euler.html&amp;title=Solving%20a%20problem%20with%20various%20languages%20-%20Exercices%20de%20style&amp;ate=AT-ra-534e46e257aaa7aa/-/-/535975e5c3f56ddb/4&amp;frommenu=1&amp;uid=535975e58c361df9&amp;ct=1&amp;pre=http%3A%2F%2Flocalhost%3A4000%2F&amp;tt=0&amp;captcha_provider=nucaptcha" target="_blank"><span class=" at300bs at15nc at15t_google_plusone_share"><span class="at_a11y">Share on google_plusone_share</span></span></a>
+<div class="atclear"></div></div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-534e46e257aaa7aa" type="text/javascript"></script><div id="_atssh" style="width: 1px; height: 1px; visibility: hidden; position: absolute; z-index: 100000;"><iframe title="AddThis utility frame" id="_atssh974" src="//ct1.addthis.com/static/r07/sh156.html#iit=1398371813220&amp;tmr=load%3D1398371812910%26core%3D1398371813130%26main%3D1398371813210%26ifr%3D1398371813236&amp;cb=0&amp;cdn=1&amp;chr=utf-8&amp;kw=&amp;ab=-&amp;dh=localhost&amp;dr=http%3A%2F%2Flocalhost%3A4000%2F&amp;du=http%3A%2F%2Flocalhost%3A4000%2Fen%2Flanguages%2F2014%2F04%2F15%2Fproject-euler.html&amp;dt=Solving%20a%20problem%20with%20various%20languages%20-%20Exercices%20de%20style&amp;dbg=0&amp;md=0&amp;cap=tc%3D0%26ab%3D1&amp;inst=1&amp;vcl=2&amp;jsl=0&amp;prod=undefined&amp;lng=fr-FR&amp;ogt=&amp;pc=men&amp;pub=ra-534e46e257aaa7aa&amp;ssl=0&amp;sid=535975e5c3f56ddb&amp;srpl=1&amp;srcs=1&amp;srd=1&amp;srf=1&amp;srx=1&amp;ver=300&amp;xck=0&amp;xtr=0&amp;og=&amp;aa=0&amp;csi=undefined&amp;rev=127363&amp;ct=1&amp;xld=1&amp;xd=1&amp;fcu=U1l15aNZqUk" style="border: 0px currentColor; border-image: none; left: 0px; top: 0px; width: 1px; height: 1px; position: absolute; z-index: 100000;"></iframe></div><script src="http://ct1.addthis.com/static/r07/core129.js" type="text/javascript"></script>
+<!-- AddThis Button END -->
+
+		  </div>
+
+          <footer>
+            <div class="contact">
+              <p>
+                Andri Rakotomalala
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <img width="16" class="icon" src="/assets/mail32.png"> <a href="mailto:andriniaina@gmail.com">andriniaina@gmail.com</a><br>
+                <img width="16" class="icon" src="/assets/linkedin32.png"> <a href="http://fr.linkedin.com/in/arakotomalala/">fr.linkedin.com/in/arakotomalala/</a><br>
+                <img width="24" class="icon" style="margin: -4px;" src="/assets/github32-negative.png"> <a href="https://github.com/andriniaina">github.com/andriniaina</a><br>
+
+
+				<br>
+                <img width="16" class="icon" src="/assets/tag32.png"> .NET (C#, F#, VB.NET), python, javascript, whatever
+				<br>
+				<span style="width: 16px; display: inline-block;"></span> web, wpf, win8 apps
+				<br>
+				<span style="width: 16px; display: inline-block;"></span> functional programming
+				<br>
+
+              </p>
+            </div>
+          </footer>
+
+
+    
+</body>
+
+
+</html>

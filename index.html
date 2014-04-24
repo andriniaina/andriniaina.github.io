@@ -4,7 +4,7 @@ title: Index page
 ---
 
 <div id="home">
-  <h1>Posts</h1>
+  <h1>Index</h1>
   <ul class="posts">
     {% for post in paginator.posts %}
 	<li><span>{{ post.date | date_to_string }}</span> <img src='/assets/{{ post.categories[0] }}.png' width='16' class='icon' />   &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -15,6 +15,7 @@ title: Index page
 
 
       <div id="post-pagination">
+		  Pages:
         {% if paginator.previous_page %}
         <p class="prev">
           {% if paginator.previous_page == 1 %}
