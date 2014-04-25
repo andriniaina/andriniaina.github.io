@@ -55,12 +55,12 @@ o.Call(1) |> returns 1 |> only_if_argument [Is.NotNull()] |> expected at_least_o
 ## Create stubs on the fly
 [F# Object Expressions](http://msdn.microsoft.com/en-us/library/dd233237.aspx) creates a new anonymous instance of an interface, without the need to declare a new class.
 
-## Interactive testing
-If your code is well written (i.e. without complicated dependecies or unnecessary injections), you can test and prototype directly your program in Visual Studio with the interactive F# interpreter.
-
 ```fsharp
 let myComparer = { new IComparer<_> with member x.Compare(l,r) = -1 }
 ```
+
+## Interactive testing
+If your code is well written (i.e. without complicated dependecies or unnecessary injections), you can test and prototype directly your program in Visual Studio with the interactive F# interpreter.
 
 ## Test without writing any test case
 Well... not really but almost. [FsCheck](https://github.com/fsharp/FsCheck) is a tool for testing .NET programs automatically.
