@@ -43,7 +43,7 @@ The equivalent in [**C#**](https://gist.github.com/andriniaina/11304542#file-vis
 "foobar" |> should contain "foo"
 ```
 
-## Mock library
+## Mock specific languages
 In the same way, [FsMocks](https://github.com/andriniaina/FsMocks) is a wrapper around Rhino.Mocks  (not threadsafe)
 
 ```fsharp
@@ -52,12 +52,11 @@ o.Call(1) |> returns 1 |> only_if_argument [Is.NotNull()] |> expected at_least_o
 
 [Foq](https://foq.codeplex.com/) is a threadsafe mocking library for F#, but without the fancy DSL language.
 
+## Create stubs on the fly
+[F# Object Expressions](http://msdn.microsoft.com/en-us/library/dd233237.aspx) creates a new anonymous instance of an interface, without the need to declare a new class.
+
 ## Interactive testing
 If your code is well written (i.e. without complicated dependecies or unnecessary injections), you can test and prototype directly your program in Visual Studio with the interactive F# interpreter.
-
-## Create interface implementations on the fly
-
-[F# Object Expressions](http://msdn.microsoft.com/en-us/library/dd233237.aspx) creates a new anonymous instance of an interface, without the need to declare a new class.
 
 ```fsharp
 let myComparer = { new IComparer<_> with member x.Compare(l,r) = -1 }
