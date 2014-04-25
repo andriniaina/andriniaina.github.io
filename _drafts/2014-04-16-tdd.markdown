@@ -1,0 +1,8 @@
+---
+layout: post
+categories: EN test
+title: TDD
+---
+
+
+http://blog.8thlight.com/uncle-bob/2014/04/25/MonogamousTDD.html
