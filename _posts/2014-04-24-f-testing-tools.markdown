@@ -71,7 +71,7 @@ Read the [documentation](https://github.com/fsharp/FsCheck/blob/master/Docs/Docu
 
 ## Behaviour Driven Development
 [TickSpec](http://tickspec.codeplex.com/) is a lightweight framework with its own Gherkin interpreter.
-Combined with the power of F#, it simplifies the steps implementation:
+Combined with the power of F# and backticks, it simplifies the steps implementation:
 
 ```
 Scenario 1: Refunded items should be returned to stock
