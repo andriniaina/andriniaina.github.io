@@ -1,7 +1,7 @@
 ---
 layout: post
 categories: EN quality
-title: Definition of production-ready as seen in real-life projects
+title: Definition of "production-ready" 
 ---
 
 
@@ -36,5 +36,5 @@ title: Definition of production-ready as seen in real-life projects
 
 > **Warning**: this was a joke. Well... not really.
 
-<span style="font-size:60%">OOps... we forgot security</span>
+<span style="font-size:60%">OOps... somebody forgot security</span>
 
