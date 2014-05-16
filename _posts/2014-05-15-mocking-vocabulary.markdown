@@ -23,6 +23,8 @@ class MembershipManagerDummy : IMembershipManager
 }
 ```
 
+> instead of returning a default value, it is also common to `throw new NotImplementedException()`
+
 # Stubs
 A stub is a basic object whose methods always return the same constant value.
 
