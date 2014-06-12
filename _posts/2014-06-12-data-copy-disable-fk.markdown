@@ -33,7 +33,7 @@ It's faster to use the [SQL Server Import and Export Wizard](http://dynamicsgpbl
 and select the tables to be exported.
 
 In the mapping properties, make sure to select only the [option 'enable identity insert'](http://bergdaniel.se/wp-content/upload/legacy/enable%20identity%20insert.png).
-**DO NOT** select 'Delete rows in existing destination tables' because it will send a `TRUNCATE` command, which is not allowed.
+**DO NOT** select 'Delete rows in existing destination tables' because it will send a `TRUNCATE` command, which is not allowed by the foreign keys.
 
 ```sql
 
