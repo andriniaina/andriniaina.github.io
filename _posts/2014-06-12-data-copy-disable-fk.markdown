@@ -55,6 +55,7 @@ SELECT ' DELETE FROM [' + OBJECT_NAME(f.parent_object_id) +
 	' from [' + OBJECT_NAME(f.referenced_object_id) + '])' AS Scripts
 FROM.sys.foreign_keys AS f
 INNER JOIN.sys.foreign_key_columns AS fc ON f.OBJECT_ID = fc.constraint_object_id
+-- the generated script must be run twice
 
 -- Re-enable all constraints
 EXEC sp_msforeachtable 
