@@ -139,19 +139,21 @@ To enable the fancy characters:
 1. Download the [patched fonts by eugeneching](https://github.com/eugeneching/consolas-powerline-vim). [Mirror](/assets/consolas-powerline-vim/CONSOLA-Powerline.ttf)
 2. activate the font in your vimrc:
 
-    set guifont=Consolas_for_Powerline_FixedD:h11,Consolas:h11 " you can additional alternative fonts here if it's not available on a particular host or terminal
-    let g:airline_powerline_fonts = 1
-    let g:airline_symbols = {}
-    let g:airline_left_sep = "\u2b80"
-    let g:airline_left_alt_sep = "\u2b81"
-    let g:airline_right_sep = "\u2b82"
-    let g:airline_right_alt_sep = "\u2b83"
-    let g:airline_symbols.branch = "\u2b60"
-    let g:airline_symbols.readonly = "\u2b64"
-    let g:airline_symbols.linenr = "\u2b61"
-    let g:airline_symbols.space = " "
-    let g:airline_symbols.whitespace = "\u02fd"
-    let g:airline_symbols.modified = "*"
+```
+set guifont=Consolas_for_Powerline_FixedD:h11,Consolas:h11 " you can additional alternative fonts here if it's not available on a particular host or terminal
+let g:airline_powerline_fonts = 1
+let g:airline_symbols = {}
+let g:airline_left_sep = "\u2b80"
+let g:airline_left_alt_sep = "\u2b81"
+let g:airline_right_sep = "\u2b82"
+let g:airline_right_alt_sep = "\u2b83"
+let g:airline_symbols.branch = "\u2b60"
+let g:airline_symbols.readonly = "\u2b64"
+let g:airline_symbols.linenr = "\u2b61"
+let g:airline_symbols.space = " "
+let g:airline_symbols.whitespace = "\u02fd"
+let g:airline_symbols.modified = "*"
+```
 
 
 
