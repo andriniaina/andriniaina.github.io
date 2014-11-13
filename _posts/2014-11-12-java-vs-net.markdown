@@ -96,7 +96,7 @@ And now, a (short) list of what java does better:
 Other features that I don't miss in C#: 
 
 **Checked exceptions**
-: Controversial. Language honesty is therotically a good thing but in this case I think that most rookie devs end up writing:
+: Controversial. Language honesty is therotically a good thing but in this case I observed that most rookie devs end up writing:
 
 
 ```java
