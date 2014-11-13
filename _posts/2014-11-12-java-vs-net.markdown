@@ -14,7 +14,7 @@ Productive code
 ==============================
 
 **Generics**
-:  Yes I know, java 8 has generics. But it's commonly admitted that it's a broken implementation. Java does not have:
+:  Yes I know, java has generics since 2004. But it's commonly admitted that it's a broken implementation. Java does not have:
 
     - Runtime generics (create a type-safe generic class by reflection)
     - Generics of primitive types
