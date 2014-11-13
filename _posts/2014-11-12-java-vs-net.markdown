@@ -6,7 +6,7 @@ title: Things .NET can do that java can't
 
 A few years ago, I left the java in favor of .net in my job.  I started using java again recently for a project and it reminded me why java was so behind and counter-productive.
 
-Here is a list of what java does wrong (or does not do at all) taht I now miss:
+Here is a list of what java does wrong (or does not do at all) that I now miss:
 
 
 
@@ -70,7 +70,7 @@ Clean code
 
 
 **LINQ language, and expression trees**
-: Brings type-safe queries directly to the code language.
+: Brings type-safe queries directly to the core language.
 
 **Dynamic types**
 : Love it or not, admit that it's quite useful sometimes to avoid excessive casting (especially when dealing with complex COM objects).
