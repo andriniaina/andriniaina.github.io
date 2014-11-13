@@ -73,7 +73,7 @@ Clean code
 : Brings type-safe queries directly to the code language.
 
 **Dynamic types**
-: Love it or not, admit that it's quite useful sometimes (especially when dealing with complex COM objects).
+: Love it or not, admit that it's quite useful sometimes to avoid excessive casting (especially when dealing with complex COM objects).
 
 
 
