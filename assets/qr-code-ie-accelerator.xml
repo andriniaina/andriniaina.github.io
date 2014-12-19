@@ -2,7 +2,7 @@
 <os:openServiceDescription xmlns:os="http://www.microsoft.com/schemas/openservicedescription/1.0">
 	<os:homepageUrl>http://chart.apis.google.com</os:homepageUrl>
 	<os:display>
-		<os:name>QR code generator</os:name>
+		<os:name>QR encode</os:name>
 		<os:icon>http://www.qrstuff.com/favicon.ico</os:icon>
 		<os:description>Generate a QR code for the target link</os:description>
 	</os:display>
