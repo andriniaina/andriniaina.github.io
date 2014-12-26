@@ -18,7 +18,7 @@ Here are the steps if you want to do the same things as me.
     * You can select multiple partitions
     * If you are copying from one drive to another, chances are that both drives do not have the same sizes. In this case, select the `-k1` option. For some reason, this did not work for me (see below for fix). Note that this option is not in the same dialog as the `rescue` option. 
 
-Now the hard part: In my case, Clonezilla correctly cloned the partition but I did not clone the 100MB system partition (this partition is automatically created by Win8 and contains the boot files). Actually I was not even aware that an Win8 installation requires a separate 100MB system partition... Also, Clonezilla *cloned* my drive, meaning that it created a 70Gb that somehow fully occupies a 128Gb drive...
+Now the hard part: In my case, Clonezilla correctly cloned the partition but I did not clone the 100MB system partition (this partition is automatically created by Win8 and contains the boot files). Actually I was not even aware that an Win8 installation requires a separate 100MB system partition... Also, Clonezilla *cloned* my drive, meaning that it created a 70Gb partition that somehow occupies the whole capacity of the new drive...
 
 3. Resize the cloned partition, using the **old** Windows installation. This step cannot be done with the disk tools from Microsoft. Windows will think that the new partition fully occupies the drive. I used [EaseUS Partition Manager Free](http://www.easeus.com/partition-manager/epm-free.html). I had to shrink the partition first and then re-expand it.
 4. Now that you have more space on the new drive, create the system boot partition
