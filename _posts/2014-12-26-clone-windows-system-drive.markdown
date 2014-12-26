@@ -24,21 +24,22 @@ Now the hard part: In my case, Clonezilla correctly cloned the partition but I d
 4. Now that you have more space on the new drive, create the system boot partition
     * Still in EaseUS, create an empty partition of 100MB
 5. Clone the old system partition to the new partition
-6. Mount both drives (the new system partition and the new windows partition) respectively in `X:` and `Z:`
+6. Mount both drives (the new system partition and the new windows partition) respectively in `X:` and `Z:` (don't worry, these are just alias letters and will not be used in the new Windows installation. Windows uses only device ids. See below)
 7. Edit the BCD (Boot Configuration Data) using [Visual BCD editor](http://www.boyans.net/DownloadVisualBCD.html)
     * create a new OS entry, by copying the old loader information (you can use `bcdedit /copy {current} /d xxxxxx` in command line).
     * adapt the new entry: make it point to the new Windows partition (`Z:`). You need to change both the `ApplicationDevice` and `OSDevice` properties
     * copy the boot records to the new drive: in the menu, select *Repair > Repair boot records* and *Repair > Repair bcd*, each time selecting `X:` as the system partition and `z:\Windows` as the Windows installation folder.
+    * again, don't worry about the X: and Z: drive names. Windows will remap the drives in the new OS.
 8. Reboot, select the new Windows, log in
 
-At this point, everything is probably fucked up because Windows does not care if you cloned the drive; Windows only uses the device ids and still recognizes the old drive as `C:`, which would be great... in other circumstances. The system boots but reads system files from `C:` (the old drive) and everything point to `C:`. 
+At this point, everything is probably fucked up because Windows does not care if you cloned the drive; Windows only uses the device ids and still recognizes the old drive as `C:`, which would be great... in other circumstances. The system boots but reads system files from `C:` (the old drive) and everything point to `C:`.  Your new drive probably was probably assigned to the letter `D:` or `E:`
 
 8. Now reboot in the **old** Windows again (The point of the previous step was just to create the correct drive ids in the registry)
 9. Reassign drive letters (you can't do this directly in the new Windows installation; you can't reassign the drive letter of the running windows partition):
     * Open `regedit`
     * select the root node `HKEY_LOCAL_MACHINE`
-    * open the registry of the new Windows: select the menu *File > Load hive...*, open the hive `Z:\Windows\System32\config\SYSTEM`, give it a key name of you choice
-    * you need to edit keys in `HKLM\SYSTEM\MountedDevices`; Delete the key `\DosDevices\C:`, rename `\DosDevices\L:` to `\DosDevices\C:` (where L: is the letter that windows automatically assigned to the new drive)
+    * open the registry of the new Windows: select the menu *File > Load hive...*, open the hive `Z:\Windows\System32\config\SYSTEM`, give it a temporary key name of you choice
+    * in the new hive, you will need to edit the keys in `HKLM\SYSTEM\MountedDevices`; Delete the key `\DosDevices\C:`, rename `\DosDevices\L:` to `\DosDevices\C:` (where L: is the letter that windows automatically assigned to the new drive)
 10. Reboot in the **new** Windows
 11. Enjoy
 
