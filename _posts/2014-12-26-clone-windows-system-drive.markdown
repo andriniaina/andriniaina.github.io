@@ -32,9 +32,9 @@ Now the hard part: In my case, Clonezilla correctly cloned the partition but I d
     * again, don't worry about the X: and Z: drive names. Windows will remap the drives in the new OS.
 8. Reboot, select the new Windows, log in
 
-At this point, everything is probably fucked up because Windows does not care if you cloned the drive; Windows only uses the device ids and still recognizes the old drive as `C:`, which would be great... in other circumstances. The system boots but reads system files from `C:` (the old drive) and everything point to `C:`.  Your new drive probably was probably assigned to the letter `D:` or `E:`
+At this point, everything is probably fucked up because Windows does not care if you cloned the drive; Windows only uses the device ids and still assigned the old drive to the letter `C:`, which would be great... in other circumstances. The system boots but reads most system files from `C:` (the old partition) and everything point to `C:`. Your new partition probably was probably assigned to the letter `D:` or `E:`. `Explorer.exe` will keep crashing and restarting.
 
-8. Now reboot in the **old** Windows again (The point of the previous step was just to create the correct drive ids in the registry)
+8. Now reboot in the **old** Windows again (The point of the previous step was just to create the correct drive ids in the new registry)
 9. Reassign drive letters (you can't do this directly in the new Windows installation; you can't reassign the drive letter of the running windows partition):
     * Open `regedit`
     * select the root node `HKEY_LOCAL_MACHINE`
