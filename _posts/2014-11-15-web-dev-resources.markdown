@@ -4,8 +4,11 @@ categories: EN tooling
 title: Useful web resources
 ---
 
+[Best tools for designers](http://www.producthunt.com/saijo_george/collections/best-tools-for-designers)
+
 
 [Random color scheme generator](http://codecrafted.net/randommaterial/)
+
 
 Google material design
 --
