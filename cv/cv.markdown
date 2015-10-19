@@ -1,12 +1,12 @@
 
 
 
-<div>
-<a href="photo.jpg" target="_new">
-<img class="img-thumbnail scaled" src="photo_thumbnail.jpg" style="float:left; " />
+<div class="row">
+<a class="col-xs-4 col-sm-3 col-md-2" style="margin:30px 0 0 0" href="photo.jpg" target="_new">
+<img class="img-thumbnail scaled" src="photo.jpg" />
 </a>
 
-<div style="display:block; margin-left:150px">
+<div class="col-xs-10 col-sm-9 col-md-10">
 <h1>
 <!--
 <img class="img-circle" src="photo.jpg" style="width:100px; height:100px; float:left; margin: 0 1ex 0 0;" />
