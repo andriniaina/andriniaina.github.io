@@ -1,0 +1,14 @@
+body{
+	font-family: "PT Serif",Georgia,Times,"Times New Roman",serif;
+}
+dd {
+	margin-left: 4ex;
+}
+
+h2 {
+	border-bottom: 1px solid black;
+}
+
+.scaled {
+-ms-interpolation-mode: bicubic; 
+}
