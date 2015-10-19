@@ -1,10 +1,13 @@
 
 
 
-<h1>
+<div>
 <a href="photo.jpg" target="_new">
-<img class="img-thumbnail scaled" src="photo100.jpg" style="width:100px; height:100px; float:left; margin: 0 1ex 0 0;" />
+<img class="img-thumbnail scaled" src="photo_thumbnail.jpg" style="float:left; " />
 </a>
+
+<div style="display:block; margin-left:150px">
+<h1>
 <!--
 <img class="img-circle" src="photo.jpg" style="width:100px; height:100px; float:left; margin: 0 1ex 0 0;" />
 <img class="img-circle" src="photo_visage.jpg" style="width:100px; height:100px; float:left; margin: 0 1ex 0 0;" />
@@ -14,14 +17,16 @@
 -->
 Andri Rakotomalala
 </h1>
-Ingénieur Informatique, Développeur multi-technologies, spécialisé en .NET+WPF/AngularJs
-
-
-<p style="font-size:120%"><strong>
-10 ans d'expérience en développement d'applications d'entreprise, dont 5 ans en finance de marché
+<p><strong>Ingénieur Informatique, Développeur multi-technologies, spécialisé en .NET+WPF/AngularJs
 </strong></p>
-
+<p><strong>10 ans d'expérience en développement d'applications d'entreprise, dont 5 ans en finance de marché
+</strong></p>
+<p><strong>Anglais courant
+</strong></p>
+</div>
 <p style="clear:both"></p>
+</div>
+
 
 ## Formation
 2005
@@ -29,11 +34,6 @@ Ingénieur Informatique, Développeur multi-technologies, spécialisé en .NET+W
 
 2000
 : Baccalauréat S - Spécialité Mathématiques, Mention Bien
-
-## Langues
-
-Anglais
-: Courant, très bon niveau professionel
 
 
 
@@ -78,7 +78,7 @@ Finances de marchés
 ### 05/2014 - actuel : BNP Paribas CIB
 **Développeur .NET, java, AngularJs au sein de Compliance, BNP Paribas**
 
-Dette technique considérable. Maintenance des applications de suivi des initiés, des poses de chaque desk/entité, des restrictions de trading.
+Dette technique considérable. Refonte et maintenance des applications de suivi des initiés, des poses de chaque desk/entité, des restrictions de trading.
 
 Réalisations notables :
 
