@@ -42,16 +42,15 @@ Andri Rakotomalala
 ## Compétences techniques
 
 Mes diverses expériences et ma grande culture générale en informatique me permettent de passer et de m'adapter à tout type d'environnement technique.
-
 Néanmoins, ma spécialité actuelle est le développement d'**applications .NET** (C# ou F#, WPF ou asp.NET) et **javascript**, en respectant des **critères de qualité et de budget strictes**.
 
+Parmi mes technologies que je maîtrise:
+
 Applications clientes
-: WPF, Windows Forms, jQuery, AngularJs, css
+: WPF, Windows Forms, jQuery, AngularJs, html/css
 
 Langages
-: C#, F#, VB.NET, java, xml/xsl/xsd
-: html, css, javascript/typescript
-: SQL
+: C#, F#, VB.NET, java, xml/xsl/xsd, javascript/typescript, SQL
 
 Bases de données relationnelles
 : MSSQL 2012, Oracle 12c, Sybase ASE
@@ -75,7 +74,7 @@ MOE
 : Programmation fonctionelle
 
 Finance de marchés
-:  Marchés financiers appliqués aux matières premières et ses produits dérivés, Grecs, VaR
+:  Marchés des matières premières et ses produits dérivés, Grecs, VaR
 : Notions en marchés d'actions
 
 ## Projets
