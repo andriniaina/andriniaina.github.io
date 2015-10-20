@@ -10,5 +10,25 @@ h2 {
 }
 
 .scaled {
--ms-interpolation-mode: bicubic; 
+-ms-interpolation-mode: bicubic;
+}
+
+.duree_offset {
+	float:right;
+	font-size:70%;
+	color:#AAA;
+	margin-top:10px;
+}
+
+@media print{
+	blockquote{
+		border:none;
+	}
+}
+
+blockquote
+{
+	font-size: 100%;
+	border-left: 5px solid #428BCA; /*3498DB*/
+	margin-bottom: 3em;
 }
