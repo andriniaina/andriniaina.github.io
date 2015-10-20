@@ -61,7 +61,8 @@ ETL et traitement de données en masse
 : MSSQL Analysis Services (SSAS)
 
 Tests
-: MsTest, xUnit, Rhino Mocks et Moq, Selenium
+: MsTest, xUnit, Rhino Mocks et Moq
+: Selenium
 
 
 ## Compétences métiers
@@ -85,7 +86,7 @@ Finance de marchés
 
 <h3><div class="duree_offset"> 05/2014 - actuel (~1.5an)</div>BNP Paribas CIB</h3>
 
-**Lead Développeur .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
+**Lead développeur .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
 
 Dette technique considérable. Refonte et maintenance des applications de suivi des initiés, des poses de chaque desk/entité, des restrictions de trading.
 
