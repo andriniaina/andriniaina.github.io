@@ -23,7 +23,7 @@ Andri Rakotomalala
 </div>
 
 
-<a class="hidden-print hidden-xs col-sm-3 col-md-2" style="margin:30px 0 0 0" href="photo.jpg">
+<a class="col-xs-3 col-sm-3 col-md-2" style="margin:30px 0 0 0" href="photo.jpg">
 <img class="img-thumbnail scaled" src="photo.jpg" />
 </a>
 

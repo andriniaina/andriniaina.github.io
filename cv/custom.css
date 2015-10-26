@@ -32,3 +32,9 @@ blockquote
 	border-left: 5px solid #428BCA; /*3498DB*/
 	margin-bottom: 3em;
 }
+@media print {
+    a:link:after, a:visited:after {  
+      display: none;
+      content: "";
+    }
+}
