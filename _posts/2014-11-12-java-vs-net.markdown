@@ -26,7 +26,7 @@ Productive code
 : Retain bound variables and pass them around.
 
 **Extension methods**
-: Visitor pattern out-of-the-box.
+: Decorator pattern out-of-the-box. Of course it's not the full decorator pattern because these are static classes that you cannot replace at runtime. However, it covers 90% of all my use-cases.
 
 **Inner classes**
 : as opposed to nested classes.
@@ -63,7 +63,7 @@ Clean code
 : `var i = new MyClass()`
 
 **Properties**
-: Unless you like useless parentheses, writing `display(x.MyProp)` and `x.MyProp = 1` is so much readable than `display(x.getMyProp())` or `x.setMyProp(1)` 
+: Unless you like useless parentheses, writing `display(x.MyProp)` and `x.MyProp = 1` is so much readable than `display(x.getMyProp())` or `x.setMyProp(1)`
 
 **Auto-implemented properties**
 : Removes code clutter. Make code more readable. Compare this single line `public string Name { get; set; }` to its equivalent in java.
@@ -87,13 +87,13 @@ And now, a (short) list of what java does better:
 
 **Cross-platform**
 :   Yes. I know. There is [Mono](http://www.mono-project.com/) and [Xamarin](http://xamarin.com/). But we are still waiting for a cross-platform runtime from Microsoft (should come in 2015).
-    
+
 > A good part of .Net is now open-source [.NET Core open source](http://blogs.msdn.com/b/dotnet/archive/2014/11/12/net-core-is-open-source.aspx?amp&amp), Roslyn (compiler api and tools), F# (fully open-source), asp.NET 5 (vNext), Entity Framework, ...
 
 
 <hr />
 
-Other features that I don't miss in C#: 
+Other features that I don't miss in C#:
 
 **Checked exceptions**
 : Controversial. Language honesty is therotically a good thing but in this case I observed that many devs (including me sometimes) end up writing:
@@ -112,7 +112,3 @@ or
         /* just log the error, do nothing at all that contributes to honesty */
     }
 ```
-
-
-
-
