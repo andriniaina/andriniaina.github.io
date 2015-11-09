@@ -4,10 +4,7 @@ categories: EN wcf odata
 title: CSV output formatter for WCF Data Services
 ---
 
-
-
-<script src="https://gist.github.com/andriniaina/01fb854e449376c75185.js"></script>
-
+clone from gist.github : [https://gist.github.com/01fb854e449376c75185.git]( https://gist.github.com/01fb854e449376c75185.git)
 
 ```csharp
 //-----------------------------------------------------------------------
