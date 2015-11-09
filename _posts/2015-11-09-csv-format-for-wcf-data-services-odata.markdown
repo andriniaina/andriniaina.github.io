@@ -1,10 +1,41 @@
 ---
 layout: post
-categories: EN wcf odata
+categories: EN wcf odata csv
 title: CSV output formatter for WCF Data Services
 ---
 
-clone from gist.github : [https://gist.github.com/01fb854e449376c75185.git]( https://gist.github.com/01fb854e449376c75185.git)
+The [OData URL conventions](http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part2-url-conventions/odata-v4.0-errata02-os-part2-url-conventions-complete.html#_Toc406398169) says that one can specify the media type of the response in the query, using the query parameter `$format`.
+The requested media type can also be negociated through http content-type headers.
+However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).
+
+With the code below, you can query a **OData WCF Data Service** and receive a **csv** file in the response.
+
+
+
+Usage
+------
+
+Just add the attribute `[CsvSupportBehavior]` to your service class and add  the parameter `$format=txt` in the URL.
+
+```csharp
+namespace SampleDataService
+{
+    [CsvSupportBehavior]
+    public class WcfDataService1 : DataService< sampleEntities >
+    {
+        public static void InitializeService(DataServiceConfiguration config)
+        {
+          config.SetEntitySetAccessRule("*", EntitySetRights.AllRead);
+          config.SetEntitySetPageSize("*", 10);
+          config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
+        }
+    }
+}
+```
+
+Code
+----
+> clone from gist.github : [https://gist.github.com/andriniaina/01fb854e449376c75185]( https://gist.github.com/andriniaina/01fb854e449376c75185)
 
 ```csharp
 //-----------------------------------------------------------------------
@@ -22,7 +53,6 @@ namespace WCFDataServiceFormatExtensions
     using System.Text;
     using System.Xml;
     using System.Xml.Linq;
-
 
     /// <summary>
     /// This Class provide an attribute that need to be applied on data service class in order to enable text output
@@ -226,26 +256,4 @@ namespace WCFDataServiceFormatExtensions
     }
 }
 
-```
-
-
-Usage
-------
-
-Just add the attribute `[CsvSupportBehavior]` to your service class.
-
-```csharp
-namespace SampleDataService
-{
-    [CsvSupportBehavior]
-    public class WcfDataService1 : DataService< sampleEntities >
-    {
-        public static void InitializeService(DataServiceConfiguration config)
-        {
-          config.SetEntitySetAccessRule("*", EntitySetRights.AllRead);
-          config.SetEntitySetPageSize("*", 10);
-          config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
-        }
-    }
-}
 ```
