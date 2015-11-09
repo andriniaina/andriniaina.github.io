@@ -232,6 +232,8 @@ namespace WCFDataServiceFormatExtensions
 Usage
 ------
 
+Just add the attribute `[CsvSupportBehavior]` to your service class.
+
 ```csharp
 namespace SampleDataService
 {
