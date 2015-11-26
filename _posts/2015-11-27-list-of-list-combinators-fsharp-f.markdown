@@ -8,7 +8,8 @@ Problem
 ===
 
 Given the following data :
-```fsharp
+
+```fs
 [
 	["1";"2"];
 	[];
