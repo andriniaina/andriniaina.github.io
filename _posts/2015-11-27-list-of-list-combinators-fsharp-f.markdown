@@ -4,6 +4,9 @@ categories: EN fsharp F# combinators
 title: Combine/Permutate a list of list in F#
 ---
 
+Problem
+===
+
 Given the following data :
 ```fsharp
 [
@@ -13,7 +16,10 @@ Given the following data :
 ]
 ```
 
-Find all possible combinations
+Find all possible combinations.
+
+Solution
+=====
 
 ```fs
 let rec _combine (acc:'T list) (ll: 'T list list) : 'T list list =
