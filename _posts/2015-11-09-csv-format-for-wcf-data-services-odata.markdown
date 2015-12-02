@@ -17,6 +17,8 @@ Usage
 
 Just add the attribute `[CsvSupportBehavior]` to your service class and add  the parameter `$format=txt` in the URL.
 
+You can customize the output with `$format=txt:[separator?]:[csvHeader?]` (e.g.  `$format=txt:,:colHeader1,col2,col3` )
+
 ```csharp
 namespace SampleDataService
 {
