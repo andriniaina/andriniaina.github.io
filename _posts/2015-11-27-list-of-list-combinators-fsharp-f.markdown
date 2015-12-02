@@ -35,6 +35,9 @@ let combine (ll:'T list list) : 'T list list =
     _combine [] ll
         |> List.map (List.rev)
 
+let combineCsharpCompliant (ll:'T IList IList) =
+	ll |> Seq.map (List.ofSeq) |> List.ofSeq |> combine |> List.map (System.Linq.Enumerable.ToList) |> System.Linq.Enumerable.ToList
+
 let ll = [["1";"2"];[];["5";"6";"7"]]
 combine ll
 /// val it : string list list =

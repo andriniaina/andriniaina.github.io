@@ -44,6 +44,7 @@ Code
 namespace WCFDataServiceFormatExtensions
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.ServiceModel;
@@ -53,6 +54,7 @@ namespace WCFDataServiceFormatExtensions
     using System.Text;
     using System.Xml;
     using System.Xml.Linq;
+
 
     /// <summary>
     /// This Class provide an attribute that need to be applied on data service class in order to enable text output
@@ -115,22 +117,26 @@ namespace WCFDataServiceFormatExtensions
             if (request.Properties.ContainsKey("UriTemplateMatchResults"))
             {
                 string requestType = "RequestType=TXT";
-                var separator = "\t";
-
                 UriTemplateMatch match = (UriTemplateMatch)request.Properties["UriTemplateMatchResults"];
                 string format = match.QueryParameters["$format"];
+                string selectors = match.QueryParameters["$select"];
 
                 if (format != null && format.StartsWith("txt", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    ////check if separator found
-                    int saperatorPos = format.IndexOf(':');
-                    if (saperatorPos > 0)
+                    /*
+                    string customheader = match.QueryParameters["$customCsvHeader"];
+                    if (customheader != null)
                     {
-                        separator = format.Substring(saperatorPos + 1);
+                        match.QueryParameters.Remove("$customCsvHeader");
                     }
+                    */
+                    ////check if separator found 
+                    var spec = format.Split(':');
+                    var separator = spec.Length > 1 ? spec[1] : "\t";
+                    var header = spec.Length > 2 ? spec[2] : "";
 
                     match.QueryParameters.Remove("$format");
-                    token = string.Format("{0};separator={1}", requestType, separator);
+                    token = string.Format("{0}¤separator={1}¤selectors={2}¤header={3}", requestType, separator, selectors, header);
                 }
             }
 
@@ -159,34 +165,50 @@ namespace WCFDataServiceFormatExtensions
                         if (isRequestTypeTXT && contentType.StartsWith("application/atom", StringComparison.InvariantCultureIgnoreCase))
                         {
                             response.Headers["Content-Type"] = "text/csv;charset=utf-8";
-                            var stateDic = ((string)correlationState).Split(';').Select(x => x.Split(new[] { '=' }, 2)).ToDictionary(x => x[0], x => x[1]);
+                            var stateDic = ((string)correlationState).Split('¤').Select(x => x.Split(new[] { '=' }, 2)).ToDictionary(x => x[0], x => x[1]);
 
                             using (var bodyReader = reply.GetReaderAtBodyContents())
                             {
                                 bodyReader.ReadStartElement();
                                 var txt = Encoding.UTF8.GetString(bodyReader.ReadContentAsBase64());
                                 var separator = stateDic["separator"];
+                                var selectors = stateDic["selectors"].Split(',').Select(x => x.Trim()).Select(getXPath).ToList();
+
+                                var csvHeaders = string.IsNullOrWhiteSpace(stateDic["header"]) ?
+                                    string.Join(separator, stateDic["selectors"].Split(',').Select(s => s.Split('/').Last())) 
+                                    :
+                                    stateDic["header"];
+
                                 using (var reader = new StringReader(txt))
                                 {
-                                    var doc = XDocument.Load(reader);
-                                    var atom = XNamespace.Get("http://www.w3.org/2005/Atom");
-                                    var m = XNamespace.Get("http://schemas.microsoft.com/ado/2007/08/dataservices/metadata");
-                                    var firstEntryProps = doc.Descendants(atom + "entry").Descendants(m + "properties").FirstOrDefault();
-                                    var csvHeaders = (firstEntryProps != null) ? string.Join(separator, firstEntryProps.Elements().Select(x => x.Name.LocalName)) : "";
+                                    var doc = new System.Xml.XmlDocument();
+                                    doc.Load(reader);
+                                    var nsmgr = new XmlNamespaceManager(doc.NameTable);
+                                    nsmgr.AddNamespace("base", "http://localhost:8080/WcfDataService1.svc/");
+                                    nsmgr.AddNamespace("d", "http://schemas.microsoft.com/ado/2007/08/dataservices");
+                                    nsmgr.AddNamespace("m", "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata");
+                                    nsmgr.AddNamespace("atom", doc.DocumentElement.NamespaceURI);
+                                    var n = doc.DocumentElement.SelectNodes("/atom:feed", nsmgr);
 
-                                    var lines = from p in doc.Descendants(atom + "entry").Descendants(m + "properties")
-                                                select string.Join(separator, p.Descendants().Select(x => x.Value));
+                                    var csv = new StringBuilder();
+                                    var lines = new List<string>();
+                                    foreach (XmlNode entry in doc.DocumentElement.SelectNodes("/atom:feed/atom:entry", nsmgr))
+                                    {
+                                        var grapes = selectors.Select(x => entry.SelectNodes(x, nsmgr).Cast<XmlNode>().ToList()).Cast<IList<XmlNode>>().ToList();
+                                        var innerJoinedLines = Utils.x.combineClrCompliant(grapes).Select(x => string.Join(separator, x.Select(node => node.InnerText))).ToList();
+                                        lines.AddRange(innerJoinedLines);
+                                    }
 
-                                    var content = string.Join("\n", new[] { csvHeaders }.Concat(lines));
+                                    var csvContent = string.Join("\r\n", new[] { csvHeaders }.Concat( lines));
                                     Encoding encoding = GetReplyEncoding(response);
-                                    Message newreply = Message.CreateMessage(MessageVersion.None, string.Empty, new CustomBinaryWriter(content, encoding));
+                                    Message newreply = Message.CreateMessage(MessageVersion.None, string.Empty, new CustomBinaryWriter(csvContent, encoding));
                                     newreply.Properties.CopyProperties(reply.Properties);
-
-                                    var continuationUrl = doc.Elements(atom + "feed").Elements(atom + "link").Where(x => (string)x.Attribute("rel") == "next").Select(x => (string)x.Attribute("href")).FirstOrDefault();
+                                    
+                                    var continuationUrl = doc.SelectSingleNode("/atom:feed/atom:link[@rel='next']/@href", nsmgr);
                                     if (continuationUrl != null)
                                     {
                                         var httpmsg = (HttpResponseMessageProperty)reply.Properties[System.ServiceModel.Channels.HttpResponseMessageProperty.Name];
-                                        httpmsg.Headers.Add("Continuation-Url", continuationUrl);
+                                        httpmsg.Headers.Add("Continuation-Url", continuationUrl.Value);
                                     }
                                     reply = newreply;
                                 }
@@ -194,6 +216,35 @@ namespace WCFDataServiceFormatExtensions
                         }
                     }
                 }
+            }
+        }
+
+        private string getXPath(string selector)
+        {
+            var parts = selector.Split('/');
+            if (parts.Length == 1)
+            {
+                return string.Format("atom:content/m:properties/d:{0}", parts[0]);
+            }
+            else
+            {
+                var xpath1 = new StringBuilder();
+                xpath1.AppendFormat("atom:link[@title='{0}']", parts[0]);
+                for (int i = 1; i < parts.Length - 1; i++)
+                {
+                    xpath1.AppendFormat("/m:inline/atom:entry/atom:link[@title='{0}']", parts[i]);
+                }
+                xpath1.AppendFormat("/m:inline/atom:entry/atom:content/m:properties/d:{0}", parts.Last());
+
+
+                var xpath2 = new StringBuilder();
+                xpath2.AppendFormat("atom:link[@title='{0}']", parts[0]);
+                for (int i = 1; i < parts.Length - 1; i++)
+                {
+                    xpath2.AppendFormat("/m:inline/atom:feed/atom:entry/atom:link[@title='{0}']", parts[i]);
+                }
+                xpath2.AppendFormat("/m:inline/atom:feed/atom:entry/atom:content/m:properties/d:{0}", parts.Last());
+                return xpath1 + "|" + xpath2;
             }
         }
 
@@ -243,7 +294,7 @@ namespace WCFDataServiceFormatExtensions
 
         Encoding encoding;
         /// <summary>
-        /// Called by service implementatio.
+        /// Called by service implementatio. 
         /// </summary>
         /// <param name="writer">XmlDictionaryWriter instance provided by service.</param>
         protected override void OnWriteBodyContents(XmlDictionaryWriter writer)
