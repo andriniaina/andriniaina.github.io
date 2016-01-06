@@ -247,7 +247,7 @@ sayHelloInFiveSeconds("Adam"); // will open a popup with "Hello, Adam!" in 5s
 // TODO
 
 ## Singleton
-Does not exist. All properties are public
+// TODO
 
 ## Factory and Builders
 // TODO
