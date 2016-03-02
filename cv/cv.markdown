@@ -78,7 +78,10 @@ Finance de marchés
 : Notions en marchés d'actions
 
 ## Projets
+
 [FsMocks](https://github.com/andriniaina/FsMocks) : Framework de mock open-source en F#
+
+[Allez, On Va Sortir!](https://play.google.com/store/apps/details?id=com.andri_onvasortir_react): Application Android (react-native et java)
 
 ## Expérience professionnelle
 
