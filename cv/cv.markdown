@@ -79,7 +79,7 @@ Finance de marchés
 
 ## Projets
 
-[FsMocks](https://github.com/andriniaina/FsMocks) : Framework de mock open-source en F#
+[FsMocks](https://github.com/andriniaina/FsMocks) : Framework de mock open-source en F# (wrapper autour de Rhino.Mocks)
 
 [Allez, On Va Sortir!](https://play.google.com/store/apps/details?id=com.andri_onvasortir_react): Application Android (react-native et java)
 
