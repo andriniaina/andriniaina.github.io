@@ -97,11 +97,11 @@ Réalisations notables :
 
 * Réécriture de l'application de suivi des poses de la BNP (C#):
     * Reverse-engineering
-    * Réécriture des modules de calcul
+    * Réécriture et optimisation des modules de calcul (~1.5millions de lignes à calculer en quelques minutes)
     * Développement d'une batterie de tests fonctionnels automatisés (BDD avec Specflow)
     * Modernisation du site web (asp.NET/C# + bootstrap css + angularjs)
 
-> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, javascript/typescript, Visual Studio, eclipse
+> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, eclipse
 
 
 
