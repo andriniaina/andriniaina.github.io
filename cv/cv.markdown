@@ -68,14 +68,14 @@ Tests
 MOA
 : Analyse et rédaction des expressions de besoins, rédaction de spécifications fonctionnelles, rédaction de la documentation technique et utilisateur, tests fonctionnels
 
+Finance de marchés
+:  Marchés des matières premières et ses produits dérivés, Grecs, VaR
+: Notions en marchés d'actions
+
 MOE
 : Conception d'applications de qualité (maintenables, testables, performants, et secures)
 : TDD, BDD, Tests unitaires et refactoring de code *legacy* avec forte dette technique
 : Programmation fonctionelle
-
-Finance de marchés
-:  Marchés des matières premières et ses produits dérivés, Grecs, VaR
-: Notions en marchés d'actions
 
 ## Projets
 
