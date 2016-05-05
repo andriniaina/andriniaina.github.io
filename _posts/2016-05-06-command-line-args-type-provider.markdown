@@ -5,15 +5,23 @@ title: Type provider for command-line arguments (WIP)
 ---
 
 
-Usage 
----- 
+Usage
+----
 
 ```fsharp
-type MyArgsParser = Samples.HelloWorldTypeProvider.CliParametersParser<"-switch2 -a -b -c">
-let args = MyArgsParser("-switch2 11 -a -b")
-args.switch2 // val it : Option<string> = Some "11"
+// set all possible switches
+// switches are all optional and unordered
+type MyArgsParser = Andri.TypeProviders.CliParametersParser<"-switch2 -a -b -c">
+
+[<EntryPoint>]
+let main args =
+  MyArgsParser(args)
+  printfn "switch2: %s" (args.switch2) // displays Option<string> = Some "11"
 ```
 
+```
+myApp.exe -switch2 11 -b
+```
 
 Source
 ----
@@ -27,7 +35,7 @@ open Microsoft.FSharp.Core.CompilerServices
 open Microsoft.FSharp.Quotations
 open Samples.FSharp.ProvidedTypes
 module utils =
-    let argsToDict (s:string) = 
+    let argsToDict (s:string) =
         let args = Seq.append (s.Split(' ')) ([""])
         let pairs =
             Seq.pairwise args
@@ -37,24 +45,24 @@ module utils =
         pairs
 
 [<TypeProvider>]
-type SampleTypeProvider(config: TypeProviderConfig) as this = 
+type SampleTypeProvider(config: TypeProviderConfig) as this =
     inherit TypeProviderForNamespaces()
 
-    let namespaceName = "Samples.HelloWorldTypeProvider"
+    let namespaceName = "Andri.TypeProviders"
     let thisAssembly = Assembly.GetExecutingAssembly()
     let baseTy = typeof<obj>
     let regexTy = ProvidedTypeDefinition(thisAssembly, namespaceName, "CliParametersParser", Some baseTy)
     do
         regexTy.DefineStaticParameters(
-            [ProvidedStaticParameter("params", typeof<string>)], 
+            [ProvidedStaticParameter("params", typeof<string>)],
             (fun typeName parameterValues ->
                 printfn "typeName=%s" typeName
                 printfn "parameterValues.Length=%s" (Convert.ToString(parameterValues.Length))
                 printfn "parameterValues=%s" (Convert.ToString(parameterValues.[0]))
                 let ty = ProvidedTypeDefinition(
-                            thisAssembly, 
-                            namespaceName, 
-                            typeName, 
+                            thisAssembly,
+                            namespaceName,
+                            typeName,
                             baseType = Some baseTy)
 
                 let parameterValue = parameterValues.[0] :?> string
@@ -71,7 +79,6 @@ type SampleTypeProvider(config: TypeProviderConfig) as this =
         this.AddNamespace(namespaceName, [regexTy])
 
 
-[<assembly:TypeProviderAssembly>] 
+[<assembly:TypeProviderAssembly>]
 do()
 ```
-
