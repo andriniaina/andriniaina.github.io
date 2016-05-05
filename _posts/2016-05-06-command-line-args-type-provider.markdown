@@ -34,21 +34,20 @@ open System.Reflection
 open Microsoft.FSharp.Core.CompilerServices
 open Microsoft.FSharp.Quotations
 open Samples.FSharp.ProvidedTypes
+
 module utils =
-    let argsToDict (s:string) =
-        let args = Seq.append (s.Split(' ')) ([""])
-        let pairs =
-            Seq.pairwise args
+    let argsToDict (args:string list) =
+        Seq.append args ([""])
+            |> Seq.pairwise
             |> Seq.filter (fun (switchName, value) -> switchName.StartsWith("-"))
             |> Seq.map (fun (switchName, value) -> (switchName, if value.StartsWith("-") then "" else value))
             |> dict
-        pairs
 
 [<TypeProvider>]
 type SampleTypeProvider(config: TypeProviderConfig) as this =
     inherit TypeProviderForNamespaces()
 
-    let namespaceName = "Andri.TypeProviders"
+    let namespaceName = "Samples.HelloWorldTypeProvider"
     let thisAssembly = Assembly.GetExecutingAssembly()
     let baseTy = typeof<obj>
     let regexTy = ProvidedTypeDefinition(thisAssembly, namespaceName, "CliParametersParser", Some baseTy)
@@ -73,7 +72,7 @@ type SampleTypeProvider(config: TypeProviderConfig) as this =
                         let d = (%%args.[0]:obj) :?> System.Collections.Generic.IDictionary<string,string>
                         if d.ContainsKey(p) then Some(d.[p]) else None
                     @@>)) |> Seq.iter (ty.AddMember)
-                ty.AddMember (ProvidedConstructor(parameters = [ProvidedParameter("args", typeof<string>)], InvokeCode = fun args -> <@@ utils. argsToDict (Convert.ToString(%%args.[0]:string)) @@>))
+                ty.AddMember (ProvidedConstructor(parameters = [ProvidedParameter("args", typeof<string list>)], InvokeCode = fun args -> <@@ utils. argsToDict (%%args.[0]:string list) @@>))
                 ty
               ))
         this.AddNamespace(namespaceName, [regexTy])
