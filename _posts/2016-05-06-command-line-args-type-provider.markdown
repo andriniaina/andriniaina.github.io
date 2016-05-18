@@ -11,12 +11,12 @@ Usage
 ```fsharp
 // set all possible switches
 // switches are all optional and unordered
-type MyArgsParser = Andri.TypeProviders.CliParametersParser<"-switch2 -a -b -c">
+type CustomArgsParser = Andri.TypeProviders.CliParametersParser<"-switch2 -a -b -c">
 
 [<EntryPoint>]
 let main args =
-  MyArgsParser(args)
-  printfn "switch2: %s" (args.switch2) // displays Option<string> = Some "11"
+  let parsedArgs = CustomArgsParser(args)
+  printfn "switch2: %s" (parsedArgs.switch2) // displays Option<string> = Some "11"
 ```
 
 ```
