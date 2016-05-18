@@ -1,5 +1,5 @@
 @ECHO OFF
-SET RUBY_BIN=d:\dev\Ruby200\bin\
+SET RUBY_BIN=M:\Program Files\Ruby23\bin
 
 REM Add RUBY_BIN to the PATH
 REM RUBY_BIN takes higher priority to avoid other tools
