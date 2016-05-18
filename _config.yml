@@ -5,7 +5,6 @@ name: Exercices de style
 markdown: kramdown
 kramdown:
         input: GFM
-pygments: true
 paginate: 10 # pagination basted on number of posts
 exclude: ["jekyll-serve.bat" ] # files to exclude
 
