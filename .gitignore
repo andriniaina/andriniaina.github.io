@@ -2,3 +2,4 @@ _site
 *.lnk
 *.sh
 *.swp
+.DS_Store
