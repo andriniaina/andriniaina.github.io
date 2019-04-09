@@ -15,9 +15,9 @@ h2 {
 
 .duree_offset {
 	float:right;
-	font-size:70%;
+	font-size:1.5em;
 	color:#AAA;
-	margin-top:10px;
+	/*margin-top:10px;*/
 }
 
 @media print {
@@ -37,5 +37,9 @@ blockquote
       display: none;
       content: "";
     }
+		#Header, #Footer { display: none !important; }
 }
 
+header p.subtitle, header p.author {
+	font-weight: bold;
+}

@@ -64,7 +64,9 @@ Expérience professionnelle
 -------------
 
 
-<h3><div class="duree_offset">05/2016 - actuel</div> Société Générale CIB</h3>
+<div class="duree_offset">05/2016 - actuel</div>
+
+### Société Générale CIB
 
 **Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
 
@@ -78,14 +80,28 @@ Réalisations notables :
 * Réarchitecturisation progressive du moteur existant pour s'adapter à de nouveaux paradigmes (scénarios de VaR dynamiques)
 * Début d'implémentation d'une architecture en programmation fonctionnelle et immutable: donner ce qui est nécessaire en input pour que les calculateurs puissent opérer de façon indépendante
 * Découplage et divers changements pour réduire le Time-To-Market
-* Evaluation et introduction de technologies récentes tout en respectant le legacy:
+* Choix et introduction de technologies récentes tout en respectant le legacy:
    * NoSQL - Cassandra
    * Monitoring - stack Grafana+InfluDb+AppMetrics
-   * Microservices - consul.io
+   * Microservices - consul.io, traefik
 
-> **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git + teamcity, consul.io + traefik, InfluxDb
+> **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git & teamcity, consul.io & traefik, InfluxDb
 
-<h3><div class="duree_offset"> 05/2014 - 05/2016 (2ans)</div>BNP Paribas CIB</h3>
+
+
+
+
+
+---
+
+
+
+
+
+
+<div class="duree_offset"> 05/2014 - 05/2016 (2ans)</div>
+
+### BNP Paribas CIB
 
 **Tech Lead .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
 
@@ -115,11 +131,12 @@ Réalisations notables :
 
 
 
+---
 
 
+<div class="duree_offset">08/2011 - 05/2014 (~3ans)</div>
 
-
-<h3><div class="duree_offset">08/2011 - 05/2014 (~3ans)</div> Société Générale CIB</h3>
+### Société Générale CIB
 
 **Développeur .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
 
@@ -147,13 +164,15 @@ Réalisations :
 
 
 
+---
 
 
 
 
 
+<div class="duree_offset">03/2010 - 06/2011 (~1an)</div>
 
-<h3><div class="duree_offset">03/2010 - 06/2011 (~1an)</div> GFI Informatique</h3>
+### GFI Informatique
 
 
 **Consultant .NET et Java au sein de GFI Informatique – Division Industrie, Pôle TMA**
@@ -179,12 +198,17 @@ Réalisations :
 
 
 
+---
 
 
 
 
 
-<h3><div class="duree_offset">09/2005 - 02/2010 (~4.5ans+)</div>Amadeus IT Group, département SEP (Sales and e-commerce platforms)</h3>
+<div class="duree_offset">09/2005 - 02/2010 (~4.5ans+)</div>
+
+### Amadeus IT Group, département SEP (Sales and e-commerce platforms)
+
+
 **Responsable de la maintenance des composants PNR (dossier passager), TSM (pricing records), et Queues (file de traitement des PNR) du logiciel de réservation B2B phare d’Amadeus**
 
 **Ingénieur analyste fonctionnel**
