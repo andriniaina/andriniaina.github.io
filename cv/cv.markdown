@@ -75,12 +75,14 @@ MOE
 
 
 <h3><div class="duree_offset">05/2016 - actuel</div> Société Générale CIB</h3>
-**Tech Lead .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
+**Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
 
 Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the Trading Book).
 Fort challenge technique pour adapter le moteur de calcul existant de façon à pouvoir décupler la puissuance de calcul.
 
 Réalisations notables :
+* Membre du chapter Software Craftmanship
+* Membre de la guilde transversale des Tech Leaders
 * Réarchitecturisation progressive du moteur existant pour s'adapter à de nouveaux paradigmes (scénarios de VaR dynamiques)
 * Début d'implémentation d'une architecture en programmation fonctionnelle et immutable: donner ce qui est nécessaire en input pour que les calculateurs puissent opérer de façon indépendante
 * Découplage et divers changements pour réduire le Time-To-Market
@@ -89,11 +91,11 @@ Réalisations notables :
    * Monitoring - stack Grafana+InfluDb+AppMetrics
    * Microservices - consul.io
 
-> **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git
+> **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git + teamcity, consul.io + traefik, InfluxDb
 
 <h3><div class="duree_offset"> 05/2014 - 05/2016 (2ans)</div>BNP Paribas CIB</h3>
 
-**Tech lead .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
+**Tech Lead .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
 
 Dette technique considérable. Refonte et maintenance des applications de suivi des initiés, des poses de chaque desk/entité, des restrictions de trading.
 
@@ -109,7 +111,7 @@ Réalisations notables :
     * Développement d'une batterie de tests fonctionnels automatisés (BDD avec Specflow)
     * Modernisation du site web (asp.NET/C# + bootstrap css + angularjs)
 
-> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, eclipse
+> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, eclipse, jenkins
 
 
 
