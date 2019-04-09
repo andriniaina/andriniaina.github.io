@@ -112,7 +112,7 @@ Réalisations notables :
     * Développement d'une batterie de tests fonctionnels automatisés (BDD avec Specflow)
     * Modernisation du site web (asp.NET/C# + bootstrap css + angularjs)
 
-> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, eclipse, jenkins
+> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins
 
 
 
