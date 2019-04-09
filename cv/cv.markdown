@@ -14,9 +14,9 @@
 -->
 Andri Rakotomalala
 </h1>
-<p><strong>Ingénieur Informatique, Développeur multi-technologies, spécialisé en .NET+WPF/AngularJs
+<p><strong>Ingénieur Informatique, Développeur multi-technologies frntend et backend, spécialisé en .NET/web
 </strong></p>
-<p><strong>10 ans d'expérience en développement d'applications d'entreprise, dont 4 ans en finance de marché
+<p><strong>13 ans d'expérience en développement d'applications d'entreprise, dont 8 ans en finance de marché
 </strong></p>
 <p><strong>Anglais courant
 </strong></p>
@@ -42,26 +42,20 @@ Andri Rakotomalala
 ## Compétences techniques
 
 Mes diverses expériences et ma grande culture générale en informatique me permettent de passer et de m'adapter à tout type d'environnement technique.
-Néanmoins, ma spécialité actuelle est le développement d'**applications .NET** (C# ou F#, WPF ou asp.NET) et **javascript**, en respectant des **critères de qualité et de budget strictes**.
+Néanmoins, ma spécialité actuelle est le développement d'**applications .NET** (C# ou F#) et **javascript** (reactjs ou angularjs).
 
-Parmi mes technologies que je maîtrise:
+Parmi les technologies que je maîtrise:
 
-Applications clientes
-: WPF, Windows Forms, jQuery, AngularJs, html/css
+* Applications clientes
+: WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
 
-Langages
-: C#, F#, VB.NET, java, xml/xsl/xsd, javascript/typescript, SQL
+* Langages
+: C#, F#, VB.NET, java, SQL
 
-Bases de données relationnelles
-: MSSQL 2012, Oracle 12c, Sybase ASE
+* Bases de données relationnelles
+: MSSQL, Oracle, Sybase ASE, Cassandra
 
-ETL et traitement de données en masse
-: MSSQL Server Integration Services (SSIS)
-: MSSQL Analysis Services (SSAS)
-
-Tests
-: MsTest, xUnit, Rhino Mocks et Moq
-: Selenium
+* Tests unitaires et tests automatisés d'interface web (selenium)
 
 
 ## Compétences métiers
@@ -77,18 +71,29 @@ MOE
 : TDD, BDD, Tests unitaires et refactoring de code *legacy* avec forte dette technique
 : Programmation fonctionelle
 
-## Projets
-
-[FsMocks](https://github.com/andriniaina/FsMocks) : Framework de mock open-source en F# (wrapper autour de Rhino.Mocks)
-
-[Allez, On Va Sortir!](https://play.google.com/store/apps/details?id=com.andri_onvasortir_react): Application Android (react-native et java)
-
 ## Expérience professionnelle
 
 
-<h3><div class="duree_offset"> 05/2014 - actuel (~1.5an)</div>BNP Paribas CIB</h3>
+<h3><div class="duree_offset">05/2016 - actuel</div> Société Générale CIB</h3>
+**Développeur .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
 
-**Lead développeur .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
+Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the Trading Book).
+Fort challenge technique pour adapter le moteur de calcul existant de façon à pouvoir décupler la puissuance de calcul.
+
+Réalisations notables :
+* Réarchitecturisation progressive du moteur existant pour s'adapter à de nouveaux paradigmes (scénarios de VaR dynamiques)
+* Début d'implémentation d'une architecture en programmation fonctionnelle et immutable: donner ce qui est nécessaire en input pour que les calculateurs puissent opérer de façon indépendante
+* Découplage et divers changements pour réduire le Time-To-Market
+* Evaluation et introduction de technologies récentes tout en respectant le legacy:
+   * NoSQL - Cassandra
+   * Monitoring - stack Grafana+InfluDb+AppMetrics
+   * Microservices - consul.io
+
+> **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git
+
+<h3><div class="duree_offset"> 05/2014 - 05/2016 (2ans)</div>BNP Paribas CIB</h3>
+
+**Tech lead .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
 
 Dette technique considérable. Refonte et maintenance des applications de suivi des initiés, des poses de chaque desk/entité, des restrictions de trading.
 
@@ -129,18 +134,17 @@ Environnement technique complexe où il faut concilier dette technique et volont
 Développement et maintenance des outils *Front Office* transverses à toutes les lignes métiers de CTY et à tout type de produits dérivés dont :
 
 * Plusieurs pricers pre-trade : affichage des caractéristiques du contrat, grecs, paramètres de marché live
-* Meteor Risk Management (outil de reporting post-trade sur tout le périmètre commodity) : gros volumes de données ; calculs intensifs de valuation, VaR, risk analysis journaliers sur une grille de calcul distribuée
+* Meteor Risk Management (outil critique de calcul et de reporting post-trade sur tout le périmètre commodity) : gros volumes de données ; calculs intensifs de valuation, VaR, risk analysis journaliers sur une grille de calcul distribuée
 
 
-Réalisations notables :
+Réalisations :
 
 * Implémentation de nouveaux développements suite au changement du modèle de pricing (nouveaux indicateurs Explained PnL, nouvelles implémentations de VaR, calculs de dates, etc.)
 * Investigations sur les erreurs de calculs (indicateurs de pricing, nominal, paramètres de marché incorrects, etc.) et les dégradations de performance
 * Comparateur de résultats de jobs d’analyse de risque pour automatiser les tests d’intégration et simplifier la validation manuelle en UAT
 * Stabilisation et refactoring de composants (dependency injection, mise en place d’Unity)
 * Mise en place de tests unitaires avec mocking sur des composants legacy pour atteindre 65% de coverage
-* Maintenance des interfaces Windows Forms+Infragistics et des modèles de données ADO.NET ou NHibernate
-* Refonte d’application en mode Test Driven Development
+* Maintenance des interfaces Windows Forms+Infragistics et des modèles de données
 
 
 > **Env. Technique:** Agile, C# (45%), vb.net (45%), vb6/com (10%), .net 3.5, windows forms, wcf, microsoft unity, nhibernate, sybase 12, SQL Server 2008, ado.net, Symphony (grid computing), team foundation server
@@ -167,7 +171,7 @@ Réalisations notables :
 * Audit de code (performances, sécurité, normes de programmation)
 * Prototypage
 * Conseil et participation à divers projets forfaits clients, dont :
-    * SNCF Yield Management: Réalisation de plusieurs packages SSIS d’importation et de transformation complexes de données (Oracle vers SQL Server, Excel vers SQL Server, Access vers SQL Server)
+    * SNCF Yield Management: gestion dynamique du prix selon le stock de places disponibles
     * SNCF R&D: Création d’une application interactive de visualisation de gros volumes de données statistiques (cartes, graphes, etc.) sur écran tactile
     * EDF / ERDF: Participation à la refonte de l’application Info réseau en abobe flex (anciennement en vb6)
 
