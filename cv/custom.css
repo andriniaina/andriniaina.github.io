@@ -20,7 +20,7 @@ h2 {
 	margin-top:10px;
 }
 
-@media print{
+@media print {
 	blockquote{
 		border:none;
 	}
@@ -38,3 +38,4 @@ blockquote
       content: "";
     }
 }
+

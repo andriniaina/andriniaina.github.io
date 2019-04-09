@@ -1,36 +1,21 @@
+---
+title:  Andri Rakotomalala
+subtitle: 
+    Ingénieur Informatique,
+    Développeur & Tech Leader multi-technologies frontend et backend,
+    spécialisé en .NET/web
+author:
+- 13 ans d'expérience en développement d'applications d'entreprise, dont 8 ans en finance de marché
+- Anglais courant
+---
+
+<link href="custom.css" rel="stylesheet" type="text/css" media="all" />
 
 
 
-<div class="row">
+Formation
+-------------
 
-<div class="col-sm-9 col-md-10">
-<h1>
-<!--
-<img class="img-circle" src="photo.jpg" style="width:100px; height:100px; float:left; margin: 0 1ex 0 0;" />
-<img class="img-circle" src="photo_visage.jpg" style="width:100px; height:100px; float:left; margin: 0 1ex 0 0;" />
-<img class="img-thumbnail" src="photo.jpg" style="width:140px; height:140px; float:left; margin: 0 1ex 0 0;" />
-<img class="img-thumbnail" src="photo_reversed.jpg" style="width:140px; height:140px; float:right; margin: 0 1ex;" />
-<img class="img-circle" src="photo_reversed.jpg" style="width:140px; height:140px; float:right; margin: 0 1ex; " />
--->
-Andri Rakotomalala
-</h1>
-<p><strong>Ingénieur Informatique, Développeur multi-technologies frntend et backend, spécialisé en .NET/web
-</strong></p>
-<p><strong>13 ans d'expérience en développement d'applications d'entreprise, dont 8 ans en finance de marché
-</strong></p>
-<p><strong>Anglais courant
-</strong></p>
-</div>
-
-
-<a class="col-xs-3 col-sm-3 col-md-2" style="margin:30px 0 0 0" href="photo.jpg">
-<img class="img-thumbnail scaled" src="photo.jpg" />
-</a>
-
-</div>
-
-
-## Formation
 2005
 : Ingénieur INSA de Lyon - Département Informatique
 
@@ -38,8 +23,25 @@ Andri Rakotomalala
 : Baccalauréat S - Spécialité Mathématiques, Mention Bien
 
 
+Compétences métiers
+-------------
 
-## Compétences techniques
+Finance de marchés
+: Marchés des matières premières et ses produits dérivés, Grecs, VaR
+: Notions en marchés d'actions
+
+MOA
+: Analyse et rédaction des expressions de besoins, rédaction de spécifications fonctionnelles, rédaction de la documentation technique et utilisateur, tests fonctionnels
+
+
+MOE
+: Conception d'applications de qualité (maintenables, testables, performants, et secures)
+: TDD, BDD, Tests unitaires et refactoring de code *legacy* avec forte dette technique
+: Programmation fonctionelle
+
+
+Compétences techniques
+-------------
 
 Mes diverses expériences et ma grande culture générale en informatique me permettent de passer et de m'adapter à tout type d'environnement technique.
 Néanmoins, ma spécialité actuelle est le développement d'**applications .NET** (C# ou F#) et **javascript** (reactjs ou angularjs).
@@ -58,20 +60,8 @@ Parmi les technologies que je maîtrise:
 * Tests unitaires et tests automatisés d'interface web (selenium)
 
 
-## Compétences métiers
-MOA
-: Analyse et rédaction des expressions de besoins, rédaction de spécifications fonctionnelles, rédaction de la documentation technique et utilisateur, tests fonctionnels
-
-Finance de marchés
-:  Marchés des matières premières et ses produits dérivés, Grecs, VaR
-: Notions en marchés d'actions
-
-MOE
-: Conception d'applications de qualité (maintenables, testables, performants, et secures)
-: TDD, BDD, Tests unitaires et refactoring de code *legacy* avec forte dette technique
-: Programmation fonctionelle
-
-## Expérience professionnelle
+Expérience professionnelle
+-------------
 
 
 <h3><div class="duree_offset">05/2016 - actuel</div> Société Générale CIB</h3>
@@ -82,6 +72,7 @@ Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the 
 Fort challenge technique pour adapter le moteur de calcul existant de façon à pouvoir décupler la puissuance de calcul.
 
 Réalisations notables :
+
 * Membre du chapter Software Craftmanship
 * Membre de la guilde transversale des Tech Leaders
 * Réarchitecturisation progressive du moteur existant pour s'adapter à de nouveaux paradigmes (scénarios de VaR dynamiques)
@@ -215,6 +206,3 @@ Réalisations :
 
 > **Env. Technique:** java/j2ee, xml/xsd/xslt, html/css, javascript, edifact, Visual Studio, Eclipse, Rational Rose, JBoss
 
-
-
----
