@@ -75,6 +75,7 @@ MOE
 
 
 <h3><div class="duree_offset">05/2016 - actuel</div> Société Générale CIB</h3>
+
 **Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
 
 Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the Trading Book).
