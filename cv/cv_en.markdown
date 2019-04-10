@@ -157,7 +157,7 @@ Achievements:
 
 
 
-<div class="duree_offset">03/2010 - 06/2011 (~1an)</div>
+<div class="duree_offset">03/2010 - 06/2011 (~1yr)</div>
 
 ### GFI Informatique
 
@@ -184,7 +184,7 @@ Achievements:
 
 
 
-<div class="duree_offset">09/2005 - 02/2010 (~4.5ans+)</div>
+<div class="duree_offset">09/2005 - 02/2010 (~4.5yr+)</div>
 
 ### Amadeus IT Group, SEP department (Sales and e-commerce platforms)
 
