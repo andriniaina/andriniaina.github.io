@@ -11,7 +11,7 @@ author:
 
 Summary
 -------------
-**Multitechnology developer specialized in .NET(C# or F#) + javascript(reastjs or angularjs)** offering over 13years of experience in building easy-to-understand yet maintenable and testable enterprise applications.
+**Multitechnology developer specialized in .NET(C# or F#) + javascript(reactjs or angularjs)** offering over 13years of experience in building simple yet maintenable and testable enterprise applications.
 
 As a result of my various work experiences and my excellent general knowledge in IT, I can easily and quickly adapt myself to a new technical environment, allowing me to provide effective results in a short timeframe after the start of a new job.
 
