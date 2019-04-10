@@ -129,7 +129,7 @@ Achievements:
 Complex technical environment where we needed to find the right balance between respecting the existing legacy code, and the willing to innovate.
 
 
-Maintained tools for *Front Office*:
+Maintained tools for the *Front Office*:
 
 * Pre-trade pricers: shows products characteristics, greeks, live market data
 * Meteor Risk Management : Distributed Grid computation (valuation, greeks, VaR) for the whole perimeter of CTY -- 8 million individual deals accross different business lines (metals, agricultural, energy, exotic and indexes) and various product types (vanilla or exotic).
