@@ -1,34 +1,31 @@
 ---
-title:  Andri Rakotomalala
+title: Andri Rakotomalala
 subtitle: 
-    Ingénieur Informatique,
-    Développeur & Tech Leader multi-technologies frontend et backend,
-    spécialisé en .NET/web
+    Software Engineer,
+    Fullstack developer & Tech Leader, specialized in .NET+javascript
 author:
-- 13 ans d'expérience en développement d'applications d'entreprise, dont 8 ans en finance de marché
-- Anglais courant
+- 13 years of experience in enterprise applications, including 8 years in finance
 ---
 
 <link href="custom.css" rel="stylesheet" type="text/css" media="all" />
 
 
 
-Formation
+Education
 -------------
 
 2005
-: Ingénieur INSA de Lyon - Département Informatique
+: INSA de Lyon -- Master's degree in engineering in Computer Science
 
 2000
-: Baccalauréat S - Spécialité Mathématiques, Mention Bien
+: Baccalauréat (A Levels) in science with honours
 
-
-Compétences métiers
+Transversal skills
 -------------
 
-Finance de marchés
-: Marchés des matières premières et ses produits dérivés, Grecs, VaR
-: Notions en marchés d'actions
+Financial Markets
+: Advanced knowledge of Commodities and derivatives, Greeks, risks, VaR
+: Basics in stock markets
 
 MOA
 : Analyse et rédaction des expressions de besoins, rédaction de spécifications fonctionnelles, rédaction de la documentation technique et utilisateur, tests fonctionnels
@@ -40,21 +37,23 @@ MOE
 : Programmation fonctionelle
 
 
-Compétences techniques
+Technical skills
 -------------
+
+I have worked in various work environments and have an excellent general knowledge in IT.
 
 Mes diverses expériences et ma grande culture générale en informatique me permettent de passer et de m'adapter à tout type d'environnement technique.
 Néanmoins, ma spécialité actuelle est le développement d'**applications .NET** (C# ou F#) et **javascript** (reactjs ou angularjs).
 
 Parmi les technologies que je maîtrise:
 
-* Applications clientes
+* Client technologies
 : WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
 
-* Langages
+* Languages
 : C#, F#, VB.NET, java, SQL
 
-* Bases de données
+* Databases
 : MSSQL, Oracle, Sybase ASE, Cassandra
 
 * Tests unitaires et tests automatisés d'interface web (selenium)
