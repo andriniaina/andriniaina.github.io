@@ -9,7 +9,11 @@ author:
 
 <link href="custom.css" rel="stylesheet" type="text/css" media="all" />
 
+Summary
+-------------
+**Multitechnology developer specialized in .NET(C# or F#) + javascript(reastjs or angularjs)** offering over 13years of experience in building easy-to-understand yet maintenable and testable enterprise applications.
 
+As a result of my various work experiences and my excellent general knowledge in IT, I can easily and quickly adapt myself to a new technical environment, allowing me to provide effective results in a short timeframe after the start of a new job.
 
 Education
 -------------
@@ -18,44 +22,25 @@ Education
 : INSA de Lyon -- Master's degree in engineering in Computer Science
 
 2000
-: Baccalauréat (A Levels) in science with honours
+: French Baccalauréat in science with honours
 
-Transversal skills
+Skills
 -------------
 
 Financial Markets
 : Advanced knowledge of Commodities and derivatives, Greeks, risks, VaR
 : Basics in stock markets
 
-MOA
-: Analyse et rédaction des expressions de besoins, rédaction de spécifications fonctionnelles, rédaction de la documentation technique et utilisateur, tests fonctionnels
+Software engineering
+: Architecture
+: Writing technical and functional documentation, user acceptance tests
+: TDD, BDD, unit tests and refactoring of legacy code that has a lot of technical debt
+: Functional programming
 
-
-MOE
-: Conception d'applications de qualité (maintenables, testables, performants, et secures)
-: TDD, BDD, Tests unitaires et refactoring de code *legacy* avec forte dette technique
-: Programmation fonctionelle
-
-
-Technical skills
--------------
-
-As a result of my various work experiences and my excellent general knowledge in IT, I can easily and quickly adapt myself to a new technical environment.
-However, I am currently specialized in development of **.NET applications** (C# of F#) and **javascript** (reactjs or angularjs).
-
-Non-exhastive list of technologies that I can work with:
-
-* Client technologies
-: WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
-
-* Languages
-: C#, F#, VB.NET, java, SQL
-
-* Databases
-: MSSQL, Oracle, Sybase ASE, Cassandra
-
-* Unit tests
-
+Technologies
+: Client : WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
+: Languages : C#, F#, VB.NET, java, SQL
+: Databases : MSSQL, Oracle, Sybase ASE, Cassandra
 
 Work experience
 -------------
@@ -86,7 +71,7 @@ Achievements:
    * Monitoring -- stack Grafana+InfluDb+AppMetrics
    * Microservices -- consul.io, traefik
 
-> **Technologies:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git & teamcity, consul.io & traefik, InfluxDb
+> **Technologies:** SAFe methodology, C#, VB.NET, Sybase, MsSQL, Cassandra, MongoDb, Symphony (grid computing), git & teamcity, consul.io & traefik, InfluxDb
 
 
 
@@ -144,23 +129,23 @@ Achievements:
 Complex technical environment where we needed to find the right balance between technical debt and innovation.
 
 
-Maintained the *Front Office* tools:
+Maintained tools for *Front Office*:
 
 * Pre-trade pricers: shows products characteristics, greeks, live market data
-* Meteor Risk Management : Distributed Grid computation (valuation, greeks, VaR) for the whole perimeter of CTY -- 8 million deals accross different business lines (metals, agricultural, energy, exotic and indexes) and various product types.
+* Meteor Risk Management : Distributed Grid computation (valuation, greeks, VaR) for the whole perimeter of CTY -- 8 million individual deals accross different business lines (metals, agricultural, energy, exotic and indexes) and various product types (vanilla or exotic).
 
 
 Achievements:
 
-* Implémentation de nouveaux développements suite au changement du modèle de pricing (nouveaux indicateurs Explained PnL, nouvelles implémentations de VaR, calculs de dates, etc.)
-* Investigations sur les erreurs de calculs (indicateurs de pricing, nominal, paramètres de marché incorrects, etc.) et les dégradations de performance
-* Comparateur de résultats de jobs d’analyse de risque pour automatiser les tests d’intégration et simplifier la validation manuelle en UAT
-* Stabilisation et refactoring de composants (dependency injection, mise en place d’Unity)
-* Mise en place de tests unitaires avec mocking sur des composants legacy pour atteindre 65% de coverage
-* Maintenance des interfaces Windows Forms+Infragistics et des modèles de données
+* Changed or implemented new indicators (Explained PnL, theta, new date calculation rules, etc.)
+* Debugging and explaining calculation discrepancies (change in the referential, caching errors, incorrect market data, referentail changes)
+* Explaining performance degradation
+* Wrote a result comparer to automate integration tests and simplify the UAT manual tests
+* Have been the first to try and implement unit tests on legacy components (attained 65% coverage on simple components)
+* Refactored some basic libraries with dependency injection
 
 
-> **Env. Technique:** Agile, C# (45%), vb.net (45%), vb6/com (10%), .net 3.5, windows forms, wcf, microsoft unity, nhibernate, sybase 12, SQL Server 2008, ado.net, Symphony (grid computing), team foundation server
+> **Technologies:** Agile, C# (45%), vb.net (45%), vb6/com (10%), .net 3.5, windows forms, wcf, microsoft unity, nhibernate, sybase 12, SQL Server 2008, ado.net, Symphony (grid computing), team foundation server
 
 
 
@@ -176,22 +161,15 @@ Achievements:
 
 ### GFI Informatique
 
+**.NET and java consultant**
 
-**Consultant .NET et Java au sein de GFI Informatique – Division Industrie, Pôle TMA**
+* Assisted the sales team to respond coherently to call for tenders (sizing, impact identification, advised on system architectures)
+* Wrote coding guidelines and best practice reccomendations for junior developers in order to provide a consistent quality to clients
+* Implemented from scratch a build server based on TFS
+* Code audit (performance, security, coding tools)
+* Prototyping
 
-* Conseil avant-vente : Participation aux appels d’offres nécessitant un conseil technique (chiffrage, identification des impacts, conseil en système d’information, architecture)
-* Rédaction de bonnes pratiques pour le développement de logiciels avec .NET, à l’attention de développeurs débutants
-* Mise en place d’une chaîne de production réutilisable de projets .NET basé sur Microsoft Team Foundation Server
-* Veille technologique (méthodologies, coding standards, best practices, etc.)
-* Audit de code (performances, sécurité, normes de programmation)
-* Prototypage
-* Conseil et participation à divers projets forfaits clients, dont :
-    * SNCF Yield Management: gestion dynamique du prix selon le stock de places disponibles
-    * SNCF R&D: Création d’une application interactive de visualisation de gros volumes de données statistiques (cartes, graphes, etc.) sur écran tactile
-    * EDF / ERDF: Participation à la refonte de l’application Info réseau en abobe flex (anciennement en vb6)
-
-
-> **Env. Technique:** java/j2ee, jboss, Oracle 9i, Adobe Flex 4, blazeds, hibernate
+> **Technlogies:** java/j2ee, jboss, Oracle 9i, Adobe Flex 4, blazeds, hibernate
 
 
 
@@ -208,27 +186,20 @@ Achievements:
 
 <div class="duree_offset">09/2005 - 02/2010 (~4.5ans+)</div>
 
-### Amadeus IT Group, département SEP (Sales and e-commerce platforms)
+### Amadeus IT Group, SEP department (Sales and e-commerce platforms)
+
+**Java/javascript developer**
+* Responsible for the maintenance of the following modules on the B2B point-of-sale solution: Passenger record, Pricing record, and Queues
+* Maintaned and wrote some basic server-side java beans
+
+**Product definition**
+
+* Wrote use-case specifications, using the requirements given by the Product Management and the Marketing department
+* Identified impacts on the system; followed the progression of the development
+* UI mock-ups
+* Presented the new features
+* Functional tests before handing the software to the QA team
 
 
-**Responsable de la maintenance des composants PNR (dossier passager), TSM (pricing records), et Queues (file de traitement des PNR) du logiciel de réservation B2B phare d’Amadeus**
-
-**Ingénieur analyste fonctionnel**
-
-* Définition des cas d'utilisation, à partir des besoins formulés par le Product Management et Marketing
-* Identification des impacts sur le système et suivi de la progression du développement auprès des équipes impactées
-* Evaluation de la charge de travail
-* Proposition de maquettes d'interfaces IHM
-* Rédaction des spécifications fonctionnelles
-* Présentation des impacts et des nouvelles fonctionnalités
-* Identification des plans de tests et rédaction des tests fonctionnels
-* Validation fonctionnelle du logiciel, en amont de l’équipe Assurance Qualité
-* Validation des fichiers d'aide
-
-**Ingénieur développement Java/javascript**
-
-* Responsable du développement des modules PNR, TSM et Queues (client léger javascript)
-* Conception et maintenance de beans serveur
-
-> **Env. Technique:** java/j2ee, xml/xsd/xslt, html/css, javascript, edifact, Visual Studio, Eclipse, Rational Rose, JBoss
+> **Technologies:** java/j2ee, xml/xsd/xslt, html/css, javascript, edifact, Visual Studio, Eclipse, Rational Rose, JBoss
 
