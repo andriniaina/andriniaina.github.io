@@ -40,12 +40,10 @@ MOE
 Technical skills
 -------------
 
-I have worked in various work environments and have an excellent general knowledge in IT.
+As a result of my various work experiences and my excellent general knowledge in IT, I can easily and quickly adapt myself to a new technical environment.
+However, I am currently specialized in development of **.NET applications** (C# of F#) and **javascript** (reactjs or angularjs).
 
-Mes diverses expériences et ma grande culture générale en informatique me permettent de passer et de m'adapter à tout type d'environnement technique.
-Néanmoins, ma spécialité actuelle est le développement d'**applications .NET** (C# ou F#) et **javascript** (reactjs ou angularjs).
-
-Parmi les technologies que je maîtrise:
+Non-exhastive list of technologies that I can work with:
 
 * Client technologies
 : WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
@@ -56,36 +54,39 @@ Parmi les technologies que je maîtrise:
 * Databases
 : MSSQL, Oracle, Sybase ASE, Cassandra
 
-* Tests unitaires et tests automatisés d'interface web (selenium)
+* Unit tests
 
 
-Expérience professionnelle
+Work experience
 -------------
 
 
-<div class="duree_offset">05/2016 - actuel</div>
+<div class="duree_offset">05/2016 - today</div>
 
 ### Société Générale CIB
 
-**Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
+**.NET Technical Leader for the commodities department (SGCIB/CTY) of the Société Générale**
 
-Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the Trading Book).
-Fort challenge technique pour adapter le moteur de calcul existant de façon à pouvoir décupler la puissance de calcul.
+I was called back to SGCIB/CTY to help on the FRTB project (Fondamental Review of the Trading Book).
+FRTB (aka Basel III) is a set of laws that will define the new market risk capital rules, starting from Jan 2020.
+These new rules would require 10x more computations.
 
-Réalisations notables :
+Strong technical and functional challenges to adapt the legacy risk computation engine in order to have a scalable architecture.
 
-* Membre du chapter Software Craftmanship
-* Membre de la guilde transversale des Tech Leaders
+Achievements:
+
+* Member of the chapter *Software Craftmanship*
+* Member of the transversal guild of Tech Leaders
 * Staff recruitement
-* Réarchitecturisation progressive du moteur existant pour s'adapter à de nouveaux paradigmes (scénarios de VaR dynamiques)
-* Début d'implémentation d'une architecture en programmation fonctionnelle et immutable: donner ce qui est nécessaire en input pour que les calculateurs puissent opérer de façon indépendante
-* Découplage et divers changements pour réduire le Time-To-Market
-* Choix et introduction de technologies récentes tout en respectant le legacy:
-   * NoSQL - Cassandra
-   * Monitoring - stack Grafana+InfluDb+AppMetrics
-   * Microservices - consul.io, traefik
+* Progressively changed the existing engine to be adapt to new paradigms (dynamic VaR scenarios depending on the financial product)
+* Started implementing a simpler functional architecture (1 given input => 1 predictable output)
+* Decoupled components and services
+* Choice and introduction of more recent technologies that still respects the existing architecture:
+   * NoSQL -- Cassandra
+   * Monitoring -- stack Grafana+InfluDb+AppMetrics
+   * Microservices -- consul.io, traefik
 
-> **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git & teamcity, consul.io & traefik, InfluxDb
+> **Technologies:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git & teamcity, consul.io & traefik, InfluxDb
 
 
 
@@ -99,27 +100,27 @@ Réalisations notables :
 
 
 
-<div class="duree_offset"> 05/2014 - 05/2016 (2ans)</div>
+<div class="duree_offset"> 05/2014 - 05/2016 (2yr)</div>
 
 ### BNP Paribas CIB
 
-**Lead Software Dev .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
+**Lead Software Dev in .NET, java, AngularJs for BNP Paribas Compliance (GECD/MGA)**
 
-Dette technique considérable. Refonte et maintenance des applications de suivi des initiés, des poses de chaque desk/entité, des restrictions de trading.
+Big technical debt. Rewrote and maintained various apps: insiders tracking; position followup; trading restrictions.
 
-Réalisations notables :
+Achievements:
 
-* Participation à un projet de refonte (java):
-    * Apport de plusieurs conseils techniques
-    * Réécriture des batchs d'envoi des mails
+* Helped to rewrite the *short-sales* application (java):
+    * Brought simple technical recommendations
+    * Rewrote a batch (daily notification mail alerts)
 
-* Réécriture de l'application de suivi des poses de la BNP (C#):
+* Modernized a legacy app (position tracking):
     * Reverse-engineering
-    * Réécriture et optimisation des modules de calcul (~1.5millions de lignes à calculer en quelques minutes)
-    * Développement d'une batterie de tests fonctionnels automatisés (BDD avec Specflow)
-    * Modernisation du site web (asp.NET/C# + bootstrap css + angularjs)
+    * Rewrote and optimized the different calculation modules (~1.5millions of lines to calculate in a few minutes depending on country specific rules)
+    * Pushed for a test-centric BDD approach with SpecFlow
+    * Modernisation of a website (from asp.NET/vb.net to angularjs/bootstrap-css/odata/C#)
 
-> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins
+> **Technologies:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins
 
 
 
@@ -134,21 +135,22 @@ Réalisations notables :
 ---
 
 
-<div class="duree_offset">08/2011 - 05/2014 (~3ans)</div>
+<div class="duree_offset">08/2011 - 05/2014 (~3yr)</div>
 
 ### Société Générale CIB
 
-**Développeur .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
+**.NET Developer for the commodities department (SGCIB/CTY) of the Société Générale**
 
-Environnement technique complexe où il faut concilier dette technique et volonté d’avancer. Calculs intensifs, grands volumes de données. Applications transverses à toutes les lignes métiers de CTY (metals, agricultural, energy, cross-assets) et à tout type de produits dérivés
-
-Développement et maintenance des outils *Front Office* transverses à toutes les lignes métiers de CTY et à tout type de produits dérivés dont :
-
-* Plusieurs pricers pre-trade : affichage des caractéristiques du contrat, grecs, paramètres de marché live
-* Meteor Risk Management (outil critique de calcul et de reporting post-trade sur tout le périmètre commodity) : gros volumes de données ; calculs intensifs de valuation, VaR, risk analysis journaliers sur une grille de calcul distribuée
+Complex technical environment where we needed to find the right balance between technical debt and innovation.
 
 
-Réalisations :
+Maintained the *Front Office* tools:
+
+* Pre-trade pricers: shows products characteristics, greeks, live market data
+* Meteor Risk Management : Distributed Grid computation (valuation, greeks, VaR) for the whole perimeter of CTY -- 8 million deals accross different business lines (metals, agricultural, energy, exotic and indexes) and various product types.
+
+
+Achievements:
 
 * Implémentation de nouveaux développements suite au changement du modèle de pricing (nouveaux indicateurs Explained PnL, nouvelles implémentations de VaR, calculs de dates, etc.)
 * Investigations sur les erreurs de calculs (indicateurs de pricing, nominal, paramètres de marché incorrects, etc.) et les dégradations de performance
