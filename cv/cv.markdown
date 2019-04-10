@@ -71,12 +71,13 @@ Expérience professionnelle
 **Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
 
 Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the Trading Book).
-Fort challenge technique pour adapter le moteur de calcul existant de façon à pouvoir décupler la puissuance de calcul.
+Fort challenge technique pour adapter le moteur de calcul existant de façon à pouvoir décupler la puissance de calcul.
 
 Réalisations notables :
 
 * Membre du chapter Software Craftmanship
 * Membre de la guilde transversale des Tech Leaders
+* Staff recruitement
 * Réarchitecturisation progressive du moteur existant pour s'adapter à de nouveaux paradigmes (scénarios de VaR dynamiques)
 * Début d'implémentation d'une architecture en programmation fonctionnelle et immutable: donner ce qui est nécessaire en input pour que les calculateurs puissent opérer de façon indépendante
 * Découplage et divers changements pour réduire le Time-To-Market
@@ -103,7 +104,7 @@ Réalisations notables :
 
 ### BNP Paribas CIB
 
-**Tech Lead .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
+**Lead Software Dev .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
 
 Dette technique considérable. Refonte et maintenance des applications de suivi des initiés, des poses de chaque desk/entité, des restrictions de trading.
 
