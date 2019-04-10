@@ -126,7 +126,7 @@ Achievements:
 
 **.NET Developer for the commodities department (SGCIB/CTY) of the Société Générale**
 
-Complex technical environment where we needed to find the right balance between technical debt and innovation.
+Complex technical environment where we needed to find the right balance between respecting the existing legacy code, and the willing to innovate.
 
 
 Maintained tools for *Front Office*:
