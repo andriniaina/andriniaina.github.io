@@ -7,6 +7,8 @@ subtitle:
 author:
 - 13 ans d'expérience en développement d'applications d'entreprise, dont 8 ans en finance de marché
 - Anglais courant
+geometry:
+- margin=1in
 ---
 
 <link href="custom.css" rel="stylesheet" type="text/css" media="all" />

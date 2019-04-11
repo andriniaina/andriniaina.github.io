@@ -5,6 +5,8 @@ subtitle:
     Fullstack developer & Tech Leader, specialized in .NET+javascript
 author:
 - 13 years of experience in enterprise applications, including 8 years in finance
+geometry:
+- margin=1in
 ---
 
 <link href="custom.css" rel="stylesheet" type="text/css" media="all" />
@@ -23,6 +25,13 @@ Education
 
 2000
 : French Baccalauréat in science with honours
+
+Languages
+-------------
+
+French: Native
+
+English: proficient
 
 Skills
 -------------
@@ -141,7 +150,7 @@ Achievements:
 * Debugging and explaining calculation discrepancies (change in the referential, caching errors, incorrect market data, referentail changes)
 * Explaining performance degradation
 * Wrote a result comparer to automate integration tests and simplify the UAT manual tests
-* Have been the first to try and implement unit tests on legacy components (attained 65% coverage on simple components)
+* Have been the first to try to implement unit tests on legacy components (attained 65% coverage on simple components)
 * Refactored some basic libraries with dependency injection
 
 
