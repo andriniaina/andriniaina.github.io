@@ -5,6 +5,8 @@ subtitle:
     Fullstack developer & Tech Leader, specialized in .NET+javascript
 author:
 - 13 years of experience in enterprise applications, including 8 years in finance
+geometry:
+- margin=1in
 ---
 
 <link href="custom.css" rel="stylesheet" type="text/css" media="all" />
