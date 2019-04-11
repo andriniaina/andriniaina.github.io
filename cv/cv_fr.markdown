@@ -19,10 +19,10 @@ Formation
 -------------
 
 2005
-: Ingénieur INSA de Lyon - Département Informatique
+: Ingénieur INSA de Lyon -- Département Informatique
 
 2000
-: Baccalauréat S - Spécialité Mathématiques, Mention Bien
+: Baccalauréat S -- Spécialité Mathématiques, Mention Bien
 
 
 Compétences métiers
@@ -84,9 +84,9 @@ Réalisations notables :
 * Début d'implémentation d'une architecture en programmation fonctionnelle et immutable: donner ce qui est nécessaire en input pour que les calculateurs puissent opérer de façon indépendante
 * Découplage et divers changements pour réduire le Time-To-Market
 * Choix et introduction de technologies récentes tout en respectant le legacy:
-   * NoSQL - Cassandra
-   * Monitoring - stack Grafana+InfluDb+AppMetrics
-   * Microservices - consul.io, traefik
+    * NoSQL -- Cassandra
+    * Monitoring -- stack Grafana+InfluDb+AppMetrics
+    * Microservices -- consul.io, traefik
 
 > **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git & teamcity, consul.io & traefik, InfluxDb
 
@@ -178,7 +178,7 @@ Réalisations :
 ### GFI Informatique
 
 
-**Consultant .NET et Java au sein de GFI Informatique – Division Industrie, Pôle TMA**
+**Consultant .NET et Java au sein de GFI Informatique –- Division Industrie, Pôle TMA**
 
 * Conseil avant-vente : Participation aux appels d’offres nécessitant un conseil technique (chiffrage, identification des impacts, conseil en système d’information, architecture)
 * Rédaction de bonnes pratiques pour le développement de logiciels avec .NET, à l’attention de développeurs débutants
