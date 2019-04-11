@@ -26,6 +26,13 @@ Education
 2000
 : French Baccalauréat in science with honours
 
+Languages
+-------------
+
+French: Native
+
+English: proficient
+
 Skills
 -------------
 
