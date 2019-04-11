@@ -141,7 +141,7 @@ Achievements:
 * Debugging and explaining calculation discrepancies (change in the referential, caching errors, incorrect market data, referentail changes)
 * Explaining performance degradation
 * Wrote a result comparer to automate integration tests and simplify the UAT manual tests
-* Have been the first to try and implement unit tests on legacy components (attained 65% coverage on simple components)
+* Have been the first to try to implement unit tests on legacy components (attained 65% coverage on simple components)
 * Refactored some basic libraries with dependency injection
 
 
