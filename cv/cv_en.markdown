@@ -65,17 +65,17 @@ I was called back to SGCIB/CTY to help on the FRTB project (Fondamental Review o
 FRTB (aka Basel III) is a set of laws that will define the new market risk capital rules, starting from Jan 2020.
 These new rules would require 10x more computations.
 
-Strong technical and functional challenges to adapt the legacy risk computation engine in order to have a scalable architecture.
+Strong technical and functional challenges to adapt the legacy risk computation engine in order to be scalable.
 
 Achievements:
 
 * Member of the chapter *Software Craftmanship*
 * Member of the transversal guild of Tech Leaders
 * Staff recruitement
-* Progressively changed the existing engine to be adapt to new paradigms (dynamic VaR scenarios depending on the financial product)
+* Progressively changed the existing engine to be adapted to new paradigms (dynamic VaR scenarios depending on the financial product)
 * Started implementing a simpler functional architecture (1 given input => 1 predictable output)
 * Decoupled components and services
-* Choice and introduction of more recent technologies that still respects the existing architecture:
+* Chose and introduced more recent technologies that still respects the existing architecture:
    * NoSQL -- Cassandra
    * Monitoring -- stack Grafana+InfluDb+AppMetrics
    * Microservices -- consul.io, traefik
@@ -140,17 +140,17 @@ Complex technical environment where we needed to find the right balance between 
 
 Maintained tools for the *Front Office*:
 
-* Pre-trade pricers: shows products characteristics, greeks, live market data
+* Pre-trade pricers: shows greeks, live market data for a set of given product characteristics
 * Meteor Risk Management : Distributed Grid computation (valuation, greeks, VaR) for the whole perimeter of CTY -- 8 million individual deals accross different business lines (metals, agricultural, energy, exotic and indexes) and various product types (vanilla or exotic).
 
 
 Achievements:
 
 * Changed or implemented new indicators (Explained PnL, theta, new date calculation rules, etc.)
-* Debugging and explaining calculation discrepancies (change in the referential, caching errors, incorrect market data, referentail changes)
+* Debugging and explaining calculation discrepancies (change in the referential, caching errors, incorrect market data, referential changes)
 * Explaining performance degradation
 * Wrote a result comparer to automate integration tests and simplify the UAT manual tests
-* Have been the first to try to implement unit tests on legacy components (attained 65% coverage on simple components)
+* Have been the first to try to implement unit tests on legacy components (reached 65% coverage on simple components)
 * Refactored some basic libraries with dependency injection
 
 
@@ -172,7 +172,7 @@ Achievements:
 
 **.NET and java consultant**
 
-* Assisted the sales team to respond coherently to call for tenders (sizing, impact identification, advised on system architectures)
+* Assisted the sales team to answer coherently to call for tenders (sizing, impact identification, advised on system architectures)
 * Wrote coding guidelines and best practice reccomendations for junior developers in order to provide a consistent quality to clients
 * Implemented from scratch a build server based on TFS
 * Code audit (performance, security, coding tools)
@@ -198,6 +198,7 @@ Achievements:
 ### Amadeus IT Group, SEP department (Sales and e-commerce platforms)
 
 **Java/javascript developer**
+
 * Responsible for the maintenance of the following modules on the B2B point-of-sale solution: Passenger record, Pricing record, and Queues
 * Maintaned and wrote some basic server-side java beans
 

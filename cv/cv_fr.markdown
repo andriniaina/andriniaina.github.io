@@ -72,7 +72,7 @@ Expérience professionnelle
 
 **Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
 
-Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the Trading Book).
+Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the Trading Book, aka Bale III).
 Fort challenge technique pour adapter le moteur de calcul existant de façon à pouvoir décupler la puissance de calcul.
 
 Réalisations notables :
