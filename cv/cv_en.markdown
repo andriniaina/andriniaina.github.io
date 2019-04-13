@@ -12,29 +12,25 @@ geometry:
 <link href="custom.css" rel="stylesheet" type="text/css" media="all" />
 
 Summary
--------------
+=========
 **Multitechnology developer specialized in .NET(C# or F#) + javascript(reactjs or angularjs)** offering over 13years of experience in building simple yet maintenable and testable enterprise applications.
 
 As a result of my various work experiences and my excellent general knowledge in IT, I can easily and quickly adapt myself to a new technical environment, allowing me to provide effective results in a short timeframe after the start of a new job.
 
 Education
--------------
+=========
 
-2005
-: INSA de Lyon -- Master's degree in engineering in Computer Science
-
-2000
-: French Baccalauréat in science with honours
+| **2005** \ INSA de Lyon -- Master's degree in engineering in Computer Science
+| **2000** \ French Baccalauréat in science with honours
 
 Languages
--------------
+=========
 
-French: Native
-
-English: proficient
+| **French:** native
+| **English:** proficient
 
 Skills
--------------
+=========
 
 Financial Markets
 : Advanced knowledge of Commodities and derivatives, Greeks, risks, VaR
@@ -52,12 +48,11 @@ Technologies
 : Databases : MSSQL, Oracle, Sybase ASE, Cassandra
 
 Work experience
--------------
+=========
 
 
-<div class="duree_offset">05/2016 - today</div>
-
-### Société Générale CIB
+Société Générale CIB \hfill\mdseries <span class='date'>05/2016 - today</span>
+--------------
 
 **.NET Technical Leader for the commodities department (SGCIB/CTY) of the Société Générale**
 
@@ -94,9 +89,8 @@ Achievements:
 
 
 
-<div class="duree_offset"> 05/2014 - 05/2016 (2yr)</div>
-
-### BNP Paribas CIB
+BNP Paribas CIB  \hfill\mdseries <span class='date'>05/2014 - 05/2016 (2yr)</span>
+--------------
 
 **Lead Software Dev in .NET, java, AngularJs for BNP Paribas Compliance (GECD/MGA)**
 
@@ -129,9 +123,8 @@ Achievements:
 ---
 
 
-<div class="duree_offset">08/2011 - 05/2014 (~3yr)</div>
-
-### Société Générale CIB
+Société Générale CIB \hfill\mdseries <span class='date'>08/2011 - 05/2014 (~3yr)</span>
+--------------
 
 **.NET Developer for the commodities department (SGCIB/CTY) of the Société Générale**
 
@@ -166,9 +159,9 @@ Achievements:
 
 
 
-<div class="duree_offset">03/2010 - 06/2011 (~1yr)</div>
 
-### GFI Informatique
+GFI Informatique \hfill\mdseries <span class='date'>03/2010 - 06/2011 (~1yr)</span>
+--------------
 
 **.NET and java consultant**
 
@@ -193,9 +186,9 @@ Achievements:
 
 
 
-<div class="duree_offset">09/2005 - 02/2010 (~4.5yr+)</div>
 
-### Amadeus IT Group, SEP department (Sales and e-commerce platforms)
+Amadeus IT Group, SEP department (Sales and e-commerce platforms) \hfill\mdseries  <span class='date'>09/2005 - 02/2010 (~4.5yr+)</span>
+--------------
 
 **Java/javascript developer**
 

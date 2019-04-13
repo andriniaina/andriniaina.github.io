@@ -4,78 +4,72 @@ subtitle:
     Ingénieur Informatique,
     Développeur & Tech Leader multi-technologies frontend et backend,
     spécialisé en .NET/web
-author:
-- 13 ans d'expérience en développement d'applications d'entreprise, dont 8 ans en finance de marché
-- Anglais courant
 geometry:
 - margin=1in
 ---
 
-<link href="custom.css" rel="stylesheet" type="text/css" media="all" />
+13 ans d'expérience en développement d'applications d'entreprise, dont 8 ans en finance de marché
 
-
+Anglais courant
 
 Formation
--------------
+=============
 
-2005
-: Ingénieur INSA de Lyon -- Département Informatique
-
-2000
-: Baccalauréat S -- Spécialité Mathématiques, Mention Bien
+| **2005** \ Ingénieur INSA de Lyon -- Département Informatique
+| **2000** \ Baccalauréat S -- Spécialité Mathématiques, Mention Bien
 
 
 Compétences métiers
--------------
+=============
 
 Finance de marchés
-: Marchés des matières premières et ses produits dérivés, Grecs, VaR
-: Notions en marchés d'actions
+: Marchés des matières premières et ses produits dérivés, Grecs, VaR \
+    Notions en marchés d'actions
 
 MOA
 : Analyse et rédaction des expressions de besoins, rédaction de spécifications fonctionnelles, rédaction de la documentation technique et utilisateur, tests fonctionnels
 
 
 MOE
-: Conception d'applications de qualité (maintenables, testables, performants, et secures)
-: TDD, BDD, Tests unitaires et refactoring de code *legacy* avec forte dette technique
-: Programmation fonctionelle
+: Conception d'applications de qualité (maintenables, testables, performants, et secures) \
+    TDD, BDD, Tests unitaires et refactoring de code *legacy* avec forte dette technique \
+    Programmation fonctionnelle
 
 
 Compétences techniques
--------------
+=============
 
 Mes diverses expériences et ma grande culture générale en informatique me permettent de passer et de m'adapter à tout type d'environnement technique.
 Néanmoins, ma spécialité actuelle est le développement d'**applications .NET** (C# ou F#) et **javascript** (reactjs ou angularjs).
 
 Parmi les technologies que je maîtrise:
 
-* Applications clientes
+Applications clientes
 : WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
 
-* Langages
+Langages
 : C#, F#, VB.NET, java, SQL
 
-* Bases de données
+Bases de données
 : MSSQL, Oracle, Sybase ASE, Cassandra
 
-* Tests unitaires et tests automatisés d'interface web (selenium)
+Tests unitaires et tests automatisés d'interface web (selenium)
+: 
 
 
 Expérience professionnelle
--------------
+=============
 
 
-<div class="duree_offset">05/2016 - actuel</div>
-
-### Société Générale CIB
+Société Générale CIB  \hfill\mdseries <span class='date'>05/2016 - actuel</span>
+------------------------
 
 **Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
 
 Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the Trading Book, aka Bale III).
 Fort challenge technique pour adapter le moteur de calcul existant de façon à pouvoir décupler la puissance de calcul.
 
-Réalisations notables :
+**Réalisations notables :**
 
 * Membre du chapter Software Craftmanship
 * Membre de la guilde transversale des Tech Leaders
@@ -102,15 +96,14 @@ Réalisations notables :
 
 
 
-<div class="duree_offset"> 05/2014 - 05/2016 (2ans)</div>
-
-### BNP Paribas CIB
+BNP Paribas CIB \hfill\mdseries <span class='date'>05/2014 - 05/2016 (2ans)</span>
+--------------------
 
 **Lead Software Dev .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
 
 Dette technique considérable. Refonte et maintenance des applications de suivi des initiés, des poses de chaque desk/entité, des restrictions de trading.
 
-Réalisations notables :
+**Réalisations notables :**
 
 * Participation à un projet de refonte (java):
     * Apport de plusieurs conseils techniques
@@ -137,9 +130,8 @@ Réalisations notables :
 ---
 
 
-<div class="duree_offset">08/2011 - 05/2014 (~3ans)</div>
-
-### Société Générale CIB
+Société Générale CIB \hfill\mdseries <span class='date'>08/2011 - 05/2014 (~3ans)</span>
+------------------------
 
 **Développeur .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
 
@@ -151,7 +143,7 @@ Développement et maintenance des outils *Front Office* transverses à toutes le
 * Meteor Risk Management (outil critique de calcul et de reporting post-trade sur tout le périmètre commodity) : gros volumes de données ; calculs intensifs de valuation, VaR, risk analysis journaliers sur une grille de calcul distribuée
 
 
-Réalisations :
+**Réalisations notables :**
 
 * Implémentation de nouveaux développements suite au changement du modèle de pricing (nouveaux indicateurs Explained PnL, nouvelles implémentations de VaR, calculs de dates, etc.)
 * Investigations sur les erreurs de calculs (indicateurs de pricing, nominal, paramètres de marché incorrects, etc.) et les dégradations de performance
@@ -173,9 +165,8 @@ Réalisations :
 
 
 
-<div class="duree_offset">03/2010 - 06/2011 (~1an)</div>
-
-### GFI Informatique
+GFI Informatique \hfill\mdseries <span class='date'>03/2010 - 06/2011 (~1an)</span>
+---------------------
 
 
 **Consultant .NET et Java au sein de GFI Informatique –- Division Industrie, Pôle TMA**
@@ -207,12 +198,11 @@ Réalisations :
 
 
 
-<div class="duree_offset">09/2005 - 02/2010 (~4.5ans+)</div>
+Amadeus IT Group \hfill\mdseries <span class='date'>09/2005 - 02/2010 (~4.5ans+)</span>
+------------------------------
 
-### Amadeus IT Group, département SEP (Sales and e-commerce platforms)
 
-
-**Responsable de la maintenance des composants PNR (dossier passager), TSM (pricing records), et Queues (file de traitement des PNR) du logiciel de réservation B2B phare d’Amadeus**
+**Responsable de la maintenance des composants PNR (dossier passager), TSM (pricing records), et Queues (file de traitement des PNR) du logiciel de réservation B2B phare d’Amadeus, au sein de SEP (Sales and e-commerce platforms)**
 
 **Ingénieur analyste fonctionnel**
 

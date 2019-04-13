@@ -1,0 +1,3 @@
+logo
+remove rulers
+align dates right with tab
