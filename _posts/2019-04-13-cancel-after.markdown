@@ -31,8 +31,7 @@ Code
             this Task<T> task, CancellationToken cancellationToken)
         {
             var tcs = new TaskCompletionSource<bool>();
-            using (cancellationToken.Register(
-                s => ((TaskCompletionSource<bool>) s).TrySetResult(true), tcs))
+            using (cancellationToken.Register( s => ((TaskCompletionSource<bool>) s).TrySetResult(true), tcs))
                 if (task != await Task.WhenAny(task, tcs.Task))
                     throw new OperationCanceledException(cancellationToken);
             return await task;
@@ -47,12 +46,10 @@ Code
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="OperationCanceledException"></exception>
-        public static async Task CancelAfter(
-            this Task task, CancellationToken cancellationToken)
+        public static async Task CancelAfter( this Task task, CancellationToken cancellationToken)
         {
             var tcs = new TaskCompletionSource<bool>();
-            using (cancellationToken.Register(
-                s => ((TaskCompletionSource<bool>) s).TrySetResult(true), tcs))
+            using (cancellationToken.Register( s => ((TaskCompletionSource<bool>) s).TrySetResult(true), tcs))
                 if (task != await Task.WhenAny(task, tcs.Task))
                     throw new OperationCanceledException(cancellationToken);
             await task;
@@ -67,14 +64,12 @@ Code
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="OperationCanceledException"></exception>
-        public static async Task<T> CancelAfter<T>(
-            this Task<T> task, int milliseconds)
+        public static async Task<T> CancelAfter<T>( this Task<T> task, int milliseconds)
         {
             var cts = new CancellationTokenSource();
             cts.CancelAfter(milliseconds);
             var tcs = new TaskCompletionSource<bool>();
-            using (cts.Token.Register(
-                s => ((TaskCompletionSource<bool>) s).TrySetResult(true), tcs))
+            using (cts.Token.Register( s => ((TaskCompletionSource<bool>) s).TrySetResult(true), tcs))
                 if (task != await Task.WhenAny(task, tcs.Task))
                     throw new OperationCanceledException(cts.Token);
             return await task;
@@ -89,14 +84,12 @@ Code
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="OperationCanceledException"></exception>
-        public static async Task CancelAfter(
-            this Task task, int milliseconds)
+        public static async Task CancelAfter( this Task task, int milliseconds)
         {
             var cts = new CancellationTokenSource();
             cts.CancelAfter(milliseconds);
             var tcs = new TaskCompletionSource<bool>();
-            using (cts.Token.Register(
-                s => ((TaskCompletionSource<bool>) s).TrySetResult(true), tcs))
+            using (cts.Token.Register( s => ((TaskCompletionSource<bool>) s).TrySetResult(true), tcs))
                 if (task != await Task.WhenAny(task, tcs.Task))
                     throw new OperationCanceledException(cts.Token);
             await task;
