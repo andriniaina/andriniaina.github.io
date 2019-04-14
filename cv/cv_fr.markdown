@@ -51,7 +51,7 @@ Expérience professionnelle
 Société Générale CIB / Commodities  \hfill\mdseries <span class='date'>05/2016 - actuel</span>
 ------------------------
 
-**Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
+**Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY)**
 
 Retour chez SGCIB/CTY pour participer au projet FRTB (Fondamental Review of the Trading Book, aka Bale III).
 Fort challenge technique pour adapter le moteur de calcul existant de façon à pouvoir décupler la puissance de calcul.
@@ -61,7 +61,7 @@ Fort challenge technique pour adapter le moteur de calcul existant de façon à 
 * Membre du chapter Software Craftmanship
 * Membre de la guilde transversale des Tech Leaders
 * Staff recruitement
-* Réarchitecturisation progressive du moteur existant pour s'adapter à de nouveaux paradigmes (scénarios de VaR dynamiques)
+* Réarchitecturisation progressive du moteur existant pour s'adapter à de nouveaux paradigmes (scénarios de VaR dynamiques selon le produit, Expected Shortfall, Internal Model based approach)
 * a suggeré et commencé à implémenter une architecture en programmation fonctionnelle et immutable: donner ce qui est nécessaire en input pour que les calculateurs puissent opérer de façon indépendante
 * a poussé pour découpler les composants et divers changements pour réduire le Time-To-Market (UAT en 4j au lieu de ~1.5mois, livraison sans downtime en semaine au lieu du week-end)
 * Choix et introduction de technologies récentes tout en respectant l'existant:
@@ -86,7 +86,7 @@ Fort challenge technique pour adapter le moteur de calcul existant de façon à 
 BNP Paribas CIB / Compliance \hfill\mdseries <span class='date'>05/2014 - 05/2016 (2ans)</span>
 --------------------
 
-**Lead Software Dev .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
+**Lead Software Dev .NET, java, AngularJs au sein de Compliance (GECD/MGA)**
 
 Dette technique considérable. Refonte et maintenance des applications de suivi des initiés, des poses de chaque desk/entité, des restrictions de trading.
 
@@ -120,7 +120,7 @@ Dette technique considérable. Refonte et maintenance des applications de suivi 
 Société Générale CIB / Commodities \hfill\mdseries <span class='date'>08/2011 - 05/2014 (~3ans)</span>
 ------------------------
 
-**Développeur .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
+**Développeur .NET au sein de la branche *commodities* (SGCIB/CTY)**
 
 Environnement technique complexe où il faut concilier dette technique et volonté d’avancer. Calculs intensifs, grands volumes de données. Applications transverses à toutes les lignes métiers de CTY (metals, agricultural, energy, cross-assets) et à tout type de produits dérivés
 
@@ -156,7 +156,7 @@ GFI Informatique \hfill\mdseries <span class='date'>03/2010 - 06/2011 (~1an)</sp
 ---------------------
 
 
-**Consultant .NET et Java au sein de GFI Informatique –- Division Industrie, Pôle TMA**
+**Consultant .NET et Java au sein de la Division Industrie, Pôle TMA**
 
 * Conseil avant-vente : Participation aux appels d’offres nécessitant un conseil technique (chiffrage, identification des impacts, conseil en système d’information, architecture)
 * Rédaction de bonnes pratiques pour le développement de logiciels avec .NET, à l’attention de développeurs débutants

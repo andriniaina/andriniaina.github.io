@@ -55,7 +55,7 @@ Société Générale CIB \hfill\mdseries <span class='date'>05/2016 - today</spa
 **.NET Technical Leader for the commodities department (SGCIB/CTY) of the Société Générale**
 
 I was called back to SGCIB/CTY to help on the FRTB project (Fondamental Review of the Trading Book).
-FRTB (aka Basel III) is a set of laws that will define the new market risk capital rules, starting from Jan 2020.
+FRTB (aka Basel IV) is a set of laws that will define the new market risk capital rules, starting from Jan 2020.
 These new rules would require 10x more computations.
 
 Strong technical and functional challenges to adapt the legacy risk computation engine in order to be scalable.
@@ -65,7 +65,7 @@ Achievements:
 * Member of the chapter *Software Craftmanship*
 * Member of the transversal guild of Tech Leaders
 * Staff recruitement
-* Progressively changed the existing engine to be adapted to new paradigms (dynamic VaR scenarios depending on the financial product)
+* Progressively changed the existing engine to be adapted to new paradigms (VaR scenarios now depends on the product characteristics), and helped implement the Internal Models based approach, the Expected Shortfall
 * Started implementing a simpler functional architecture (1 given input => 1 predictable output)
 * Decoupled components and services
 * Chose and introduced more recent technologies that still respects the existing architecture:
@@ -104,7 +104,7 @@ Achievements:
     * Reverse-engineering
     * Rewrote and optimized the different calculation modules (~1.5millions of lines to calculate in a few minutes depending on country specific rules)
     * Pushed for a test-centric BDD approach with SpecFlow
-    * Modernisation of a website (from asp.NET/vb.net to angularjs/bootstrap-css/odata/C#)
+    * Modernisation of a legacy website (from asp.NET/vb.net to angularjs/bootstrap-css/odata/C#)
 
 > **Technologies:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins, automated GUI tests with selenium
 
