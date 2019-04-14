@@ -9,8 +9,6 @@ geometry:
 - margin=1in
 ---
 
-<link href="custom.css" rel="stylesheet" type="text/css" media="all" />
-
 Summary
 =========
 **Multitechnology developer specialized in .NET(C# or F#) + javascript(reactjs or angularjs)** offering over 13years of experience in building simple yet maintenable and testable enterprise applications.
@@ -33,7 +31,7 @@ Skills
 =========
 
 Financial Markets
-: Advanced knowledge of Commodities and derivatives, Greeks, risks, VaR
+: Good knowledge of Commodities and derivatives, Greeks, risks, VaR
 : Basics in stock markets
 
 Software engineering
@@ -108,7 +106,7 @@ Achievements:
     * Pushed for a test-centric BDD approach with SpecFlow
     * Modernisation of a website (from asp.NET/vb.net to angularjs/bootstrap-css/odata/C#)
 
-> **Technologies:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins
+> **Technologies:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins, automated GUI tests with selenium
 
 
 

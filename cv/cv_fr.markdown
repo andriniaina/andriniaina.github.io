@@ -2,8 +2,7 @@
 title:  Andri Rakotomalala
 subtitle: 
     Ingénieur Informatique,
-    Développeur & Tech Leader multi-technologies frontend et backend,
-    spécialisé en .NET/web
+    Développeur & Tech Leader, spécialisé en .NET/web
 geometry:
 - margin=1in
 ---
@@ -12,6 +11,13 @@ geometry:
 
 Anglais courant
 
+
+Résumé
+=============
+Développeur **multi-technologies**, mais néanmoins actuellement spécialisé en **.NET (F# ou C#) + javascript (reactjs ou angularjs)** avec 13 ans d'expérience en développement d'applications maintenables et testables, tout en restant lisible et abordable.
+
+En raison de mes diverses expériences et ma grande culture générale en informatique, je peux aisément et rapidement m'adapter aux nouveaux environnements et aux nouvelles technologies; ce qui me permet d'apporter de la valeur en un court laps de temps.
+
 Formation
 =============
 
@@ -19,49 +25,30 @@ Formation
 | **2000** \ Baccalauréat S -- Spécialité Mathématiques, Mention Bien
 
 
-Compétences métiers
+Compétences
 =============
 
 Finance de marchés
-: Marchés des matières premières et ses produits dérivés, Grecs, VaR \
-    Notions en marchés d'actions
+: Marchés des matières premières et ses produits dérivés, Grecs, VaR
+: Notions en marchés d'actions
 
-MOA
+Ingénierie logicielle
+: Architecture et conception
 : Analyse et rédaction des expressions de besoins, rédaction de spécifications fonctionnelles, rédaction de la documentation technique et utilisateur, tests fonctionnels
+: TDD, BDD, tests unitaires et refactoring de code *legacy* avec beaucoup de dette technique
+: Programmation fonctionnelle
 
-
-MOE
-: Conception d'applications de qualité (maintenables, testables, performants, et secures) \
-    TDD, BDD, Tests unitaires et refactoring de code *legacy* avec forte dette technique \
-    Programmation fonctionnelle
-
-
-Compétences techniques
-=============
-
-Mes diverses expériences et ma grande culture générale en informatique me permettent de passer et de m'adapter à tout type d'environnement technique.
-Néanmoins, ma spécialité actuelle est le développement d'**applications .NET** (C# ou F#) et **javascript** (reactjs ou angularjs).
-
-Parmi les technologies que je maîtrise:
-
-Applications clientes
-: WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
-
-Langages
-: C#, F#, VB.NET, java, SQL
-
-Bases de données
-: MSSQL, Oracle, Sybase ASE, Cassandra
-
-Tests unitaires et tests automatisés d'interface web (selenium)
-: 
+Environnements techniques
+: Applications clientes: WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
+: Langages: C#, F#, VB.NET, java, SQL
+: Bases de données: MSSQL, Oracle, Sybase ASE, Cassandra
 
 
 Expérience professionnelle
 =============
 
 
-Société Générale CIB  \hfill\mdseries <span class='date'>05/2016 - actuel</span>
+Société Générale CIB / Commodities  \hfill\mdseries <span class='date'>05/2016 - actuel</span>
 ------------------------
 
 **Technical Leader .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
@@ -75,14 +62,14 @@ Fort challenge technique pour adapter le moteur de calcul existant de façon à 
 * Membre de la guilde transversale des Tech Leaders
 * Staff recruitement
 * Réarchitecturisation progressive du moteur existant pour s'adapter à de nouveaux paradigmes (scénarios de VaR dynamiques)
-* Début d'implémentation d'une architecture en programmation fonctionnelle et immutable: donner ce qui est nécessaire en input pour que les calculateurs puissent opérer de façon indépendante
-* Découplage et divers changements pour réduire le Time-To-Market
-* Choix et introduction de technologies récentes tout en respectant le legacy:
+* a suggeré et commencé à implémenter une architecture en programmation fonctionnelle et immutable: donner ce qui est nécessaire en input pour que les calculateurs puissent opérer de façon indépendante
+* a poussé pour découpler les composants et divers changements pour réduire le Time-To-Market (UAT en 4j au lieu de ~1.5mois, livraison sans downtime en semaine au lieu du week-end)
+* Choix et introduction de technologies récentes tout en respectant l'existant:
     * NoSQL -- Cassandra
     * Monitoring -- stack Grafana+InfluDb+AppMetrics
     * Microservices -- consul.io, traefik
 
-> **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git & teamcity, consul.io & traefik, InfluxDb
+> **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git & teamcity & xldeploy, consul.io & traefik, InfluxDb
 
 
 
@@ -96,7 +83,7 @@ Fort challenge technique pour adapter le moteur de calcul existant de façon à 
 
 
 
-BNP Paribas CIB \hfill\mdseries <span class='date'>05/2014 - 05/2016 (2ans)</span>
+BNP Paribas CIB / Compliance \hfill\mdseries <span class='date'>05/2014 - 05/2016 (2ans)</span>
 --------------------
 
 **Lead Software Dev .NET, java, AngularJs au sein de Compliance (GECD/MGA), BNP Paribas**
@@ -115,7 +102,7 @@ Dette technique considérable. Refonte et maintenance des applications de suivi 
     * Développement d'une batterie de tests fonctionnels automatisés (BDD avec Specflow)
     * Modernisation du site web (asp.NET/C# + bootstrap css + angularjs)
 
-> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins
+> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins, tests automatisés avec selenium
 
 
 
@@ -130,7 +117,7 @@ Dette technique considérable. Refonte et maintenance des applications de suivi 
 ---
 
 
-Société Générale CIB \hfill\mdseries <span class='date'>08/2011 - 05/2014 (~3ans)</span>
+Société Générale CIB / Commodities \hfill\mdseries <span class='date'>08/2011 - 05/2014 (~3ans)</span>
 ------------------------
 
 **Développeur .NET au sein de la branche *commodities* (SGCIB/CTY) de la Société Générale**
