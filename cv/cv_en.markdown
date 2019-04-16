@@ -62,7 +62,7 @@ Achievements:
 
 * Member of the chapter *Software Craftmanship*
 * Member of the transversal guild of Tech Leaders
-* Staff recruitement
+* Staff recruitment
 * Progressively adapted the existing engine to new paradigms (VaR scenarios now depends on the product characteristics), and helped implement the Internal Models based approach, the Expected Shortfall
 * Started implementing a simpler functional architecture (1 given input => 1 predictable output)
 * Demystified, decoupled, optimized the legacy grid-based risk calculator (1000+ nodes)
