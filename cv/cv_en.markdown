@@ -49,10 +49,10 @@ Work experience
 =========
 
 
-Société Générale CIB \hfill\mdseries <span class='date'>05/2016 - today</span>
+Société Générale CIB -- Commodities trading desk (SGCIB/CTY) \hfill\mdseries <span class='date'>05/2016 - today</span>
 --------------
 
-**.NET Technical Leader for the commodities department (SGCIB/CTY) of the Société Générale**
+**Lead Software Development Engineer in .NET**
 
 I was called back to SGCIB/CTY to help on the FRTB project (Fondamental Review of the Trading Book).
 FRTB (aka Basel IV) is a set of laws that will define the new market risk capital rules, starting from Jan 2020.
@@ -87,10 +87,10 @@ Achievements:
 
 
 
-BNP Paribas CIB  \hfill\mdseries <span class='date'>05/2014 - 05/2016 (2yr)</span>
+BNP Paribas CIB -- Compliance (GECD/MGA) \hfill\mdseries <span class='date'>05/2014 - 05/2016 (2yr)</span>
 --------------
 
-**Lead Software Dev in .NET, java, AngularJs for BNP Paribas Compliance (GECD/MGA)**
+**Lead Fullstack Software Developer in .NET, java, AngularJs**
 
 Big technical debt. Rewrote and maintained various apps: insiders tracking; position followup; trading restrictions.
 
@@ -99,12 +99,11 @@ Achievements:
 * Helped to rewrite the *short-sales* application (java):
     * Brought simple technical recommendations
     * Rewrote a batch (daily notification mail alerts)
+* Modernisation of a legacy website (from asp.NET/vb.net to angularjs/bootstrap-css/odata/C#) 
+* Optimization (moved from SQL to C#, calculated in a under a few minutes instead of half an hour) 
+* Industrialization of the build process + automated unit tests 
+* Pushed for a test-centric BDD approach with SpecFlow 
 
-* Modernized a legacy app (position tracking):
-    * Reverse-engineering
-    * Rewrote and optimized the different calculation modules (~1.5millions of lines to calculate in a few minutes depending on country specific rules)
-    * Pushed for a test-centric BDD approach with SpecFlow
-    * Modernisation of a legacy website (from asp.NET/vb.net to angularjs/bootstrap-css/odata/C#)
 
 > **Technologies:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins, automated GUI tests with selenium
 
@@ -131,7 +130,7 @@ Complex technical environment where we needed to find the right balance between 
 
 Maintained tools for the *Front Office*:
 
-* Pre-trade pricers: shows greeks, live market data for a set of given product characteristics
+* Pre-trade pricers: shows greeks, MtM, live market data for a set of given product characteristics
 * Meteor Risk Management : Distributed Grid computation (valuation, greeks, VaR) for the whole perimeter of CTY -- 8 million individual deals accross different business lines (metals, agricultural, energy, exotic and indexes) and various product types (vanilla or exotic).
 
 
