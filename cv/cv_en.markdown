@@ -56,7 +56,7 @@ Société Générale CIB \hfill\mdseries <span class='date'>05/2016 - today</spa
 
 I was called back to SGCIB/CTY to help on the FRTB project (Fondamental Review of the Trading Book).
 FRTB (aka Basel IV) is a set of laws that will define the new market risk capital rules, starting from Jan 2020.
-These new rules would require 10x more computations.
+These new rules would require 20x more computations.
 
 Strong technical and functional challenges to adapt the legacy risk computation engine in order to be scalable.
 
@@ -65,15 +65,15 @@ Achievements:
 * Member of the chapter *Software Craftmanship*
 * Member of the transversal guild of Tech Leaders
 * Staff recruitement
-* Progressively changed the existing engine to be adapted to new paradigms (VaR scenarios now depends on the product characteristics), and helped implement the Internal Models based approach, the Expected Shortfall
+* Progressively adapted the existing engine to new paradigms (VaR scenarios now depends on the product characteristics), and helped implement the Internal Models based approach, the Expected Shortfall
 * Started implementing a simpler functional architecture (1 given input => 1 predictable output)
-* Decoupled components and services
-* Chose and introduced more recent technologies that still respects the existing architecture:
-   * NoSQL -- Cassandra
-   * Monitoring -- stack Grafana+InfluDb+AppMetrics
-   * Microservices -- consul.io, traefik
+* Demistified, decoupled, optimised the legacy grid-based risk calculator (1000+ nodes)
+* Introduced more recent technologies that still respects the existing architecture:
+   * Big Data & NoSQL -- Apache Cassandra
+   * Monitoring -- Grafana, InfluxDb, AppMetrics and health checks
+   * Microservices architecture -- consul.io, traefik
 
-> **Technologies:** SAFe methodology, C#, VB.NET, Sybase, MsSQL, Cassandra, MongoDb, Symphony (grid computing), git & teamcity, consul.io & traefik, InfluxDb
+> **Technologies:** SAFe methodology, C#, VB.NET, Sybase, MsSQL, Cassandra, MongoDb, IBM Symphony platform (grid computing), git & teamcity, consul.io & traefik, InfluxDb
 
 
 
