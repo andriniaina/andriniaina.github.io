@@ -54,11 +54,9 @@ Société Générale CIB -- Commodities trading desk (SGCIB/CTY) \hfill\mdseries
 
 **Lead Software Development Engineer in .NET**
 
-I was called back to SGCIB/CTY to help on the FRTB project (Fondamental Review of the Trading Book).
-FRTB (aka Basel IV) is a set of laws that will define the new market risk capital rules, starting from Jan 2020.
-These new rules would require 20x more computations.
+I was called back to SGCIB/CTY to kickoff the FRTB project (new set of rules for capital requirement from the Basel Committee). 
 
-Strong technical and functional challenges to adapt the legacy risk computation engine in order to be scalable.
+Strong technical and functional challenges to adapt the legacy risk computation engine (1300+ nodes) in order to be scalable (20x more computations than the traditional VaR).
 
 Achievements:
 
