@@ -123,7 +123,7 @@ Société Générale CIB -- Commodities trading desk (SGCIB/CTY) \hfill\mdseries
 
 **.NET Developer**
 
-Complex technical environment where we needed to find the right balance between respecting the existing legacy code, and the willing to innovate.
+Complex technical environment where we needed to find the right balance between respecting the existing legacy code, and the willingness to innovate.
 
 
 Maintained tools for the *Front Office*:
