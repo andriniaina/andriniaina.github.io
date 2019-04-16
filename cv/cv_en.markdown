@@ -129,7 +129,7 @@ Complex technical environment where we needed to find the right balance between 
 Maintained tools for the *Front Office*:
 
 * Pre-trade pricers: shows greeks, MtM, live market data for a set of given product characteristics
-* Meteor Risk Management : Distributed Grid computation (valuation, greeks, VaR) for the whole perimeter of CTY -- 8 million individual deals accross different business lines (metals, agricultural, energy, exotic and indexes) and various product types (vanilla or exotic).
+* Meteor Risk Management : Distributed Grid computation (valuation, greeks, VaR) for the whole perimeter of CTY -- 8 million individual deals across different business lines (metals, agricultural, energy, exotic and indexes) and various product types (vanilla or exotic).
 
 
 Achievements:
