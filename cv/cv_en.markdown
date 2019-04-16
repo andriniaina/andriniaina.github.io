@@ -73,7 +73,7 @@ Achievements:
    * Monitoring -- Grafana, InfluxDb, AppMetrics and health checks
    * Microservices architecture -- consul.io, traefik
 
-> **Technologies:** SAFe methodology, C#, VB.NET, Sybase, MsSQL, Cassandra, MongoDb, IBM Symphony platform (grid computing), git & teamcity, consul.io & traefik, InfluxDb
+> **Technologies:** SAFe methodology, C#, VB.NET, Sybase, MsSQL, Cassandra, MongoDb, IBM Symphony (grid computing), git & teamcity, consul.io & traefik, InfluxDb
 
 
 
@@ -120,10 +120,10 @@ Achievements:
 ---
 
 
-Société Générale CIB \hfill\mdseries <span class='date'>08/2011 - 05/2014 (~3yr)</span>
+Société Générale CIB -- Commodities trading desk (SGCIB/CTY) \hfill\mdseries <span class='date'>08/2011 - 05/2014 (~3yr)</span>
 --------------
 
-**.NET Developer for the commodities department (SGCIB/CTY) of the Société Générale**
+**.NET Developer**
 
 Complex technical environment where we needed to find the right balance between respecting the existing legacy code, and the willing to innovate.
 
@@ -144,7 +144,7 @@ Achievements:
 * Refactored some basic libraries with dependency injection
 
 
-> **Technologies:** Agile, C# (45%), vb.net (45%), vb6/com (10%), .net 3.5, windows forms, wcf, microsoft unity, nhibernate, sybase 12, SQL Server 2008, ado.net, Symphony (grid computing), team foundation server
+> **Technologies:** Agile, C# (45%), vb.net (45%), vb6/com (10%), .net 3.5, windows forms, wcf, microsoft unity, nhibernate, sybase 12, SQL Server 2008, ado.net, IBM Symphony (grid computing), team foundation server
 
 
 
@@ -163,12 +163,12 @@ GFI Informatique \hfill\mdseries <span class='date'>03/2010 - 06/2011 (~1yr)</sp
 **.NET and java consultant**
 
 * Assisted the sales team to answer coherently to call for tenders (sizing, impact identification, advised on system architectures)
-* Wrote coding guidelines and best practice reccomendations for junior developers in order to provide a consistent quality to clients
+* Wrote coding guidelines and best practice recommendations for junior developers in order to provide a consistent quality to clients
 * Implemented from scratch a build server based on TFS
 * Code audit (performance, security, coding tools)
 * Prototyping
 
-> **Technlogies:** java/j2ee, jboss, Oracle 9i, Adobe Flex 4, blazeds, hibernate
+> **Technlogies:** .NET, java/j2ee, jboss, Oracle 9i, Adobe Flex 4, blazeds, hibernate
 
 
 
@@ -190,9 +190,9 @@ Amadeus IT Group, SEP department (Sales and e-commerce platforms) \hfill\mdserie
 **Java/javascript developer**
 
 * Responsible for the maintenance of the following modules on the B2B point-of-sale solution: Passenger record, Pricing record, and Queues
-* Maintaned and wrote some basic server-side java beans
+* Maintained and wrote some basic server-side java beans
 
-**Product definition**
+**Product definition, technical referent**
 
 * Wrote use-case specifications, using the requirements given by the Product Management and the Marketing department
 * Identified impacts on the system; followed the progression of the development
