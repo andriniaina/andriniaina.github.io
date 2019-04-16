@@ -25,7 +25,7 @@ Languages
 =========
 
 | **French:** native
-| **English:** proficient
+| **English:** full professional proficiency
 
 Skills
 =========
