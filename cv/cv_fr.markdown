@@ -40,7 +40,7 @@ Ingénierie logicielle
 
 Environnements techniques
 : Applications clientes: WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
-: Langages: C#, F#, VB.NET, java, SQL
+: Langages: C#, F#, VB.NET, typescript/javascript, java, SQL
 : Bases de données: MSSQL, Oracle, Sybase ASE, Cassandra
 
 
