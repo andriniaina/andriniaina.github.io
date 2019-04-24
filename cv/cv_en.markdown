@@ -42,7 +42,7 @@ Software engineering
 
 Technologies
 : Client : WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
-: Languages : C#, F#, VB.NET, java, SQL
+: Languages : C#, F#, VB.NET, javascript/typescript, java, SQL
 : Databases : MSSQL, Oracle, Sybase ASE, Cassandra
 
 Work experience
