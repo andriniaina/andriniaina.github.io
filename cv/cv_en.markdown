@@ -13,7 +13,15 @@ Summary
 =========
 **Multitechnology developer specialized in .NET(C# or F#) + javascript(reactjs or angularjs)** offering over 13years of experience in building simple yet maintainable and testable enterprise applications.
 
-As a result of my various work experiences and my excellent general knowledge in IT, I can easily and quickly adapt myself to a new technical environment, allowing me to provide effective results in a short timeframe after the start of a new job.
+-	Comfortable with a wide array of IT technologies and languages
+-	Top technical skills in .NET
+-	Focused on delivering simple yet maintainable and testable applications on time
+-	Experience with working on a long project with multiple team interactions, in agile mode
+-	Experience with maintaining large and complex enterprise applications
+-	Able to bring a new life to legacy software that had a lot of technical debt
+-	Strong ability to quickly adapt to new technical environments
+-	Full professional proficiency in French and English
+
 
 Education
 =========
@@ -45,11 +53,13 @@ Technologies
 : Languages : C#, F#, VB.NET, javascript/typescript, java, SQL
 : Databases : MSSQL, Oracle, Sybase ASE, Cassandra
 
+\clearpage
+
 Work experience
 =========
 
 
-Société Générale CIB -- Commodities trading desk (SGCIB/CTY) \hfill\mdseries <span class='date'>05/2016 - today</span>
+Société Générale CIB / CTY, Commodities trading desk \hfill\mdseries <span class='date'>05/2016 - today</span>
 --------------
 
 **Lead Software Development Engineer in .NET**
@@ -118,7 +128,7 @@ Achievements:
 ---
 
 
-Société Générale CIB -- Commodities trading desk (SGCIB/CTY) \hfill\mdseries <span class='date'>08/2011 - 05/2014 (~3yr)</span>
+Société Générale CIB, CTY -- Commodities trading desk \hfill\mdseries <span class='date'>08/2011 - 05/2014 (~3yr)</span>
 --------------
 
 **.NET Developer**
@@ -182,7 +192,7 @@ GFI Informatique \hfill\mdseries <span class='date'>03/2010 - 06/2011 (~1yr)</sp
 
 
 
-Amadeus IT Group, SEP department (Sales and e-commerce platforms) \hfill\mdseries  <span class='date'>09/2005 - 02/2010 (~4.5yr+)</span>
+Amadeus IT Group, Sales and e-commerce platforms \hfill\mdseries  <span class='date'>09/2005 - 02/2010 (~4.5yr+)</span>
 --------------
 
 **Java/javascript developer**
