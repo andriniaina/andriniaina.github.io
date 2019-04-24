@@ -5,6 +5,12 @@ subtitle:
     Fullstack developer & Tech Leader, specialized in .NET+javascript
 author:
 - 13 years of experience in enterprise applications, including 8 years in finance
+header-includes:
+    - \usepackage{graphicx,grffile}
+    - \usepackage{fancyhdr}
+    - \pagestyle{fancy}
+    - \lhead{\includegraphics{linkedin-logo-11x11.png} http://www.linkedin.com/in/arakotomalala}
+    - \rhead{\includegraphics{email-icon-13x10.png} andriniaina@gmail.com}
 geometry:
 - margin=1in
 ---
