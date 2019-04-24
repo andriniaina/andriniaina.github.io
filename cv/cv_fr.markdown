@@ -69,7 +69,7 @@ Fort challenge technique pour adapter le moteur de calcul existant de façon à 
     * Monitoring -- stack Grafana+InfluDb+AppMetrics
     * Microservices -- consul.io, traefik
 
-> **Env. Technique:** C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git & teamcity & xldeploy, consul.io & traefik, InfluxDb
+> **Env. Technique:** méthodologie SAFe, C#, VB.NET, Sybase, MsSQL, Cassandra, Symphony (grid computing), git & teamcity & xldeploy, consul.io & traefik, InfluxDb
 
 
 
