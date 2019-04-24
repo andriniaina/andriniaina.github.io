@@ -13,14 +13,14 @@ Summary
 =========
 **Multitechnology developer specialized in .NET(C# or F#) + javascript(reactjs or angularjs)** offering over 13years of experience in building simple yet maintainable and testable enterprise applications.
 
--	Comfortable with a wide array of IT technologies and languages
--	Top technical skills in .NET
--	Focused on delivering simple yet maintainable and testable applications on time
--	Experience with working on a long project with multiple team interactions, in agile mode
--	Experience with maintaining large and complex enterprise applications
--	Able to bring a new life to legacy software that had a lot of technical debt
--	Strong ability to quickly adapt to new technical environments
--	Full professional proficiency in French and English
+* Comfortable with a wide array of IT technologies and languages
+* Top technical skills in .NET
+* Focused on delivering simple yet maintainable and testable applications on time
+* Experience with working on a long project with multiple team interactions, in agile mode
+* Experience with maintaining large and complex enterprise applications
+* Able to bring a new life to legacy software that had a lot of technical debt
+* Strong ability to quickly adapt to new technical environments
+* Full professional proficiency in French and English
 
 
 Education
