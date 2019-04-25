@@ -3,6 +3,12 @@ title:  Andri Rakotomalala
 subtitle: 
     Ingénieur Informatique,
     Développeur & Tech Leader, spécialisé en .NET/web
+header-includes:
+    - \usepackage{graphicx,grffile}
+    - \usepackage{fancyhdr}
+    - \pagestyle{fancy}
+    - \lhead{\includegraphics{linkedin-logo-11x11.png} http://www.linkedin.com/in/arakotomalala}
+    - \rhead{\includegraphics{email-icon-13x10.png} andriniaina@gmail.com}
 geometry:
 - margin=1in
 ---
@@ -43,6 +49,7 @@ Environnements techniques
 : Langages: C#, F#, VB.NET, typescript/javascript, java, SQL
 : Bases de données: MSSQL, Oracle, Sybase ASE, Cassandra
 
+\clearpage
 
 Expérience professionnelle
 =============
@@ -102,7 +109,7 @@ Dette technique considérable. Refonte et maintenance des applications de suivi 
     * Développement d'une batterie de tests fonctionnels automatisés (BDD avec Specflow)
     * Modernisation du site web (asp.NET/C# + bootstrap css + angularjs)
 
-> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins, tests automatisés avec selenium
+> **Env. Technique:** C#, VB.NET, java, bootstrap css, angularJs, javascript/typescript, Visual Studio, vscode, eclipse, jenkins, tests automatisés avec selenium
 
 
 
@@ -122,7 +129,7 @@ Société Générale CIB / Commodities \hfill\mdseries <span class='date'>08/201
 
 **Développeur .NET au sein de la branche *commodities* (SGCIB/CTY)**
 
-Environnement technique complexe où il faut concilier dette technique et volonté d’avancer. Calculs intensifs, grands volumes de données. Applications transverses à toutes les lignes métiers de CTY (metals, agricultural, energy, cross-assets) et à tout type de produits dérivés
+Environnement technique complexe où il faut concilier dette technique et volonté d’avancer. Calculs intensifs, grands volumes de données. Applications transverses à toutes les lignes métiers de CTY (metals, agricultural, energy, cross-assets) et à tout type de produits dérivés.
 
 Développement et maintenance des outils *Front Office* transverses à toutes les lignes métiers de CTY et à tout type de produits dérivés dont :
 
