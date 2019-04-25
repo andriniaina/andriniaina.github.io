@@ -119,7 +119,7 @@ Achievements:
 * Pushed for a test-centric BDD approach with SpecFlow 
 
 
-> **Technologies:** C#, VB.NET, java, bootstrap css, angularJs, reactjs/react-native, javascript/typescript, Visual Studio, vscode, eclipse, jenkins, automated GUI tests with selenium
+> **Technologies:** C#, VB.NET, java, bootstrap css, angularJs, javascript/typescript, Visual Studio, vscode, eclipse, jenkins, automated GUI tests with selenium
 
 
 
