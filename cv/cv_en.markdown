@@ -81,9 +81,9 @@ Achievements:
 * Staff recruitment
 * Progressively adapted the existing engine to new paradigms (VaR scenarios now depends on the product characteristics), and helped implement the Internal Models based approach, the Expected Shortfall
 * Started implementing a simpler functional architecture (1 given input => 1 predictable output)
-* Demystified, decoupled, optimized the legacy grid-based risk calculator (1000+ nodes)
+* Demystified, decoupled, optimized the legacy grid-based risk calculator (1300+ nodes)
 * Introduced more recent technologies that still respects the existing architecture:
-   * Big Data & NoSQL -- Apache Cassandra
+   * Big Data -- Apache Cassandra
    * Monitoring -- Grafana, InfluxDb, AppMetrics and health checks
    * Microservices architecture -- consul.io, traefik
 
