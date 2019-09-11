@@ -54,6 +54,22 @@ Environnements techniques
 Expérience professionnelle
 =============
 
+Glencore UK Ltd - Front Office \hfill\mdseries <span class='date'>06/2019 - 08/2019</span>
+--------------
+
+**Développeur Senior .NET, angular, python**
+
+Développeur senior responsable (avec un groupe de 4 développeurs) de la maintenance de Whiteboard, un logiciel qui permet d'afficher/éditer l'état et l'évolution des cargos/raffineries/silos dans le monde
+
+
+> **Env. Technique:** C#, Winforms+DevExpress, .NET Core 2.2, angular 7, MsSQL, python
+
+
+---
+
+
+
+
 
 Société Générale CIB / Commodities  \hfill\mdseries <span class='date'>05/2016 - actuel</span>
 ------------------------

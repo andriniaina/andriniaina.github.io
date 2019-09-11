@@ -64,6 +64,22 @@ Technologies
 Work experience
 =========
 
+Glencore UK Ltd - Front Office \hfill\mdseries <span class='date'>06/2019 - 08/2019</span>
+--------------
+
+**Senior Software developer in .NET, angular, python**
+
+Senior developer responsible with a group of four developers for the maintenance and evolution of Whiteboard, a desktop software that displays/edits analytical data on vessels/cargoes/refineries/stocks worldwide
+
+
+> **Technologies:** C#, Winforms+DevExpress, .NET Core 2.2, angular 7, MsSQL, python
+
+
+
+---
+
+
+
 
 Société Générale CIB / CTY, Commodities trading desk \hfill\mdseries <span class='date'>05/2016 - today</span>
 --------------
