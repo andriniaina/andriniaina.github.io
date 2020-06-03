@@ -9,6 +9,7 @@ header-includes:
     - \pagestyle{fancy}
     - \lhead{\includegraphics{linkedin-logo-11x11.png} http://www.linkedin.com/in/arakotomalala}
     - \rhead{\includegraphics{email-icon-13x10.png} andriniaina@gmail.com}
+    - <meta http-equiv="content-language" content="fr-fr"/>
 geometry:
 - margin=1in
 ---
@@ -54,7 +55,7 @@ Environnements techniques
 Expérience professionnelle
 =============
 
-Glencore UK Ltd - Front Office \hfill\mdseries <span class='date'>06/2019 - 08/2019</span>
+Glencore UK Ltd - Front Office \hfill\mdseries <span class='date'>06/2019 - 09/2019</span>
 --------------
 
 **Développeur Senior .NET, angular, python**
@@ -233,3 +234,6 @@ Amadeus IT Group \hfill\mdseries <span class='date'>09/2005 - 02/2010 (~4.5ans+)
 
 > **Env. Technique:** java/j2ee, xml/xsd/xslt, html/css, javascript, edifact, Visual Studio, Eclipse, Rational Rose, JBoss
 
+
+[![FR](../assets/FR.png)](cv.html)
+[![EN](../assets/EN.png)](cv_en.html)
