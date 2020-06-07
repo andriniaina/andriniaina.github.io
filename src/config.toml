@@ -4,6 +4,8 @@ languageCode = "en-us"
 theme        = "hello-friend-ng"
 paginate     = 10
 
+publishDir   = ".."
+
 [params]
   dateform        = "Jan 2, 2006"
   dateformShort   = "Jan 2"
