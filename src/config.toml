@@ -24,7 +24,7 @@ publishDir   = ".."
   images = [""]
 
   # Default theme "light" or "dark"
-  defaultTheme = "light"
+  defaultTheme = "dark"
 
   [[params.social]]
     name = "email"
