@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tooling on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/tooling/</link>
+    <description>Recent content in tooling on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 26 Dec 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/tooling/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to clone Windows to a new drive/partition</title>
+      <link>http://andri.rocks/posts/2014-12-26-clone-windows-system-drive/</link>
+      <pubDate>Fri, 26 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-12-26-clone-windows-system-drive/</guid>
+      <description>I just bought a new SSD to replace my old HDD. I did not want to reinstall Windows because I did not want to lose all my settings and apps.
+Some guides are available but none was completely satisfying. I tried to clone my drive using EaseUS ToDo Backup Free Tools but the process seemed to be stuck at some point, occupying 100% of my CPU. I would later learn that it cannot clone a drive with defective sectors.</description>
+    </item>
+    
+    <item>
+      <title>QR code accelerator for Internet Explorer</title>
+      <link>http://andri.rocks/posts/2014-12-19-qr-code-accelerator-iexplore/</link>
+      <pubDate>Wed, 19 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-12-19-qr-code-accelerator-iexplore/</guid>
+      <description>Generates a QR code for the selected link or highlighted text (uses Google&amp;rsquo;s API &amp;amp; servers; will probably never be taken down). </description>
+    </item>
+    
+    <item>
+      <title>Useful web resources</title>
+      <link>http://andri.rocks/posts/2014-11-15-web-dev-resources/</link>
+      <pubDate>Sat, 15 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-11-15-web-dev-resources/</guid>
+      <description>Best tools for designers
+Random color scheme generator
+Twitter Bootstrap Bootstrap css
+Google material design Material Design css on github.com/google
+(see https://365webresources.com/10-free-design-resources-android-l-google-material-design/)
+ Material UI Google material design + reactjs. Also, see github. Material design UI kit  Leaf leaf github  Riplecator
+Materialize
+ Icons Freebiesbug free svg icons Material Design Icons github  [Material Design – Sidebar(http://codepen.io/zavoloklom/pen/dIgco)
+L Bootstrap Freebie
+Material Design (CSS-based) – Tiles
+Material icons
+Microsoft modern design  Metro UI CSS 2.</description>
+    </item>
+    
+    <item>
+      <title>Useful Vim tips</title>
+      <link>http://andri.rocks/posts/2014-11-02-usefull-vim-tips/</link>
+      <pubDate>Sun, 02 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-11-02-usefull-vim-tips/</guid>
+      <description>My vimrc can be viewed here.
+.gitconfig Use vim as the default diff tool [diff] tool = vimdiff guitool = gvim_andri [merge] tool = gvim_andri [mergetool &amp;quot;gvim_andri&amp;quot;] cmd = &amp;quot;\&amp;quot;D:/Program Files/Vim/vim74/gvim.exe\&amp;quot; -d &amp;quot;$(pwd -W)/$BASE&amp;quot; &amp;quot;$(pwd -W)/$MERGED&amp;quot; &amp;quot;$(pwd -W)/$LOCAL&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$(pwd -W)/$BASE&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$(pwd -W)/$LOCAL&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$(pwd -W)/$REMOTE&amp;quot; &amp;quot; [difftool &amp;quot;gvim_andri&amp;quot;] cmd = &amp;quot;\&amp;quot;D:/Program Files/Vim/vim74/gvim.exe\&amp;quot; -d &amp;quot;$LOCAL&amp;quot; &amp;quot;$(pwd -W)/$MERGED&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$LOCAL&amp;quot; &amp;quot;  .vimrc Use persistent_undo Undo changes even after closing vim!</description>
+    </item>
+    
+  </channel>
+</rss>

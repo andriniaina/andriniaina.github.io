@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>csv on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/csv/</link>
+    <description>Recent content in csv on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 09 Nov 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/csv/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CSV output formatter for WCF Data Services</title>
+      <link>http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/</link>
+      <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/</guid>
+      <description>The OData URL conventions says that one can specify the media type of the response in the query, using the query parameter $format. The requested media type can also be negociated through http content-type headers. However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).
+With the code below, you can query a OData WCF Data Service and receive a csv file in the response.</description>
+    </item>
+    
+  </channel>
+</rss>

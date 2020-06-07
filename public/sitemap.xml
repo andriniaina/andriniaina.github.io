@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://andri.rocks/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2019-04-13-cancel-after/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/csharp/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/en/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/args/</loc>
+    <lastmod>2016-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/cli/</loc>
+    <lastmod>2016-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/fsharp/</loc>
+    <lastmod>2016-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/type-provider/</loc>
+    <lastmod>2016-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/</loc>
+    <lastmod>2016-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/ecmascript/</loc>
+    <lastmod>2015-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/javascript/</loc>
+    <lastmod>2015-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2015-12-17-javascript-ecmascript-in-30-minutes/</loc>
+    <lastmod>2015-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/combinators/</loc>
+    <lastmod>2015-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/</loc>
+    <lastmod>2015-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/csv/</loc>
+    <lastmod>2015-11-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/</loc>
+    <lastmod>2015-11-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/odata/</loc>
+    <lastmod>2015-11-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/wcf/</loc>
+    <lastmod>2015-11-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-12-26-clone-windows-system-drive/</loc>
+    <lastmod>2014-12-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/tooling/</loc>
+    <lastmod>2014-12-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-12-19-qr-code-accelerator-iexplore/</loc>
+    <lastmod>2014-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-11-15-web-dev-resources/</loc>
+    <lastmod>2014-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/dotnet/</loc>
+    <lastmod>2014-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-11-12-java-vs-net/</loc>
+    <lastmod>2014-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-11-02-usefull-vim-tips/</loc>
+    <lastmod>2014-11-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/</loc>
+    <lastmod>2014-06-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/mssql/</loc>
+    <lastmod>2014-06-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-05-15-mocking-vocabulary/</loc>
+    <lastmod>2014-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/testing/</loc>
+    <lastmod>2014-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-04-30-production-ready/</loc>
+    <lastmod>2014-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/software-quality/</loc>
+    <lastmod>2014-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-04-24-f-testing-tools/</loc>
+    <lastmod>2014-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-04-16-mocking-in-f/</loc>
+    <lastmod>2014-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2014-04-15-project-euler/</loc>
+    <lastmod>2014-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/blog/</loc>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/series/</loc>
+  </url>
+  
+</urlset>

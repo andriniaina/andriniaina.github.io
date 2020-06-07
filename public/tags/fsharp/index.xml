@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fsharp on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/fsharp/</link>
+    <description>Recent content in fsharp on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 06 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/fsharp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Type provider for command-line arguments (WIP)</title>
+      <link>http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/</link>
+      <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/</guid>
+      <description>Usage // set all possible switches // switches are all optional and unordered type CustomArgsParser = Andri.TypeProviders.CliParametersParser&amp;lt;&amp;#34;-switch2 -a -b -c&amp;#34;&amp;gt; [&amp;lt;EntryPoint&amp;gt;] let main args = let parsedArgs = CustomArgsParser(args) printfn &amp;#34;switch2: %s&amp;#34; (parsedArgs.switch2) // displays Option&amp;lt;string&amp;gt; = Some &amp;#34;11&amp;#34; myApp.exe -switch2 11 -b Source namespace Andri open System open System.Reflection open Microsoft.FSharp.Core.CompilerServices open Microsoft.FSharp.Quotations open Samples.FSharp.ProvidedTypes module utils = let argsToDict (args:string list) = Seq.append args ([&amp;#34;&amp;#34;]) |&amp;gt; Seq.pairwise |&amp;gt; Seq.</description>
+    </item>
+    
+    <item>
+      <title>Combine/Permutate a list of list in F#</title>
+      <link>http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/</link>
+      <pubDate>Fri, 27 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/</guid>
+      <description>Problem Given the following data :
+[ [&amp;#34;1&amp;#34;;&amp;#34;2&amp;#34;]; []; [&amp;#34;5&amp;#34;;&amp;#34;6&amp;#34;;&amp;#34;7&amp;#34;] ] Find all possible combinations.
+Solution let rec _combine (acc:&amp;#39;T list) (ll: &amp;#39;T list list) : &amp;#39;T list list = match ll with | [] -&amp;gt; [acc] | heads :: rest -&amp;gt; match heads with | [] -&amp;gt; _combine (null::acc) (rest) | _ -&amp;gt; heads |&amp;gt; List.collect (fun h -&amp;gt; _combine (h :: acc) (rest)) let combine (ll:&amp;#39;T list list) : &amp;#39;T list list = _combine [] ll |&amp;gt; List.</description>
+    </item>
+    
+    <item>
+      <title>Solving a problem with various languages</title>
+      <link>http://andri.rocks/posts/2014-04-15-project-euler/</link>
+      <pubDate>Tue, 15 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-04-15-project-euler/</guid>
+      <description>The idea of the following posts are to show the differences and strength of different languages (elegance, readability, conciseness).
+I will try to use my best syntax for each language but you will notice that I am most of time biased towards concise languages like F# or python :)
+I will regularly update the post with different problems.
+Project Euler problem 1  If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.</description>
+    </item>
+    
+  </channel>
+</rss>

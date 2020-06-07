@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="I am not the original author of this extension
+ Usage await ATask().CancelAfter(2000); Code public static class TaskCancellationExtension { /// &amp;lt;summary&amp;gt;  /// add cancellation functionality to Task&amp;lt;T&amp;gt;  /// &amp;lt;/summary&amp;gt;  /// &amp;lt;param name=&amp;#34;task&amp;#34;&amp;gt;&amp;lt;/param&amp;gt;  /// &amp;lt;param name=&amp;#34;cancellationToken&amp;#34;&amp;gt;&amp;lt;/param&amp;gt;  /// &amp;lt;typeparam name=&amp;#34;T&amp;#34;&amp;gt;&amp;lt;/typeparam&amp;gt;  /// &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;  /// &amp;lt;exception cref=&amp;#34;OperationCanceledException&amp;#34;&amp;gt;&amp;lt;/exception&amp;gt;  public static async Task&amp;lt;T&amp;gt; CancelAfter&amp;lt;T&amp;gt;( this Task&amp;lt;T&amp;gt; task, CancellationToken cancellationToken) { var tcs = new TaskCompletionSource&amp;lt;bool&amp;gt;(); using (cancellationToken.Register( s =&amp;gt; ((TaskCompletionSource&amp;lt;bool&amp;gt;) s)." />
+<meta name="keywords" content=", csharp, EN" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://andri.rocks/posts/2019-04-13-cancel-after/" />
+
+
+    <title>
+        
+            Async/Await easy cancellation in c# :: Andri Rakotomalala  — Exercices de style
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4d47f42ed7664c4ff52d3035fb624de3131ad1179b4c29db606e5997ef525366.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Async/Await easy cancellation in c#">
+<meta itemprop="description" content="I am not the original author of this extension
+ Usage await ATask().CancelAfter(2000); Code public static class TaskCancellationExtension { /// &lt;summary&gt;  /// add cancellation functionality to Task&lt;T&gt;  /// &lt;/summary&gt;  /// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;  /// &lt;param name=&#34;cancellationToken&#34;&gt;&lt;/param&gt;  /// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;  /// &lt;returns&gt;&lt;/returns&gt;  /// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;  public static async Task&lt;T&gt; CancelAfter&lt;T&gt;( this Task&lt;T&gt; task, CancellationToken cancellationToken) { var tcs = new TaskCompletionSource&lt;bool&gt;(); using (cancellationToken.Register( s =&gt; ((TaskCompletionSource&lt;bool&gt;) s).">
+<meta itemprop="datePublished" content="2019-04-13T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-04-13T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="269">
+<meta itemprop="image" content="http://andri.rocks"/>
+
+
+
+<meta itemprop="keywords" content="csharp,EN," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://andri.rocks"/>
+
+<meta name="twitter:title" content="Async/Await easy cancellation in c#"/>
+<meta name="twitter:description" content="I am not the original author of this extension
+ Usage await ATask().CancelAfter(2000); Code public static class TaskCancellationExtension { /// &lt;summary&gt;  /// add cancellation functionality to Task&lt;T&gt;  /// &lt;/summary&gt;  /// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;  /// &lt;param name=&#34;cancellationToken&#34;&gt;&lt;/param&gt;  /// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;  /// &lt;returns&gt;&lt;/returns&gt;  /// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;  public static async Task&lt;T&gt; CancelAfter&lt;T&gt;( this Task&lt;T&gt; task, CancellationToken cancellationToken) { var tcs = new TaskCompletionSource&lt;bool&gt;(); using (cancellationToken.Register( s =&gt; ((TaskCompletionSource&lt;bool&gt;) s)."/>
+
+
+
+    <meta property="og:title" content="Async/Await easy cancellation in c#" />
+<meta property="og:description" content="I am not the original author of this extension
+ Usage await ATask().CancelAfter(2000); Code public static class TaskCancellationExtension { /// &lt;summary&gt;  /// add cancellation functionality to Task&lt;T&gt;  /// &lt;/summary&gt;  /// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;  /// &lt;param name=&#34;cancellationToken&#34;&gt;&lt;/param&gt;  /// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;  /// &lt;returns&gt;&lt;/returns&gt;  /// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;  public static async Task&lt;T&gt; CancelAfter&lt;T&gt;( this Task&lt;T&gt; task, CancellationToken cancellationToken) { var tcs = new TaskCompletionSource&lt;bool&gt;(); using (cancellationToken.Register( s =&gt; ((TaskCompletionSource&lt;bool&gt;) s)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://andri.rocks/posts/2019-04-13-cancel-after/" />
+<meta property="og:image" content="http://andri.rocks"/>
+<meta property="article:published_time" content="2019-04-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-04-13T00:00:00+00:00" /><meta property="og:site_name" content="Andri Rakotomalala" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2019-04-13 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+        <span class="logo__mark">~</span>
+        <span class="logo__text" style="white-space: nowrap; text-overflow: ellipsis; max-width: 30em; overflow: hidden;">andri.rocks://posts/2019-04-13-cancel-after/</span>
+        <span class="logo__text">&gt;</span>
+        <span class="logo__cursor" style="
+                   
+                   ">
+            </span> 
+    </div>
+</a>
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://andri.rocks/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>2 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://andri.rocks/posts/2019-04-13-cancel-after/">Async/Await easy cancellation in c#</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <blockquote>
+<p><strong>I am not the original author of this extension</strong></p>
+</blockquote>
+<h1 id="usage">Usage</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">await</span> ATask().CancelAfter(<span style="color:#ae81ff">2000</span>);
+</code></pre></div><h1 id="code">Code</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TaskCancellationExtension</span>
+    {
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// add cancellation functionality to Task&lt;T&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;cancellationToken&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task&lt;T&gt; CancelAfter&lt;T&gt;(
+            <span style="color:#66d9ef">this</span> Task&lt;T&gt; task, CancellationToken cancellationToken)
+        {
+            <span style="color:#66d9ef">var</span> tcs = <span style="color:#66d9ef">new</span> TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;();
+            <span style="color:#66d9ef">using</span> (cancellationToken.Register( s =&gt; ((TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;) s).TrySetResult(<span style="color:#66d9ef">true</span>), tcs))
+                <span style="color:#66d9ef">if</span> (task != <span style="color:#66d9ef">await</span> Task.WhenAny(task, tcs.Task))
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OperationCanceledException(cancellationToken);
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> task;
+        }
+
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// add cancellation functionality to Tasks 
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;cancellationToken&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task CancelAfter( <span style="color:#66d9ef">this</span> Task task, CancellationToken cancellationToken)
+        {
+            <span style="color:#66d9ef">var</span> tcs = <span style="color:#66d9ef">new</span> TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;();
+            <span style="color:#66d9ef">using</span> (cancellationToken.Register( s =&gt; ((TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;) s).TrySetResult(<span style="color:#66d9ef">true</span>), tcs))
+                <span style="color:#66d9ef">if</span> (task != <span style="color:#66d9ef">await</span> Task.WhenAny(task, tcs.Task))
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OperationCanceledException(cancellationToken);
+            <span style="color:#66d9ef">await</span> task;
+        }
+
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// add cancellation functionality to Task&lt;T&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;milliseconds&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task&lt;T&gt; CancelAfter&lt;T&gt;( <span style="color:#66d9ef">this</span> Task&lt;T&gt; task, <span style="color:#66d9ef">int</span> milliseconds)
+        {
+            <span style="color:#66d9ef">var</span> cts = <span style="color:#66d9ef">new</span> CancellationTokenSource();
+            cts.CancelAfter(milliseconds);
+            <span style="color:#66d9ef">var</span> tcs = <span style="color:#66d9ef">new</span> TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;();
+            <span style="color:#66d9ef">using</span> (cts.Token.Register( s =&gt; ((TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;) s).TrySetResult(<span style="color:#66d9ef">true</span>), tcs))
+                <span style="color:#66d9ef">if</span> (task != <span style="color:#66d9ef">await</span> Task.WhenAny(task, tcs.Task))
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OperationCanceledException(cts.Token);
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> task;
+        }
+
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// add cancellation functionality to Task&lt;T&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;milliseconds&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task CancelAfter( <span style="color:#66d9ef">this</span> Task task, <span style="color:#66d9ef">int</span> milliseconds)
+        {
+            <span style="color:#66d9ef">var</span> cts = <span style="color:#66d9ef">new</span> CancellationTokenSource();
+            cts.CancelAfter(milliseconds);
+            <span style="color:#66d9ef">var</span> tcs = <span style="color:#66d9ef">new</span> TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;();
+            <span style="color:#66d9ef">using</span> (cts.Token.Register( s =&gt; ((TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;) s).TrySetResult(<span style="color:#66d9ef">true</span>), tcs))
+                <span style="color:#66d9ef">if</span> (task != <span style="color:#66d9ef">await</span> Task.WhenAny(task, tcs.Task))
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OperationCanceledException(cts.Token);
+            <span style="color:#66d9ef">await</span> task;
+        }
+    }
+
+</code></pre></div>
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://andri.rocks/tags/csharp">csharp</a></span><span class="tag"><a href="http://andri.rocks/tags/en">EN</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>269 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-04-13 02:00 &#43;0200</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Read other posts</span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+
+                    
+                        <span class="button next">
+                            <a href="http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/">
+                                <span class="button__text">Type provider for command-line arguments (WIP)</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>  
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span> 
+            <span> <a href="http://andri.rocks/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    
+</footer>
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

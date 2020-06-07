@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Andri Rakotomalala</title>
+    <link>http://andri.rocks/</link>
+    <description>Recent content on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 13 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Async/Await easy cancellation in c#</title>
+      <link>http://andri.rocks/posts/2019-04-13-cancel-after/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2019-04-13-cancel-after/</guid>
+      <description>I am not the original author of this extension
+ Usage await ATask().CancelAfter(2000); Code public static class TaskCancellationExtension { /// &amp;lt;summary&amp;gt;  /// add cancellation functionality to Task&amp;lt;T&amp;gt;  /// &amp;lt;/summary&amp;gt;  /// &amp;lt;param name=&amp;#34;task&amp;#34;&amp;gt;&amp;lt;/param&amp;gt;  /// &amp;lt;param name=&amp;#34;cancellationToken&amp;#34;&amp;gt;&amp;lt;/param&amp;gt;  /// &amp;lt;typeparam name=&amp;#34;T&amp;#34;&amp;gt;&amp;lt;/typeparam&amp;gt;  /// &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;  /// &amp;lt;exception cref=&amp;#34;OperationCanceledException&amp;#34;&amp;gt;&amp;lt;/exception&amp;gt;  public static async Task&amp;lt;T&amp;gt; CancelAfter&amp;lt;T&amp;gt;( this Task&amp;lt;T&amp;gt; task, CancellationToken cancellationToken) { var tcs = new TaskCompletionSource&amp;lt;bool&amp;gt;(); using (cancellationToken.Register( s =&amp;gt; ((TaskCompletionSource&amp;lt;bool&amp;gt;) s).</description>
+    </item>
+    
+    <item>
+      <title>Type provider for command-line arguments (WIP)</title>
+      <link>http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/</link>
+      <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/</guid>
+      <description>Usage // set all possible switches // switches are all optional and unordered type CustomArgsParser = Andri.TypeProviders.CliParametersParser&amp;lt;&amp;#34;-switch2 -a -b -c&amp;#34;&amp;gt; [&amp;lt;EntryPoint&amp;gt;] let main args = let parsedArgs = CustomArgsParser(args) printfn &amp;#34;switch2: %s&amp;#34; (parsedArgs.switch2) // displays Option&amp;lt;string&amp;gt; = Some &amp;#34;11&amp;#34; myApp.exe -switch2 11 -b Source namespace Andri open System open System.Reflection open Microsoft.FSharp.Core.CompilerServices open Microsoft.FSharp.Quotations open Samples.FSharp.ProvidedTypes module utils = let argsToDict (args:string list) = Seq.append args ([&amp;#34;&amp;#34;]) |&amp;gt; Seq.pairwise |&amp;gt; Seq.</description>
+    </item>
+    
+    <item>
+      <title>Javascript (ECMAScript) in 30 minutes</title>
+      <link>http://andri.rocks/posts/2015-12-17-javascript-ecmascript-in-30-minutes/</link>
+      <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2015-12-17-javascript-ecmascript-in-30-minutes/</guid>
+      <description>Simple values 155 10.23 true false &amp;#39;test&amp;#39; &amp;#34;test&amp;#34; null undefined NaN // 0/0 Not a Number Infinity // 1/0 // array declaration [1,2,3,4] // anonymous object declaration with properties firstName and surname {firstName:&amp;#39;John&amp;#39;, surname:&amp;#39;Doe&amp;#39;} Basic syntax doStuff(); // Statements **can** be terminated by ; doStuff() // or not...  // variable declaration var a = 1; var a=1, b=2, c=3; // multiple declarations  // a variable can be initialized without a declaration!</description>
+    </item>
+    
+    <item>
+      <title>Combine/Permutate a list of list in F#</title>
+      <link>http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/</link>
+      <pubDate>Fri, 27 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/</guid>
+      <description>Problem Given the following data :
+[ [&amp;#34;1&amp;#34;;&amp;#34;2&amp;#34;]; []; [&amp;#34;5&amp;#34;;&amp;#34;6&amp;#34;;&amp;#34;7&amp;#34;] ] Find all possible combinations.
+Solution let rec _combine (acc:&amp;#39;T list) (ll: &amp;#39;T list list) : &amp;#39;T list list = match ll with | [] -&amp;gt; [acc] | heads :: rest -&amp;gt; match heads with | [] -&amp;gt; _combine (null::acc) (rest) | _ -&amp;gt; heads |&amp;gt; List.collect (fun h -&amp;gt; _combine (h :: acc) (rest)) let combine (ll:&amp;#39;T list list) : &amp;#39;T list list = _combine [] ll |&amp;gt; List.</description>
+    </item>
+    
+    <item>
+      <title>CSV output formatter for WCF Data Services</title>
+      <link>http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/</link>
+      <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/</guid>
+      <description>The OData URL conventions says that one can specify the media type of the response in the query, using the query parameter $format. The requested media type can also be negociated through http content-type headers. However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).
+With the code below, you can query a OData WCF Data Service and receive a csv file in the response.</description>
+    </item>
+    
+    <item>
+      <title>How to clone Windows to a new drive/partition</title>
+      <link>http://andri.rocks/posts/2014-12-26-clone-windows-system-drive/</link>
+      <pubDate>Fri, 26 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-12-26-clone-windows-system-drive/</guid>
+      <description>I just bought a new SSD to replace my old HDD. I did not want to reinstall Windows because I did not want to lose all my settings and apps.
+Some guides are available but none was completely satisfying. I tried to clone my drive using EaseUS ToDo Backup Free Tools but the process seemed to be stuck at some point, occupying 100% of my CPU. I would later learn that it cannot clone a drive with defective sectors.</description>
+    </item>
+    
+    <item>
+      <title>QR code accelerator for Internet Explorer</title>
+      <link>http://andri.rocks/posts/2014-12-19-qr-code-accelerator-iexplore/</link>
+      <pubDate>Wed, 19 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-12-19-qr-code-accelerator-iexplore/</guid>
+      <description>Generates a QR code for the selected link or highlighted text (uses Google&amp;rsquo;s API &amp;amp; servers; will probably never be taken down). </description>
+    </item>
+    
+    <item>
+      <title>Useful web resources</title>
+      <link>http://andri.rocks/posts/2014-11-15-web-dev-resources/</link>
+      <pubDate>Sat, 15 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-11-15-web-dev-resources/</guid>
+      <description>Best tools for designers
+Random color scheme generator
+Twitter Bootstrap Bootstrap css
+Google material design Material Design css on github.com/google
+(see https://365webresources.com/10-free-design-resources-android-l-google-material-design/)
+ Material UI Google material design + reactjs. Also, see github. Material design UI kit  Leaf leaf github  Riplecator
+Materialize
+ Icons Freebiesbug free svg icons Material Design Icons github  [Material Design – Sidebar(http://codepen.io/zavoloklom/pen/dIgco)
+L Bootstrap Freebie
+Material Design (CSS-based) – Tiles
+Material icons
+Microsoft modern design  Metro UI CSS 2.</description>
+    </item>
+    
+    <item>
+      <title>Things .NET can do that java can&#39;t</title>
+      <link>http://andri.rocks/posts/2014-11-12-java-vs-net/</link>
+      <pubDate>Wed, 12 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-11-12-java-vs-net/</guid>
+      <description>A few years ago, I left the java in favor of .net in my job. I started using java again recently for a project and it reminded me why java was so behind and counter-productive.
+Here is a list of what java does wrong (or does not do at all) that I now miss:
+Productive code  Generics Yes I know, java has generics since 2004. But it&amp;rsquo;s commonly admitted that it&amp;rsquo;s a broken implementation.</description>
+    </item>
+    
+    <item>
+      <title>Useful Vim tips</title>
+      <link>http://andri.rocks/posts/2014-11-02-usefull-vim-tips/</link>
+      <pubDate>Sun, 02 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-11-02-usefull-vim-tips/</guid>
+      <description>My vimrc can be viewed here.
+.gitconfig Use vim as the default diff tool [diff] tool = vimdiff guitool = gvim_andri [merge] tool = gvim_andri [mergetool &amp;quot;gvim_andri&amp;quot;] cmd = &amp;quot;\&amp;quot;D:/Program Files/Vim/vim74/gvim.exe\&amp;quot; -d &amp;quot;$(pwd -W)/$BASE&amp;quot; &amp;quot;$(pwd -W)/$MERGED&amp;quot; &amp;quot;$(pwd -W)/$LOCAL&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$(pwd -W)/$BASE&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$(pwd -W)/$LOCAL&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$(pwd -W)/$REMOTE&amp;quot; &amp;quot; [difftool &amp;quot;gvim_andri&amp;quot;] cmd = &amp;quot;\&amp;quot;D:/Program Files/Vim/vim74/gvim.exe\&amp;quot; -d &amp;quot;$LOCAL&amp;quot; &amp;quot;$(pwd -W)/$MERGED&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$LOCAL&amp;quot; &amp;quot;  .vimrc Use persistent_undo Undo changes even after closing vim!</description>
+    </item>
+    
+    <item>
+      <title>A challenge a day: How to partially import data from one MsSql database to another, using DTS/SSIS</title>
+      <link>http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/</link>
+      <pubDate>Thu, 12 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/</guid>
+      <description>The challenge at my job: insert and replace the data from table [A] from one environment (e.g. PROD) to another (e.g. UAT). However, data in table [B] reference the data in table [A]. Do this for N tables in a bloated database with hundreds of tables each cross-referencing each other.
+The solution -- BEFORE importing the data -- Disable all constraints -- This prevents the foreign keys constraints in `[B]` to block the import EXEC sp_msforeachtable &amp;#34;ALTER TABLE ?</description>
+    </item>
+    
+    <item>
+      <title>Test doubles and mocks, dummies, stubs, spies, fakes - some vocabulary</title>
+      <link>http://andri.rocks/posts/2014-05-15-mocking-vocabulary/</link>
+      <pubDate>Thu, 15 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-05-15-mocking-vocabulary/</guid>
+      <description>A test double (or mock object) is an object that mimics the real object by reimplementing its members. It will be used during tests to isolate the domain/class to be tested.
+Test doubles can be categorized into 4 groups: Dummies, Stubs, Spies, Fakes.
+Dummies A dummy is a basic object whose methods always return the default value of a given type (null, 0, false, etc.).
+Build a dummy when the domain to be tested should never use it, but still requires it in the API.</description>
+    </item>
+    
+    <item>
+      <title>Definition of &#34;production-ready&#34;</title>
+      <link>http://andri.rocks/posts/2014-04-30-production-ready/</link>
+      <pubDate>Wed, 30 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-04-30-production-ready/</guid>
+      <description>Programmer&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs its design was well thought out it&amp;rsquo;s maintainable  Analyst&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it satisfies the project requirements  User&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it satisfies the his/her requirements  Operation and Support&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it&amp;rsquo;s stable it&amp;rsquo;s scalable it&amp;rsquo;s documented  Management&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it&amp;rsquo;ll turn a profit   Warning: this was a joke.</description>
+    </item>
+    
+    <item>
+      <title>F# as a testing tool</title>
+      <link>http://andri.rocks/posts/2014-04-24-f-testing-tools/</link>
+      <pubDate>Thu, 24 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-04-24-f-testing-tools/</guid>
+      <description>F# as a language has many features that makes writing test easier and faster compared to other .NET languages. Most of the time, if I really have to write C# code (which I rarely do now), I usually end up writing the test cases with F# because its much more productive.
+Test frameworks xUnit is the most adapted test framework because it accepts static classes/methods as test fixtures (F# modules are compiled as static classes).</description>
+    </item>
+    
+    <item>
+      <title>Mocking objects with F# and FsMocks</title>
+      <link>http://andri.rocks/posts/2014-04-16-mocking-in-f/</link>
+      <pubDate>Wed, 16 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-04-16-mocking-in-f/</guid>
+      <description>FsMocks is a wrapper around Rhino.Mocks that simplifies mocking with F#. The API is simple and straightforward because it uses a human-friendly DSL syntax. It can be combined with other test frameworks (NUnit, xUnit, FsUnit, etc.).
+It is intended to be readable, simple to use, strong typed (and refactor-friendly):
+o.Call(1) |&amp;gt; returns 1 |&amp;gt; only_if_argument [Is.NotNull()] |&amp;gt; expected at_least_once Below, I show FsMocks&amp;rsquo; syntax, compared to traditional Rhino/Moq/C# mocks.
+We suppose that we work with the MyService class here</description>
+    </item>
+    
+    <item>
+      <title>Solving a problem with various languages</title>
+      <link>http://andri.rocks/posts/2014-04-15-project-euler/</link>
+      <pubDate>Tue, 15 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-04-15-project-euler/</guid>
+      <description>The idea of the following posts are to show the differences and strength of different languages (elegance, readability, conciseness).
+I will try to use my best syntax for each language but you will notice that I am most of time biased towards concise languages like F# or python :)
+I will regularly update the post with different problems.
+Project Euler problem 1  If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.</description>
+    </item>
+    
+  </channel>
+</rss>

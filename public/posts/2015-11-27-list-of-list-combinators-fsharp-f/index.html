@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Problem Given the following data :
+[ [&amp;#34;1&amp;#34;;&amp;#34;2&amp;#34;]; []; [&amp;#34;5&amp;#34;;&amp;#34;6&amp;#34;;&amp;#34;7&amp;#34;] ] Find all possible combinations.
+Solution let rec _combine (acc:&amp;#39;T list) (ll: &amp;#39;T list list) : &amp;#39;T list list = match ll with | [] -&amp;gt; [acc] | heads :: rest -&amp;gt; match heads with | [] -&amp;gt; _combine (null::acc) (rest) | _ -&amp;gt; heads |&amp;gt; List.collect (fun h -&amp;gt; _combine (h :: acc) (rest)) let combine (ll:&amp;#39;T list list) : &amp;#39;T list list = _combine [] ll |&amp;gt; List." />
+<meta name="keywords" content=", fsharp, combinators, EN" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/" />
+
+
+    <title>
+        
+            Combine/Permutate a list of list in F# :: Andri Rakotomalala  — Exercices de style
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4d47f42ed7664c4ff52d3035fb624de3131ad1179b4c29db606e5997ef525366.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Combine/Permutate a list of list in F#">
+<meta itemprop="description" content="Problem Given the following data :
+[ [&#34;1&#34;;&#34;2&#34;]; []; [&#34;5&#34;;&#34;6&#34;;&#34;7&#34;] ] Find all possible combinations.
+Solution let rec _combine (acc:&#39;T list) (ll: &#39;T list list) : &#39;T list list = match ll with | [] -&gt; [acc] | heads :: rest -&gt; match heads with | [] -&gt; _combine (null::acc) (rest) | _ -&gt; heads |&gt; List.collect (fun h -&gt; _combine (h :: acc) (rest)) let combine (ll:&#39;T list list) : &#39;T list list = _combine [] ll |&gt; List.">
+<meta itemprop="datePublished" content="2015-11-27T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2015-11-27T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="134">
+<meta itemprop="image" content="http://andri.rocks"/>
+
+
+
+<meta itemprop="keywords" content="fsharp,combinators,EN," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://andri.rocks"/>
+
+<meta name="twitter:title" content="Combine/Permutate a list of list in F#"/>
+<meta name="twitter:description" content="Problem Given the following data :
+[ [&#34;1&#34;;&#34;2&#34;]; []; [&#34;5&#34;;&#34;6&#34;;&#34;7&#34;] ] Find all possible combinations.
+Solution let rec _combine (acc:&#39;T list) (ll: &#39;T list list) : &#39;T list list = match ll with | [] -&gt; [acc] | heads :: rest -&gt; match heads with | [] -&gt; _combine (null::acc) (rest) | _ -&gt; heads |&gt; List.collect (fun h -&gt; _combine (h :: acc) (rest)) let combine (ll:&#39;T list list) : &#39;T list list = _combine [] ll |&gt; List."/>
+
+
+
+    <meta property="og:title" content="Combine/Permutate a list of list in F#" />
+<meta property="og:description" content="Problem Given the following data :
+[ [&#34;1&#34;;&#34;2&#34;]; []; [&#34;5&#34;;&#34;6&#34;;&#34;7&#34;] ] Find all possible combinations.
+Solution let rec _combine (acc:&#39;T list) (ll: &#39;T list list) : &#39;T list list = match ll with | [] -&gt; [acc] | heads :: rest -&gt; match heads with | [] -&gt; _combine (null::acc) (rest) | _ -&gt; heads |&gt; List.collect (fun h -&gt; _combine (h :: acc) (rest)) let combine (ll:&#39;T list list) : &#39;T list list = _combine [] ll |&gt; List." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/" />
+<meta property="og:image" content="http://andri.rocks"/>
+<meta property="article:published_time" content="2015-11-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2015-11-27T00:00:00+00:00" /><meta property="og:site_name" content="Andri Rakotomalala" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2015-11-27 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+        <span class="logo__mark">~</span>
+        <span class="logo__text" style="white-space: nowrap; text-overflow: ellipsis; max-width: 30em; overflow: hidden;">andri.rocks://posts/2015-11-27-list-of-list-combinators-fsharp-f/</span>
+        <span class="logo__text">&gt;</span>
+        <span class="logo__cursor" style="
+                   
+                   ">
+            </span> 
+    </div>
+</a>
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://andri.rocks/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>One minute
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/">Combine/Permutate a list of list in F#</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <h1 id="problem">Problem</h1>
+<p>Given the following data :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fs" data-lang="fs"><span style="color:#a6e22e">[</span>
+	<span style="color:#a6e22e">[&#34;1&#34;;&#34;2&#34;];</span>
+	<span style="color:#a6e22e">[];</span>
+	<span style="color:#a6e22e">[&#34;5&#34;;&#34;6&#34;;&#34;7&#34;]</span>
+<span style="color:#a6e22e">]</span>
+</code></pre></div><p>Find all possible combinations.</p>
+<h1 id="solution">Solution</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fs" data-lang="fs"><span style="color:#a6e22e">let</span> <span style="color:#a6e22e">rec</span> <span style="color:#a6e22e">_combine</span> <span style="color:#a6e22e">(acc:&#39;T</span> <span style="color:#a6e22e">list)</span> <span style="color:#a6e22e">(ll:</span> <span style="color:#a6e22e">&#39;T</span> <span style="color:#66d9ef">list </span><span style="color:#a6e22e">list)</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">&#39;T</span> <span style="color:#66d9ef">list list </span><span style="color:#a6e22e">=</span>
+    <span style="color:#a6e22e">match</span> <span style="color:#a6e22e">ll</span> <span style="color:#a6e22e">with</span>
+    <span style="color:#a6e22e">|</span> <span style="color:#a6e22e">[]</span> <span style="color:#a6e22e">-&gt;</span>  <span style="color:#a6e22e">[acc]</span>
+    <span style="color:#a6e22e">|</span> <span style="color:#a6e22e">heads</span> <span style="color:#a6e22e">::</span> <span style="color:#a6e22e">rest</span> <span style="color:#a6e22e">-&gt;</span>
+        <span style="color:#a6e22e">match</span> <span style="color:#a6e22e">heads</span> <span style="color:#a6e22e">with</span>
+        <span style="color:#a6e22e">|</span> <span style="color:#a6e22e">[]</span> <span style="color:#a6e22e">-&gt;</span> <span style="color:#a6e22e">_combine</span> <span style="color:#a6e22e">(null::acc)</span> <span style="color:#a6e22e">(rest)</span>
+        <span style="color:#a6e22e">|</span> <span style="color:#a6e22e">_</span> <span style="color:#a6e22e">-&gt;</span>  <span style="color:#a6e22e">heads</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">List.collect</span> <span style="color:#a6e22e">(fun</span> <span style="color:#a6e22e">h</span> <span style="color:#a6e22e">-&gt;</span> <span style="color:#a6e22e">_combine</span> <span style="color:#a6e22e">(h</span> <span style="color:#a6e22e">::</span> <span style="color:#a6e22e">acc)</span> <span style="color:#a6e22e">(rest))</span>
+
+<span style="color:#a6e22e">let</span> <span style="color:#a6e22e">combine</span> <span style="color:#a6e22e">(ll:&#39;T</span> <span style="color:#66d9ef">list </span><span style="color:#a6e22e">list)</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">&#39;T</span> <span style="color:#66d9ef">list list </span><span style="color:#a6e22e">=</span>
+    <span style="color:#a6e22e">_combine</span> <span style="color:#a6e22e">[]</span> <span style="color:#a6e22e">ll</span>
+        <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">List.map</span> <span style="color:#a6e22e">(List.rev)</span>
+
+<span style="color:#a6e22e">let</span> <span style="color:#a6e22e">combineCsharpCompliant</span> <span style="color:#a6e22e">(ll:&#39;T</span> <span style="color:#a6e22e">IList</span> <span style="color:#a6e22e">IList)</span> <span style="color:#a6e22e">=</span>
+	<span style="color:#a6e22e">ll</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">Seq.map</span> <span style="color:#a6e22e">(List.ofSeq)</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">List.ofSeq</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">combine</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">List.map</span> <span style="color:#a6e22e">(System.Linq.Enumerable.ToList)</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">System.Linq.Enumerable.ToList</span>
+
+<span style="color:#a6e22e">let</span> <span style="color:#a6e22e">ll</span> <span style="color:#a6e22e">=</span> <span style="color:#a6e22e">[[&#34;1&#34;;&#34;2&#34;];[];[&#34;5&#34;;&#34;6&#34;;&#34;7&#34;]]</span>
+<span style="color:#a6e22e">combine</span> <span style="color:#a6e22e">ll</span>
+<span style="color:#a6e22e">///</span> <span style="color:#a6e22e">val</span> <span style="color:#a6e22e">it</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span> <span style="color:#66d9ef">list list </span><span style="color:#a6e22e">=</span>
+<span style="color:#a6e22e">///</span>    <span style="color:#a6e22e">[[&#34;1&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;5&#34;];</span> <span style="color:#a6e22e">[&#34;1&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;6&#34;];</span> <span style="color:#a6e22e">[&#34;1&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;7&#34;];</span> <span style="color:#a6e22e">[&#34;2&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;5&#34;];</span>
+<span style="color:#a6e22e">///</span>       <span style="color:#a6e22e">[&#34;2&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;6&#34;];</span> <span style="color:#a6e22e">[&#34;2&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;7&#34;]]</span>
+</code></pre></div>
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://andri.rocks/tags/fsharp">fsharp</a></span><span class="tag"><a href="http://andri.rocks/tags/combinators">combinators</a></span><span class="tag"><a href="http://andri.rocks/tags/en">EN</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>134 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2015-11-27 01:00 &#43;0100</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Read other posts</span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="http://andri.rocks/posts/2015-12-17-javascript-ecmascript-in-30-minutes/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">Javascript (ECMAScript) in 30 minutes</span>
+                            </a>
+                        </span>
+                    
+
+                    
+                        <span class="button next">
+                            <a href="http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/">
+                                <span class="button__text">CSV output formatter for WCF Data Services</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>  
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span> 
+            <span> <a href="http://andri.rocks/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    
+</footer>
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

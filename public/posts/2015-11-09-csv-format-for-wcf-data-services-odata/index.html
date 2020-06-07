@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="The OData URL conventions says that one can specify the media type of the response in the query, using the query parameter $format. The requested media type can also be negociated through http content-type headers. However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).
+With the code below, you can query a OData WCF Data Service and receive a csv file in the response." />
+<meta name="keywords" content=", wcf, odata, csv, EN" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/" />
+
+
+    <title>
+        
+            CSV output formatter for WCF Data Services :: Andri Rakotomalala  — Exercices de style
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4d47f42ed7664c4ff52d3035fb624de3131ad1179b4c29db606e5997ef525366.css">
+
+
+
+
+
+
+<meta itemprop="name" content="CSV output formatter for WCF Data Services">
+<meta itemprop="description" content="The OData URL conventions says that one can specify the media type of the response in the query, using the query parameter $format. The requested media type can also be negociated through http content-type headers. However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).
+With the code below, you can query a OData WCF Data Service and receive a csv file in the response.">
+<meta itemprop="datePublished" content="2015-11-09T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2015-11-09T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1019">
+<meta itemprop="image" content="http://andri.rocks"/>
+
+
+
+<meta itemprop="keywords" content="wcf,odata,csv,EN," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://andri.rocks"/>
+
+<meta name="twitter:title" content="CSV output formatter for WCF Data Services"/>
+<meta name="twitter:description" content="The OData URL conventions says that one can specify the media type of the response in the query, using the query parameter $format. The requested media type can also be negociated through http content-type headers. However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).
+With the code below, you can query a OData WCF Data Service and receive a csv file in the response."/>
+
+
+
+    <meta property="og:title" content="CSV output formatter for WCF Data Services" />
+<meta property="og:description" content="The OData URL conventions says that one can specify the media type of the response in the query, using the query parameter $format. The requested media type can also be negociated through http content-type headers. However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).
+With the code below, you can query a OData WCF Data Service and receive a csv file in the response." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/" />
+<meta property="og:image" content="http://andri.rocks"/>
+<meta property="article:published_time" content="2015-11-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2015-11-09T00:00:00+00:00" /><meta property="og:site_name" content="Andri Rakotomalala" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2015-11-09 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+        <span class="logo__mark">~</span>
+        <span class="logo__text" style="white-space: nowrap; text-overflow: ellipsis; max-width: 30em; overflow: hidden;">andri.rocks://posts/2015-11-09-csv-format-for-wcf-data-services-odata/</span>
+        <span class="logo__text">&gt;</span>
+        <span class="logo__cursor" style="
+                   
+                   ">
+            </span> 
+    </div>
+</a>
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://andri.rocks/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>5 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/">CSV output formatter for WCF Data Services</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p>The <a href="http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part2-url-conventions/odata-v4.0-errata02-os-part2-url-conventions-complete.html#_Toc406398169">OData URL conventions</a> says that one can specify the media type of the response in the query, using the query parameter <code>$format</code>.
+The requested media type can also be negociated through http content-type headers.
+However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).</p>
+<p>With the code below, you can query a <strong>OData WCF Data Service</strong> and receive a <strong>csv</strong> file in the response.</p>
+<h2 id="usage">Usage</h2>
+<p>Just add the attribute <code>[CsvSupportBehavior]</code> to your service class and add  the parameter <code>$format=txt</code> in the URL.</p>
+<p>You can customize the output with <code>$format=txt:[separator?]:[csvHeader?]</code> (e.g.  <code>$format=txt:,:colHeader1,col2,col3</code> )</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">namespace</span> SampleDataService
+{
+<span style="color:#a6e22e">    [CsvSupportBehavior]</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WcfDataService1</span> : DataService&lt; sampleEntities &gt;
+    {
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> InitializeService(DataServiceConfiguration config)
+        {
+          config.SetEntitySetAccessRule(<span style="color:#e6db74">&#34;*&#34;</span>, EntitySetRights.AllRead);
+          config.SetEntitySetPageSize(<span style="color:#e6db74">&#34;*&#34;</span>, <span style="color:#ae81ff">10</span>);
+          config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
+        }
+    }
+}
+</code></pre></div><h2 id="code">Code</h2>
+<blockquote>
+<p>clone from gist.github : <a href="https://gist.github.com/andriniaina/01fb854e449376c75185">https://gist.github.com/andriniaina/01fb854e449376c75185</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#75715e">//-----------------------------------------------------------------------
+</span><span style="color:#75715e">// http://andriniaina.github.io
+</span><span style="color:#75715e">//-----------------------------------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">namespace</span> WCFDataServiceFormatExtensions
+{
+    <span style="color:#66d9ef">using</span> System;
+    <span style="color:#66d9ef">using</span> System.Collections.Generic;
+    <span style="color:#66d9ef">using</span> System.IO;
+    <span style="color:#66d9ef">using</span> System.Linq;
+    <span style="color:#66d9ef">using</span> System.ServiceModel;
+    <span style="color:#66d9ef">using</span> System.ServiceModel.Channels;
+    <span style="color:#66d9ef">using</span> System.ServiceModel.Description;
+    <span style="color:#66d9ef">using</span> System.ServiceModel.Dispatcher;
+    <span style="color:#66d9ef">using</span> System.Text;
+    <span style="color:#66d9ef">using</span> System.Xml;
+    <span style="color:#66d9ef">using</span> System.Xml.Linq;
+
+
+    <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// This Class provide an attribute that need to be applied on data service class in order to enable text output
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">    [AttributeUsage(AttributeTargets.Class)]</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CsvSupportBehaviorAttribute</span> : Attribute, IServiceBehavior
+    {
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Provides the ability to pass custom data to binding elements to support the contract implementation.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceDescription&#34;&gt;The service description of the service.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceHostBase&#34;&gt;The host of the service.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;endpoints&#34;&gt;The service endpoints.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;bindingParameters&#34;&gt;Custom objects to which binding elements have access.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">void</span> IServiceBehavior.AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, System.Collections.ObjectModel.Collection&lt;ServiceEndpoint&gt; endpoints, BindingParameterCollection bindingParameters)
+        {
+        }
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Provides the ability to change run-time property values or insert custom extension objects such as error handlers, message or parameter interceptors, security extensions, and other custom extension objects.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceDescription&#34;&gt;The service description.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceHostBase&#34;&gt;The host that is currently being built.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">void</span> IServiceBehavior.ApplyDispatchBehavior(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+        {
+            <span style="color:#66d9ef">foreach</span> (ChannelDispatcher cd <span style="color:#66d9ef">in</span> serviceHostBase.ChannelDispatchers)
+            {
+                <span style="color:#66d9ef">foreach</span> (EndpointDispatcher ed <span style="color:#66d9ef">in</span> cd.Endpoints)
+                {
+                    ed.DispatchRuntime.MessageInspectors.Add(<span style="color:#66d9ef">new</span> CsvDataServiceFormatInspector());
+                }
+            }
+        }
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Provides the ability to inspect the service host and the service description to confirm that the service can run successfully.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceDescription&#34;&gt;The service description.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceHostBase&#34;&gt;The service host that is currently being constructed.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">void</span> IServiceBehavior.Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+        {
+        }
+    }
+
+    <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// Inspect incoming outgoing message and transform them in text version if required.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CsvDataServiceFormatInspector</span> : IDispatchMessageInspector
+    {
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// This is invoked automatically by data service calls.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;request&#34;&gt;Incoming request message.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;channel&#34;&gt;Request channel&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;instanceContext&#34;&gt;Operation Context for this instance.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;Returns null.&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">object</span> AfterReceiveRequest(<span style="color:#66d9ef">ref</span> Message request, IClientChannel channel, InstanceContext instanceContext)
+        {
+            <span style="color:#66d9ef">object</span> token = <span style="color:#66d9ef">null</span>;
+            <span style="color:#66d9ef">if</span> (request.Properties.ContainsKey(<span style="color:#e6db74">&#34;UriTemplateMatchResults&#34;</span>))
+            {
+                <span style="color:#66d9ef">string</span> requestType = <span style="color:#e6db74">&#34;RequestType=TXT&#34;</span>;
+                UriTemplateMatch match = (UriTemplateMatch)request.Properties[<span style="color:#e6db74">&#34;UriTemplateMatchResults&#34;</span>];
+                <span style="color:#66d9ef">string</span> format = match.QueryParameters[<span style="color:#e6db74">&#34;$format&#34;</span>];
+                <span style="color:#66d9ef">string</span> selectors = match.QueryParameters[<span style="color:#e6db74">&#34;$select&#34;</span>];
+
+                <span style="color:#66d9ef">if</span> (format != <span style="color:#66d9ef">null</span> &amp;&amp; format.StartsWith(<span style="color:#e6db74">&#34;txt&#34;</span>, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    <span style="color:#75715e">/*
+</span><span style="color:#75715e">                    string customheader = match.QueryParameters[&#34;$customCsvHeader&#34;];
+</span><span style="color:#75715e">                    if (customheader != null)
+</span><span style="color:#75715e">                    {
+</span><span style="color:#75715e">                        match.QueryParameters.Remove(&#34;$customCsvHeader&#34;);
+</span><span style="color:#75715e">                    }
+</span><span style="color:#75715e">                    */</span>
+                    <span style="color:#75715e">////check if separator found 
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">var</span> spec = format.Split(<span style="color:#e6db74">&#39;:&#39;</span>);
+                    <span style="color:#66d9ef">var</span> separator = spec.Length &gt; <span style="color:#ae81ff">1</span> ? spec[<span style="color:#ae81ff">1</span>] : <span style="color:#e6db74">&#34;\t&#34;</span>;
+                    <span style="color:#66d9ef">var</span> header = spec.Length &gt; <span style="color:#ae81ff">2</span> ? spec[<span style="color:#ae81ff">2</span>] : <span style="color:#e6db74">&#34;&#34;</span>;
+
+                    match.QueryParameters.Remove(<span style="color:#e6db74">&#34;$format&#34;</span>);
+                    token = <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;{0}¤separator={1}¤selectors={2}¤header={3}&#34;</span>, requestType, separator, selectors, header);
+                }
+            }
+
+            <span style="color:#66d9ef">return</span> token;
+        }
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// This is invoked automatically by data service calls.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;reply&#34;&gt;Actual responce from service.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;correlationState&#34;&gt;Correlation token returned in “AfterRequestReceived ”function.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> BeforeSendReply(<span style="color:#66d9ef">ref</span> Message reply, <span style="color:#66d9ef">object</span> correlationState)
+        {
+            <span style="color:#66d9ef">string</span> requestType = <span style="color:#e6db74">&#34;RequestType=TXT&#34;</span>;
+
+            HttpResponseMessageProperty response = reply.Properties[HttpResponseMessageProperty.Name] <span style="color:#66d9ef">as</span> HttpResponseMessageProperty;
+
+            <span style="color:#66d9ef">if</span> (correlationState != <span style="color:#66d9ef">null</span> &amp;&amp; correlationState <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">string</span>)
+            {
+                <span style="color:#66d9ef">if</span> (response != <span style="color:#66d9ef">null</span>)
+                {
+                    <span style="color:#66d9ef">string</span> contentType = response.Headers[<span style="color:#e6db74">&#34;Content-Type&#34;</span>];
+                    <span style="color:#66d9ef">if</span> (contentType != <span style="color:#66d9ef">null</span>)
+                    {
+                        <span style="color:#66d9ef">bool</span> isRequestTypeTXT = ((<span style="color:#66d9ef">string</span>)correlationState).ToLower().StartsWith(requestType.ToLower());
+                        <span style="color:#66d9ef">if</span> (isRequestTypeTXT &amp;&amp; contentType.StartsWith(<span style="color:#e6db74">&#34;application/atom&#34;</span>, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            response.Headers[<span style="color:#e6db74">&#34;Content-Type&#34;</span>] = <span style="color:#e6db74">&#34;text/csv;charset=utf-8&#34;</span>;
+                            <span style="color:#66d9ef">var</span> stateDic = ((<span style="color:#66d9ef">string</span>)correlationState).Split(<span style="color:#e6db74">&#39;¤&#39;</span>).Select(x =&gt; x.Split(<span style="color:#66d9ef">new</span>[] { <span style="color:#e6db74">&#39;=&#39;</span> }, <span style="color:#ae81ff">2</span>)).ToDictionary(x =&gt; x[<span style="color:#ae81ff">0</span>], x =&gt; x[<span style="color:#ae81ff">1</span>]);
+
+                            <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> bodyReader = reply.GetReaderAtBodyContents())
+                            {
+                                bodyReader.ReadStartElement();
+                                <span style="color:#66d9ef">var</span> txt = Encoding.UTF8.GetString(bodyReader.ReadContentAsBase64());
+                                <span style="color:#66d9ef">var</span> separator = stateDic[<span style="color:#e6db74">&#34;separator&#34;</span>];
+                                <span style="color:#66d9ef">var</span> selectors = stateDic[<span style="color:#e6db74">&#34;selectors&#34;</span>].Split(<span style="color:#e6db74">&#39;,&#39;</span>).Select(x =&gt; x.Trim()).Select(getXPath).ToList();
+
+                                <span style="color:#66d9ef">var</span> csvHeaders = <span style="color:#66d9ef">string</span>.IsNullOrWhiteSpace(stateDic[<span style="color:#e6db74">&#34;header&#34;</span>]) ?
+                                    <span style="color:#66d9ef">string</span>.Join(separator, stateDic[<span style="color:#e6db74">&#34;selectors&#34;</span>].Split(<span style="color:#e6db74">&#39;,&#39;</span>).Select(s =&gt; s.Split(<span style="color:#e6db74">&#39;/&#39;</span>).Last())) 
+                                    :
+                                    stateDic[<span style="color:#e6db74">&#34;header&#34;</span>];
+
+                                <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> reader = <span style="color:#66d9ef">new</span> StringReader(txt))
+                                {
+                                    <span style="color:#66d9ef">var</span> doc = <span style="color:#66d9ef">new</span> System.Xml.XmlDocument();
+                                    doc.Load(reader);
+                                    <span style="color:#66d9ef">var</span> nsmgr = <span style="color:#66d9ef">new</span> XmlNamespaceManager(doc.NameTable);
+                                    nsmgr.AddNamespace(<span style="color:#e6db74">&#34;base&#34;</span>, <span style="color:#e6db74">&#34;http://localhost:8080/WcfDataService1.svc/&#34;</span>);
+                                    nsmgr.AddNamespace(<span style="color:#e6db74">&#34;d&#34;</span>, <span style="color:#e6db74">&#34;http://schemas.microsoft.com/ado/2007/08/dataservices&#34;</span>);
+                                    nsmgr.AddNamespace(<span style="color:#e6db74">&#34;m&#34;</span>, <span style="color:#e6db74">&#34;http://schemas.microsoft.com/ado/2007/08/dataservices/metadata&#34;</span>);
+                                    nsmgr.AddNamespace(<span style="color:#e6db74">&#34;atom&#34;</span>, doc.DocumentElement.NamespaceURI);
+                                    <span style="color:#66d9ef">var</span> n = doc.DocumentElement.SelectNodes(<span style="color:#e6db74">&#34;/atom:feed&#34;</span>, nsmgr);
+
+                                    <span style="color:#66d9ef">var</span> csv = <span style="color:#66d9ef">new</span> StringBuilder();
+                                    <span style="color:#66d9ef">var</span> lines = <span style="color:#66d9ef">new</span> List&lt;<span style="color:#66d9ef">string</span>&gt;();
+                                    <span style="color:#66d9ef">foreach</span> (XmlNode entry <span style="color:#66d9ef">in</span> doc.DocumentElement.SelectNodes(<span style="color:#e6db74">&#34;/atom:feed/atom:entry&#34;</span>, nsmgr))
+                                    {
+                                        <span style="color:#66d9ef">var</span> grapes = selectors.Select(x =&gt; entry.SelectNodes(x, nsmgr).Cast&lt;XmlNode&gt;().ToList()).Cast&lt;IList&lt;XmlNode&gt;&gt;().ToList();
+                                        <span style="color:#66d9ef">var</span> innerJoinedLines = Utils.x.combineClrCompliant(grapes).Select(x =&gt; <span style="color:#66d9ef">string</span>.Join(separator, x.Select(node =&gt; node.InnerText))).ToList();
+                                        lines.AddRange(innerJoinedLines);
+                                    }
+
+                                    <span style="color:#66d9ef">var</span> csvContent = <span style="color:#66d9ef">string</span>.Join(<span style="color:#e6db74">&#34;\r\n&#34;</span>, <span style="color:#66d9ef">new</span>[] { csvHeaders }.Concat( lines));
+                                    Encoding encoding = GetReplyEncoding(response);
+                                    Message newreply = Message.CreateMessage(MessageVersion.None, <span style="color:#66d9ef">string</span>.Empty, <span style="color:#66d9ef">new</span> CustomBinaryWriter(csvContent, encoding));
+                                    newreply.Properties.CopyProperties(reply.Properties);
+                                    
+                                    <span style="color:#66d9ef">var</span> continuationUrl = doc.SelectSingleNode(<span style="color:#e6db74">&#34;/atom:feed/atom:link[@rel=&#39;next&#39;]/@href&#34;</span>, nsmgr);
+                                    <span style="color:#66d9ef">if</span> (continuationUrl != <span style="color:#66d9ef">null</span>)
+                                    {
+                                        <span style="color:#66d9ef">var</span> httpmsg = (HttpResponseMessageProperty)reply.Properties[System.ServiceModel.Channels.HttpResponseMessageProperty.Name];
+                                        httpmsg.Headers.Add(<span style="color:#e6db74">&#34;Continuation-Url&#34;</span>, continuationUrl.Value);
+                                    }
+                                    reply = newreply;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">string</span> getXPath(<span style="color:#66d9ef">string</span> selector)
+        {
+            <span style="color:#66d9ef">var</span> parts = selector.Split(<span style="color:#e6db74">&#39;/&#39;</span>);
+            <span style="color:#66d9ef">if</span> (parts.Length == <span style="color:#ae81ff">1</span>)
+            {
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;atom:content/m:properties/d:{0}&#34;</span>, parts[<span style="color:#ae81ff">0</span>]);
+            }
+            <span style="color:#66d9ef">else</span>
+            {
+                <span style="color:#66d9ef">var</span> xpath1 = <span style="color:#66d9ef">new</span> StringBuilder();
+                xpath1.AppendFormat(<span style="color:#e6db74">&#34;atom:link[@title=&#39;{0}&#39;]&#34;</span>, parts[<span style="color:#ae81ff">0</span>]);
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">1</span>; i &lt; parts.Length - <span style="color:#ae81ff">1</span>; i++)
+                {
+                    xpath1.AppendFormat(<span style="color:#e6db74">&#34;/m:inline/atom:entry/atom:link[@title=&#39;{0}&#39;]&#34;</span>, parts[i]);
+                }
+                xpath1.AppendFormat(<span style="color:#e6db74">&#34;/m:inline/atom:entry/atom:content/m:properties/d:{0}&#34;</span>, parts.Last());
+
+
+                <span style="color:#66d9ef">var</span> xpath2 = <span style="color:#66d9ef">new</span> StringBuilder();
+                xpath2.AppendFormat(<span style="color:#e6db74">&#34;atom:link[@title=&#39;{0}&#39;]&#34;</span>, parts[<span style="color:#ae81ff">0</span>]);
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">1</span>; i &lt; parts.Length - <span style="color:#ae81ff">1</span>; i++)
+                {
+                    xpath2.AppendFormat(<span style="color:#e6db74">&#34;/m:inline/atom:feed/atom:entry/atom:link[@title=&#39;{0}&#39;]&#34;</span>, parts[i]);
+                }
+                xpath2.AppendFormat(<span style="color:#e6db74">&#34;/m:inline/atom:feed/atom:entry/atom:content/m:properties/d:{0}&#34;</span>, parts.Last());
+                <span style="color:#66d9ef">return</span> xpath1 + <span style="color:#e6db74">&#34;|&#34;</span> + xpath2;
+            }
+        }
+
+        Encoding GetReplyEncoding(HttpResponseMessageProperty response)
+        {
+            Encoding encoding = Encoding.UTF8;
+            <span style="color:#66d9ef">string</span> charset = response.Headers[<span style="color:#e6db74">&#34;Content-Type&#34;</span>];
+            <span style="color:#66d9ef">int</span> loc = charset.IndexOf(<span style="color:#e6db74">&#34;charset&#34;</span>, StringComparison.InvariantCultureIgnoreCase);
+            <span style="color:#66d9ef">if</span> (loc &gt; <span style="color:#ae81ff">0</span>)
+            {
+                charset = charset.Substring(loc, charset.Length - loc);
+                loc = charset.IndexOf(<span style="color:#e6db74">&#34;=&#34;</span>);
+                charset = charset.Substring(charset.IndexOf(<span style="color:#e6db74">&#34;=&#34;</span>) + <span style="color:#ae81ff">1</span>, charset.Length - loc - <span style="color:#ae81ff">1</span>);
+                <span style="color:#66d9ef">if</span> (charset.IndexOf(<span style="color:#e6db74">&#34;;&#34;</span>) &gt; <span style="color:#ae81ff">0</span>)
+                {
+                    loc = charset.IndexOf(<span style="color:#e6db74">&#34;;&#34;</span>);
+                    charset = charset.Substring(charset.IndexOf(<span style="color:#e6db74">&#34;;&#34;</span>) + <span style="color:#ae81ff">1</span>, charset.Length - loc - <span style="color:#ae81ff">1</span>);
+                }
+
+                encoding = Encoding.GetEncoding(charset);
+            }
+
+            <span style="color:#66d9ef">return</span> encoding;
+        }
+    }
+
+    <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// Custom binary writer class for writing WCF binary messages body.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomBinaryWriter</span> : BodyWriter
+    {
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Content to write.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">string</span> content;
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Initializes a new instance of the CustomBinaryWriter class.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;content&#34;&gt;Content to write&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> CustomBinaryWriter(<span style="color:#66d9ef">string</span> content, Encoding encoding)
+            : <span style="color:#66d9ef">base</span>(<span style="color:#66d9ef">false</span>)
+        {
+            <span style="color:#66d9ef">this</span>.content = content;
+            <span style="color:#66d9ef">this</span>.encoding = encoding;
+        }
+
+        Encoding encoding;
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Called by service implementatio. 
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;writer&#34;&gt;XmlDictionaryWriter instance provided by service.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> OnWriteBodyContents(XmlDictionaryWriter writer)
+        {
+            writer.WriteStartElement(<span style="color:#e6db74">&#34;Binary&#34;</span>);
+            <span style="color:#66d9ef">byte</span>[] buffer = <span style="color:#66d9ef">this</span>.encoding.GetBytes(<span style="color:#66d9ef">this</span>.content);
+            writer.WriteBase64(buffer, <span style="color:#ae81ff">0</span>, buffer.Length);
+            writer.WriteEndElement();
+        }
+    }
+}
+
+</code></pre></div>
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://andri.rocks/tags/wcf">wcf</a></span><span class="tag"><a href="http://andri.rocks/tags/odata">odata</a></span><span class="tag"><a href="http://andri.rocks/tags/csv">csv</a></span><span class="tag"><a href="http://andri.rocks/tags/en">EN</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1019 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2015-11-09 01:00 &#43;0100</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Read other posts</span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">Combine/Permutate a list of list in F#</span>
+                            </a>
+                        </span>
+                    
+
+                    
+                        <span class="button next">
+                            <a href="http://andri.rocks/posts/2014-12-26-clone-windows-system-drive/">
+                                <span class="button__text">How to clone Windows to a new drive/partition</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>  
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span> 
+            <span> <a href="http://andri.rocks/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    
+</footer>
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

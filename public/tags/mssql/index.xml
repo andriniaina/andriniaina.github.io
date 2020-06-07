@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MsSQL on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/mssql/</link>
+    <description>Recent content in MsSQL on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 12 Jun 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/mssql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A challenge a day: How to partially import data from one MsSql database to another, using DTS/SSIS</title>
+      <link>http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/</link>
+      <pubDate>Thu, 12 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/</guid>
+      <description>The challenge at my job: insert and replace the data from table [A] from one environment (e.g. PROD) to another (e.g. UAT). However, data in table [B] reference the data in table [A]. Do this for N tables in a bloated database with hundreds of tables each cross-referencing each other.
+The solution -- BEFORE importing the data -- Disable all constraints -- This prevents the foreign keys constraints in `[B]` to block the import EXEC sp_msforeachtable &amp;#34;ALTER TABLE ?</description>
+    </item>
+    
+  </channel>
+</rss>

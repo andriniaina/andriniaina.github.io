@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="The challenge at my job: insert and replace the data from table [A] from one environment (e.g. PROD) to another (e.g. UAT). However, data in table [B] reference the data in table [A]. Do this for N tables in a bloated database with hundreds of tables each cross-referencing each other.
+The solution -- BEFORE importing the data -- Disable all constraints -- This prevents the foreign keys constraints in `[B]` to block the import EXEC sp_msforeachtable &amp;#34;ALTER TABLE ?" />
+<meta name="keywords" content=", MsSQL, EN" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/" />
+
+
+    <title>
+        
+            A challenge a day: How to partially import data from one MsSql database to another, using DTS/SSIS :: Andri Rakotomalala  — Exercices de style
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4d47f42ed7664c4ff52d3035fb624de3131ad1179b4c29db606e5997ef525366.css">
+
+
+
+
+
+
+<meta itemprop="name" content="A challenge a day: How to partially import data from one MsSql database to another, using DTS/SSIS">
+<meta itemprop="description" content="The challenge at my job: insert and replace the data from table [A] from one environment (e.g. PROD) to another (e.g. UAT). However, data in table [B] reference the data in table [A]. Do this for N tables in a bloated database with hundreds of tables each cross-referencing each other.
+The solution -- BEFORE importing the data -- Disable all constraints -- This prevents the foreign keys constraints in `[B]` to block the import EXEC sp_msforeachtable &#34;ALTER TABLE ?">
+<meta itemprop="datePublished" content="2014-06-12T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2014-06-12T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="380">
+<meta itemprop="image" content="http://andri.rocks"/>
+
+
+
+<meta itemprop="keywords" content="MsSQL,EN," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://andri.rocks"/>
+
+<meta name="twitter:title" content="A challenge a day: How to partially import data from one MsSql database to another, using DTS/SSIS"/>
+<meta name="twitter:description" content="The challenge at my job: insert and replace the data from table [A] from one environment (e.g. PROD) to another (e.g. UAT). However, data in table [B] reference the data in table [A]. Do this for N tables in a bloated database with hundreds of tables each cross-referencing each other.
+The solution -- BEFORE importing the data -- Disable all constraints -- This prevents the foreign keys constraints in `[B]` to block the import EXEC sp_msforeachtable &#34;ALTER TABLE ?"/>
+
+
+
+    <meta property="og:title" content="A challenge a day: How to partially import data from one MsSql database to another, using DTS/SSIS" />
+<meta property="og:description" content="The challenge at my job: insert and replace the data from table [A] from one environment (e.g. PROD) to another (e.g. UAT). However, data in table [B] reference the data in table [A]. Do this for N tables in a bloated database with hundreds of tables each cross-referencing each other.
+The solution -- BEFORE importing the data -- Disable all constraints -- This prevents the foreign keys constraints in `[B]` to block the import EXEC sp_msforeachtable &#34;ALTER TABLE ?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/" />
+<meta property="og:image" content="http://andri.rocks"/>
+<meta property="article:published_time" content="2014-06-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-06-12T00:00:00+00:00" /><meta property="og:site_name" content="Andri Rakotomalala" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2014-06-12 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+        <span class="logo__mark">~</span>
+        <span class="logo__text" style="white-space: nowrap; text-overflow: ellipsis; max-width: 30em; overflow: hidden;">andri.rocks://posts/2014-06-12-data-copy-disable-fk/</span>
+        <span class="logo__text">&gt;</span>
+        <span class="logo__cursor" style="
+                   
+                   ">
+            </span> 
+    </div>
+</a>
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://andri.rocks/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>2 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/">A challenge a day: How to partially import data from one MsSql database to another, using DTS/SSIS</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p><strong>The challenge at my job</strong>: insert and replace the data from table <code>[A]</code> from one environment (e.g. PROD) to another (e.g. UAT). However, data in table <code>[B]</code> reference the data in table <code>[A]</code>.
+Do this for N tables in a bloated database with hundreds of tables each cross-referencing each other.</p>
+<h1 id="the-solution">The solution</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- BEFORE importing the data
+</span><span style="color:#75715e">-- Disable all constraints
+</span><span style="color:#75715e">--     This prevents the foreign keys constraints in `[B]` to block the import
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">EXEC</span> sp_msforeachtable <span style="color:#e6db74">&#34;ALTER TABLE ? NOCHECK CONSTRAINT all&#34;</span>
+
+<span style="color:#75715e">-- Delete the data the table to be copied
+</span><span style="color:#75715e">--      TRUNCATE is not allowed even if the constraints are disabled.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> [A] <span style="color:#75715e">-- do this for each table to be imported
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> [X] 
+<span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> [Y] 
+<span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> [Z] 
+
+
+
+</code></pre></div><p>Now, Import the data with SQL Server Import and Export Wizard, or SSIS, or whatever.</p>
+<p>With the SQL Server Import and Export Wizard, no need to backup the data in a csv and import from it.
+It&rsquo;s faster to use the <a href="http://dynamicsgpblogster.wordpress.com/category/sql-server/page/3/">SQL Server Import and Export Wizard</a>
+and select the tables to be exported.</p>
+<p>In the mapping properties, make sure to select only the <a href="http://bergdaniel.se/wp-content/upload/legacy/enable%20identity%20insert.png">option &lsquo;enable identity insert&rsquo;</a>.
+<strong>DO NOT</strong> select &lsquo;Delete rows in existing destination tables&rsquo; because it will send a <code>TRUNCATE</code> command, which is not allowed by the foreign keys.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">
+
+
+<span style="color:#75715e">-- AFTER importing the data:
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">-- Clean the database
+</span><span style="color:#75715e">--       **This is the challenging part**
+</span><span style="color:#75715e">--       Now that the data is imported, your database is a mess:
+</span><span style="color:#75715e">--       rows in table  `[B]` reference rows that do not exist anymore in table `[A]` !
+</span><span style="color:#75715e">--
+</span><span style="color:#75715e">--       Fix it with this script generator:
+</span><span style="color:#75715e">--       Warning: This works only if you don&#39;t have any composite keys,
+</span><span style="color:#75715e">--        which is most of the time the case.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39; DELETE FROM [&#39;</span> <span style="color:#f92672">+</span> OBJECT_NAME(f.parent_object_id) <span style="color:#f92672">+</span>
+	<span style="color:#e6db74">&#39;] WHERE &#39;</span> <span style="color:#f92672">+</span> COL_NAME(fc.parent_object_id, fc.parent_column_id) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; not in &#39;</span><span style="color:#f92672">+</span>
+	<span style="color:#e6db74">&#39; (select &#39;</span> <span style="color:#f92672">+</span> COL_NAME(fc.referenced_object_id, fc.referenced_column_id) <span style="color:#f92672">+</span>
+	<span style="color:#e6db74">&#39; from [&#39;</span> <span style="color:#f92672">+</span> OBJECT_NAME(f.referenced_object_id) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;])&#39;</span> <span style="color:#66d9ef">AS</span> Scripts
+<span style="color:#66d9ef">FROM</span>.sys.foreign_keys <span style="color:#66d9ef">AS</span> f
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span>.sys.foreign_key_columns <span style="color:#66d9ef">AS</span> fc <span style="color:#66d9ef">ON</span> f.OBJECT_ID <span style="color:#f92672">=</span> fc.constraint_object_id
+<span style="color:#75715e">-- the generated script must be run twice
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">-- Re-enable all constraints
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">EXEC</span> sp_msforeachtable 
+	<span style="color:#f92672">@</span>command1<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;print &#39;?&#39;&#34;</span>,
+	<span style="color:#f92672">@</span>command2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all&#34;</span>
+
+<span style="color:#75715e">-- if some of the tables have identity columns we may want to reseed them
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">EXEC</span> sp_msforeachtable <span style="color:#e6db74">&#34;DBCC CHECKIDENT ( &#39;?&#39;, RESEED)&#34;</span> 
+</code></pre></div><p>Done!</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://andri.rocks/tags/mssql">MsSQL</a></span><span class="tag"><a href="http://andri.rocks/tags/en">EN</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>380 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2014-06-12 02:00 &#43;0200</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Read other posts</span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="http://andri.rocks/posts/2014-11-02-usefull-vim-tips/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">Useful Vim tips</span>
+                            </a>
+                        </span>
+                    
+
+                    
+                        <span class="button next">
+                            <a href="http://andri.rocks/posts/2014-05-15-mocking-vocabulary/">
+                                <span class="button__text">Test doubles and mocks, dummies, stubs, spies, fakes - some vocabulary</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>  
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span> 
+            <span> <a href="http://andri.rocks/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    
+</footer>
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

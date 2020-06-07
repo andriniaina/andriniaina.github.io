@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/</link>
+    <description>Recent content in Tags on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 13 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>csharp</title>
+      <link>http://andri.rocks/tags/csharp/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/csharp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>EN</title>
+      <link>http://andri.rocks/tags/en/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/en/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>args</title>
+      <link>http://andri.rocks/tags/args/</link>
+      <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/args/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cli</title>
+      <link>http://andri.rocks/tags/cli/</link>
+      <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/cli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fsharp</title>
+      <link>http://andri.rocks/tags/fsharp/</link>
+      <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/fsharp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>type provider</title>
+      <link>http://andri.rocks/tags/type-provider/</link>
+      <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/type-provider/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ecmascript</title>
+      <link>http://andri.rocks/tags/ecmascript/</link>
+      <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/ecmascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>http://andri.rocks/tags/javascript/</link>
+      <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>combinators</title>
+      <link>http://andri.rocks/tags/combinators/</link>
+      <pubDate>Fri, 27 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/combinators/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>csv</title>
+      <link>http://andri.rocks/tags/csv/</link>
+      <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/csv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>odata</title>
+      <link>http://andri.rocks/tags/odata/</link>
+      <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/odata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wcf</title>
+      <link>http://andri.rocks/tags/wcf/</link>
+      <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/wcf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tooling</title>
+      <link>http://andri.rocks/tags/tooling/</link>
+      <pubDate>Fri, 26 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/tooling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dotnet</title>
+      <link>http://andri.rocks/tags/dotnet/</link>
+      <pubDate>Wed, 12 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/dotnet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MsSQL</title>
+      <link>http://andri.rocks/tags/mssql/</link>
+      <pubDate>Thu, 12 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/mssql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>testing</title>
+      <link>http://andri.rocks/tags/testing/</link>
+      <pubDate>Thu, 15 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>software quality</title>
+      <link>http://andri.rocks/tags/software-quality/</link>
+      <pubDate>Wed, 30 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/tags/software-quality/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

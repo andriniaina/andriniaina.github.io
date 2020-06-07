@@ -1,0 +1,1520 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on Andri Rakotomalala</title>
+        <link>http://andri.rocks/posts/</link>
+        <description>Recent content in Posts on Andri Rakotomalala</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Sat, 13 Apr 2019 00:00:00 +0000</lastBuildDate>
+        <atom:link href="http://andri.rocks/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Async/Await easy cancellation in c#</title>
+            <link>http://andri.rocks/posts/2019-04-13-cancel-after/</link>
+            <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2019-04-13-cancel-after/</guid>
+            <description>I am not the original author of this extension
+ Usage await ATask().CancelAfter(2000); Code public static class TaskCancellationExtension { /// &amp;lt;summary&amp;gt;  /// add cancellation functionality to Task&amp;lt;T&amp;gt;  /// &amp;lt;/summary&amp;gt;  /// &amp;lt;param name=&amp;#34;task&amp;#34;&amp;gt;&amp;lt;/param&amp;gt;  /// &amp;lt;param name=&amp;#34;cancellationToken&amp;#34;&amp;gt;&amp;lt;/param&amp;gt;  /// &amp;lt;typeparam name=&amp;#34;T&amp;#34;&amp;gt;&amp;lt;/typeparam&amp;gt;  /// &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;  /// &amp;lt;exception cref=&amp;#34;OperationCanceledException&amp;#34;&amp;gt;&amp;lt;/exception&amp;gt;  public static async Task&amp;lt;T&amp;gt; CancelAfter&amp;lt;T&amp;gt;( this Task&amp;lt;T&amp;gt; task, CancellationToken cancellationToken) { var tcs = new TaskCompletionSource&amp;lt;bool&amp;gt;(); using (cancellationToken.Register( s =&amp;gt; ((TaskCompletionSource&amp;lt;bool&amp;gt;) s).</description>
+            <content type="html"><![CDATA[<blockquote>
+<p><strong>I am not the original author of this extension</strong></p>
+</blockquote>
+<h1 id="usage">Usage</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">await</span> ATask().CancelAfter(<span style="color:#ae81ff">2000</span>);
+</code></pre></div><h1 id="code">Code</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TaskCancellationExtension</span>
+    {
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// add cancellation functionality to Task&lt;T&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;cancellationToken&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task&lt;T&gt; CancelAfter&lt;T&gt;(
+            <span style="color:#66d9ef">this</span> Task&lt;T&gt; task, CancellationToken cancellationToken)
+        {
+            <span style="color:#66d9ef">var</span> tcs = <span style="color:#66d9ef">new</span> TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;();
+            <span style="color:#66d9ef">using</span> (cancellationToken.Register( s =&gt; ((TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;) s).TrySetResult(<span style="color:#66d9ef">true</span>), tcs))
+                <span style="color:#66d9ef">if</span> (task != <span style="color:#66d9ef">await</span> Task.WhenAny(task, tcs.Task))
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OperationCanceledException(cancellationToken);
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> task;
+        }
+
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// add cancellation functionality to Tasks 
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;cancellationToken&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task CancelAfter( <span style="color:#66d9ef">this</span> Task task, CancellationToken cancellationToken)
+        {
+            <span style="color:#66d9ef">var</span> tcs = <span style="color:#66d9ef">new</span> TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;();
+            <span style="color:#66d9ef">using</span> (cancellationToken.Register( s =&gt; ((TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;) s).TrySetResult(<span style="color:#66d9ef">true</span>), tcs))
+                <span style="color:#66d9ef">if</span> (task != <span style="color:#66d9ef">await</span> Task.WhenAny(task, tcs.Task))
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OperationCanceledException(cancellationToken);
+            <span style="color:#66d9ef">await</span> task;
+        }
+
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// add cancellation functionality to Task&lt;T&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;milliseconds&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task&lt;T&gt; CancelAfter&lt;T&gt;( <span style="color:#66d9ef">this</span> Task&lt;T&gt; task, <span style="color:#66d9ef">int</span> milliseconds)
+        {
+            <span style="color:#66d9ef">var</span> cts = <span style="color:#66d9ef">new</span> CancellationTokenSource();
+            cts.CancelAfter(milliseconds);
+            <span style="color:#66d9ef">var</span> tcs = <span style="color:#66d9ef">new</span> TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;();
+            <span style="color:#66d9ef">using</span> (cts.Token.Register( s =&gt; ((TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;) s).TrySetResult(<span style="color:#66d9ef">true</span>), tcs))
+                <span style="color:#66d9ef">if</span> (task != <span style="color:#66d9ef">await</span> Task.WhenAny(task, tcs.Task))
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OperationCanceledException(cts.Token);
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> task;
+        }
+
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// add cancellation functionality to Task&lt;T&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;task&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;milliseconds&#34;&gt;&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;typeparam name=&#34;T&#34;&gt;&lt;/typeparam&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;exception cref=&#34;OperationCanceledException&#34;&gt;&lt;/exception&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task CancelAfter( <span style="color:#66d9ef">this</span> Task task, <span style="color:#66d9ef">int</span> milliseconds)
+        {
+            <span style="color:#66d9ef">var</span> cts = <span style="color:#66d9ef">new</span> CancellationTokenSource();
+            cts.CancelAfter(milliseconds);
+            <span style="color:#66d9ef">var</span> tcs = <span style="color:#66d9ef">new</span> TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;();
+            <span style="color:#66d9ef">using</span> (cts.Token.Register( s =&gt; ((TaskCompletionSource&lt;<span style="color:#66d9ef">bool</span>&gt;) s).TrySetResult(<span style="color:#66d9ef">true</span>), tcs))
+                <span style="color:#66d9ef">if</span> (task != <span style="color:#66d9ef">await</span> Task.WhenAny(task, tcs.Task))
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OperationCanceledException(cts.Token);
+            <span style="color:#66d9ef">await</span> task;
+        }
+    }
+
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Type provider for command-line arguments (WIP)</title>
+            <link>http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/</link>
+            <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/</guid>
+            <description>Usage // set all possible switches // switches are all optional and unordered type CustomArgsParser = Andri.TypeProviders.CliParametersParser&amp;lt;&amp;#34;-switch2 -a -b -c&amp;#34;&amp;gt; [&amp;lt;EntryPoint&amp;gt;] let main args = let parsedArgs = CustomArgsParser(args) printfn &amp;#34;switch2: %s&amp;#34; (parsedArgs.switch2) // displays Option&amp;lt;string&amp;gt; = Some &amp;#34;11&amp;#34; myApp.exe -switch2 11 -b Source namespace Andri open System open System.Reflection open Microsoft.FSharp.Core.CompilerServices open Microsoft.FSharp.Quotations open Samples.FSharp.ProvidedTypes module utils = let argsToDict (args:string list) = Seq.append args ([&amp;#34;&amp;#34;]) |&amp;gt; Seq.pairwise |&amp;gt; Seq.</description>
+            <content type="html"><![CDATA[<h2 id="usage">Usage</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// set all possible switches
+</span><span style="color:#75715e">// switches are all optional and unordered
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">CustomArgsParser</span> <span style="color:#f92672">=</span> Andri.TypeProviders.CliParametersParser<span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;-switch2 -a -b -c&#34;</span><span style="color:#f92672">&gt;</span>
+
+<span style="color:#f92672">[&lt;</span>EntryPoint<span style="color:#f92672">&gt;]</span>
+<span style="color:#66d9ef">let</span> main args <span style="color:#f92672">=</span>
+  <span style="color:#66d9ef">let</span> parsedArgs <span style="color:#f92672">=</span> CustomArgsParser<span style="color:#f92672">(</span>args<span style="color:#f92672">)</span>
+  printfn <span style="color:#e6db74">&#34;switch2: %s&#34;</span> <span style="color:#f92672">(</span>parsedArgs<span style="color:#f92672">.</span>switch2<span style="color:#f92672">)</span> <span style="color:#75715e">// displays Option&lt;string&gt; = Some &#34;11&#34;
+</span></code></pre></div><pre><code>myApp.exe -switch2 11 -b
+</code></pre><h2 id="source">Source</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#66d9ef">namespace</span> Andri
+
+<span style="color:#66d9ef">open</span> System
+<span style="color:#66d9ef">open</span> System.Reflection
+<span style="color:#66d9ef">open</span> Microsoft.FSharp.Core.CompilerServices
+<span style="color:#66d9ef">open</span> Microsoft.FSharp.Quotations
+<span style="color:#66d9ef">open</span> Samples.FSharp.ProvidedTypes
+
+<span style="color:#66d9ef">module</span> utils <span style="color:#f92672">=</span>
+    <span style="color:#66d9ef">let</span> argsToDict <span style="color:#f92672">(</span>args<span style="color:#f92672">:</span><span style="color:#66d9ef">string</span> <span style="color:#66d9ef">list</span><span style="color:#f92672">)</span> <span style="color:#f92672">=</span>
+        Seq.append args <span style="color:#f92672">([</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">])</span>
+            <span style="color:#f92672">|&gt;</span> Seq.pairwise
+            <span style="color:#f92672">|&gt;</span> Seq.filter <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> <span style="color:#f92672">(</span>switchName<span style="color:#f92672">,</span> value<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> switchName<span style="color:#f92672">.</span>StartsWith<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-&#34;</span><span style="color:#f92672">))</span>
+            <span style="color:#f92672">|&gt;</span> Seq.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> <span style="color:#f92672">(</span>switchName<span style="color:#f92672">,</span> value<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">(</span>switchName<span style="color:#f92672">,</span> <span style="color:#66d9ef">if</span> value<span style="color:#f92672">.</span>StartsWith<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-&#34;</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">else</span> value<span style="color:#f92672">))</span>
+            <span style="color:#f92672">|&gt;</span> dict
+
+<span style="color:#f92672">[&lt;</span>TypeProvider<span style="color:#f92672">&gt;]</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">SampleTypeProvider</span><span style="color:#f92672">(</span>config<span style="color:#f92672">:</span> TypeProviderConfig<span style="color:#f92672">)</span> <span style="color:#66d9ef">as</span> this <span style="color:#f92672">=</span>
+    <span style="color:#66d9ef">inherit</span> TypeProviderForNamespaces()
+
+    <span style="color:#66d9ef">let</span> namespaceName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Samples.HelloWorldTypeProvider&#34;</span>
+    <span style="color:#66d9ef">let</span> thisAssembly <span style="color:#f92672">=</span> Assembly.GetExecutingAssembly()
+    <span style="color:#66d9ef">let</span> baseTy <span style="color:#f92672">=</span> typeof<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">obj</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">let</span> regexTy <span style="color:#f92672">=</span> ProvidedTypeDefinition<span style="color:#f92672">(</span>thisAssembly<span style="color:#f92672">,</span> namespaceName<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;CliParametersParser&#34;</span><span style="color:#f92672">,</span> Some baseTy<span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">do</span>
+        regexTy<span style="color:#f92672">.</span>DefineStaticParameters<span style="color:#f92672">(</span>
+            <span style="color:#f92672">[</span>ProvidedStaticParameter<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;params&#34;</span><span style="color:#f92672">,</span> typeof<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;)],</span>
+            <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> typeName parameterValues <span style="color:#f92672">-&gt;</span>
+                printfn <span style="color:#e6db74">&#34;typeName=%s&#34;</span> typeName
+                printfn <span style="color:#e6db74">&#34;parameterValues.Length=%s&#34;</span> <span style="color:#f92672">(</span>Convert.ToString<span style="color:#f92672">(</span>parameterValues<span style="color:#f92672">.</span>Length<span style="color:#f92672">))</span>
+                printfn <span style="color:#e6db74">&#34;parameterValues=%s&#34;</span> <span style="color:#f92672">(</span>Convert.ToString<span style="color:#f92672">(</span>parameterValues<span style="color:#f92672">.[</span>0<span style="color:#f92672">]))</span>
+                <span style="color:#66d9ef">let</span> ty <span style="color:#f92672">=</span> ProvidedTypeDefinition<span style="color:#f92672">(</span>
+                            thisAssembly<span style="color:#f92672">,</span>
+                            namespaceName<span style="color:#f92672">,</span>
+                            typeName<span style="color:#f92672">,</span>
+                            baseType <span style="color:#f92672">=</span> Some baseTy<span style="color:#f92672">)</span>
+
+                <span style="color:#66d9ef">let</span> parameterValue <span style="color:#f92672">=</span> parameterValues<span style="color:#f92672">.[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">:?&gt;</span> <span style="color:#66d9ef">string</span>
+                <span style="color:#66d9ef">let</span> args <span style="color:#f92672">=</span> Seq.append <span style="color:#f92672">(</span>parameterValue<span style="color:#f92672">.</span>Split<span style="color:#f92672">(</span><span style="color:#e6db74">&#39; &#39;</span><span style="color:#f92672">))</span> <span style="color:#f92672">([</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">])</span>
+                <span style="color:#66d9ef">let</span> pairs <span style="color:#f92672">=</span> Seq.pairwise args <span style="color:#f92672">|&gt;</span> Seq.filter <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> <span style="color:#f92672">(</span>switchName<span style="color:#f92672">,</span> value<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> switchName<span style="color:#f92672">.</span>StartsWith<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">|&gt;</span> Seq.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> <span style="color:#f92672">(</span>switchName<span style="color:#f92672">,</span> value<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">(</span>switchName<span style="color:#f92672">,</span> <span style="color:#66d9ef">if</span> value<span style="color:#f92672">.</span>StartsWith<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-&#34;</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">else</span> value<span style="color:#f92672">))</span>
+                pairs <span style="color:#f92672">|&gt;</span> Seq.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> <span style="color:#f92672">(</span>p<span style="color:#f92672">,</span>t<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> ProvidedProperty<span style="color:#f92672">(</span>p<span style="color:#f92672">.</span>Replace<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">),</span> typeof<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span> option<span style="color:#f92672">&gt;,</span>GetterCode <span style="color:#f92672">=</span> <span style="color:#66d9ef">fun</span> args <span style="color:#f92672">-&gt;</span>
+                    <span style="color:#f92672">&lt;@@</span>
+                        <span style="color:#66d9ef">let</span> d <span style="color:#f92672">=</span> <span style="color:#f92672">(%%</span>args<span style="color:#f92672">.[</span>0<span style="color:#f92672">]:</span><span style="color:#66d9ef">obj</span><span style="color:#f92672">)</span> <span style="color:#f92672">:?&gt;</span> System.Collections.Generic.IDictionary<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">,</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>
+                        <span style="color:#66d9ef">if</span> d<span style="color:#f92672">.</span>ContainsKey<span style="color:#f92672">(</span>p<span style="color:#f92672">)</span> <span style="color:#66d9ef">then</span> Some<span style="color:#f92672">(</span>d<span style="color:#f92672">.[</span>p<span style="color:#f92672">])</span> <span style="color:#66d9ef">else</span> None
+                    <span style="color:#f92672">@@&gt;))</span> <span style="color:#f92672">|&gt;</span> Seq.iter <span style="color:#f92672">(</span>ty<span style="color:#f92672">.</span>AddMember<span style="color:#f92672">)</span>
+                ty<span style="color:#f92672">.</span>AddMember <span style="color:#f92672">(</span>ProvidedConstructor<span style="color:#f92672">(</span>parameters <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>ProvidedParameter<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;args&#34;</span><span style="color:#f92672">,</span> typeof<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span> <span style="color:#66d9ef">list</span><span style="color:#f92672">&gt;)],</span> InvokeCode <span style="color:#f92672">=</span> <span style="color:#66d9ef">fun</span> args <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">&lt;@@</span> utils<span style="color:#f92672">.</span> argsToDict <span style="color:#f92672">(%%</span>args<span style="color:#f92672">.[</span>0<span style="color:#f92672">]:</span><span style="color:#66d9ef">string</span> <span style="color:#66d9ef">list</span><span style="color:#f92672">)</span> <span style="color:#f92672">@@&gt;))</span>
+                ty
+              <span style="color:#f92672">))</span>
+        this<span style="color:#f92672">.</span>AddNamespace<span style="color:#f92672">(</span>namespaceName<span style="color:#f92672">,</span> <span style="color:#f92672">[</span>regexTy<span style="color:#f92672">])</span>
+
+
+<span style="color:#f92672">[&lt;</span>assembly<span style="color:#f92672">:</span>TypeProviderAssembly<span style="color:#f92672">&gt;]</span>
+<span style="color:#66d9ef">do</span>()
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Javascript (ECMAScript) in 30 minutes</title>
+            <link>http://andri.rocks/posts/2015-12-17-javascript-ecmascript-in-30-minutes/</link>
+            <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2015-12-17-javascript-ecmascript-in-30-minutes/</guid>
+            <description>Simple values 155 10.23 true false &amp;#39;test&amp;#39; &amp;#34;test&amp;#34; null undefined NaN // 0/0 Not a Number Infinity // 1/0 // array declaration [1,2,3,4] // anonymous object declaration with properties firstName and surname {firstName:&amp;#39;John&amp;#39;, surname:&amp;#39;Doe&amp;#39;} Basic syntax doStuff(); // Statements **can** be terminated by ; doStuff() // or not...  // variable declaration var a = 1; var a=1, b=2, c=3; // multiple declarations  // a variable can be initialized without a declaration!</description>
+            <content type="html"><![CDATA[<h1 id="simple-values">Simple values</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ae81ff">155</span>
+<span style="color:#ae81ff">10.23</span>
+<span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">false</span>
+<span style="color:#e6db74">&#39;test&#39;</span>
+<span style="color:#e6db74">&#34;test&#34;</span>
+<span style="color:#66d9ef">null</span>
+<span style="color:#66d9ef">undefined</span>
+<span style="color:#66d9ef">NaN</span> <span style="color:#75715e">// 0/0 Not a Number
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">Infinity</span> <span style="color:#75715e">// 1/0
+</span><span style="color:#75715e">// array declaration
+</span><span style="color:#75715e"></span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
+<span style="color:#75715e">// anonymous object declaration with properties firstName and surname
+</span><span style="color:#75715e"></span>{<span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;John&#39;</span>, <span style="color:#a6e22e">surname</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;Doe&#39;</span>}
+</code></pre></div><h1 id="basic-syntax">Basic syntax</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">doStuff</span>(); <span style="color:#75715e">// Statements **can** be terminated by ;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">doStuff</span>() <span style="color:#75715e">// or not...
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// variable declaration
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">b</span><span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">c</span><span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>; <span style="color:#75715e">// multiple declarations
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// a variable can be initialized without a declaration!!
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+<span style="color:#75715e">// but one cannot use a variable unless it has been declared
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">x</span>) <span style="color:#75715e">// raises error &#34;&#39;x&#39; is undefined&#34;
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// variables are not typed and can be redefined again in the same block
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;foo&#39;</span>; <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;bar&#39;</span>;  <span style="color:#75715e">// no problem!!
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// &#39;window&#39; is the global scope variable
+</span><span style="color:#75715e"></span>window.<span style="color:#a6e22e">a</span> <span style="color:#75715e">// is &#39;foo&#39;
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// function declaration
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myFunction</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">c</span>,<span style="color:#a6e22e">d</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+<span style="color:#75715e">// anonymous function declaration
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">c</span>,<span style="color:#a6e22e">d</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+<span style="color:#75715e">// call function
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">myFunction</span>(<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;b&#39;</span>);
+
+<span style="color:#75715e">// arguments are not checked
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">myFunction</span>();  <span style="color:#75715e">// equivalent to myFunction(undefined, undefined, undefined, undefined)
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// arrays
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> [];
+<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#39;foo&#39;</span>);
+<span style="color:#a6e22e">a</span>[<span style="color:#e6db74">&#39;key&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;value&#39;</span>;
+
+<span style="color:#75715e">// Operators
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">8</span>
+<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>
+<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>
+<span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;b&#39;</span> <span style="color:#75715e">// == &#39;ab&#39;
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#39;b&#39;</span> <span style="color:#75715e">// true
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">==</span><span style="color:#e6db74">&#34;a&#34;</span> <span style="color:#75715e">// true
+</span><span style="color:#75715e"></span><span style="color:#f92672">!</span><span style="color:#66d9ef">false</span> <span style="color:#75715e">// true
+</span></code></pre></div><h1 id="implicit-casts">Implicit casts</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">// ==&#39;a1&#39;
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#39;he&#39;</span> <span style="color:#f92672">+</span> [<span style="color:#e6db74">&#39;ll&#39;</span>, <span style="color:#e6db74">&#39;o&#39;</span>, <span style="color:#e6db74">&#39;world&#39;</span>, <span style="color:#e6db74">&#39;!&#39;</span>] <span style="color:#75715e">// &#34;hell,o,world,!&#34;
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// all the following statements are true
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">1</span><span style="color:#f92672">==</span><span style="color:#e6db74">&#34;1&#34;</span>
+<span style="color:#ae81ff">1</span><span style="color:#f92672">==</span><span style="color:#66d9ef">true</span>
+<span style="color:#ae81ff">0</span><span style="color:#f92672">==</span><span style="color:#66d9ef">false</span>
+<span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">==</span><span style="color:#66d9ef">false</span> <span style="color:#75715e">// however: &#39;not empty&#39;!=true
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#39;not empty&#39;</span><span style="color:#f92672">!=</span><span style="color:#66d9ef">false</span>
+<span style="color:#66d9ef">undefined</span><span style="color:#f92672">==</span><span style="color:#66d9ef">false</span>
+<span style="color:#f92672">!</span><span style="color:#66d9ef">false</span>
+<span style="color:#f92672">!</span><span style="color:#66d9ef">undefined</span>
+<span style="color:#f92672">!</span><span style="color:#66d9ef">null</span>
+<span style="color:#f92672">!</span><span style="color:#ae81ff">0</span>
+<span style="color:#f92672">!</span><span style="color:#e6db74">&#39;&#39;</span>
+
+
+<span style="color:#75715e">// which lets us write:
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#a6e22e">b</span><span style="color:#f92672">=</span><span style="color:#66d9ef">null</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;not empty&#39;</span>;
+<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">a</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">b</span>) { <span style="color:#75715e">// false
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// this block is never called
+</span><span style="color:#75715e"></span>} <span style="color:#66d9ef">else</span> {
+  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">c</span>) { <span style="color:#75715e">// c is &#39;true&#39;. However, note that : c!=true
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// do something here
+</span><span style="color:#75715e"></span>  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#75715e">// this block is never called
+</span><span style="color:#75715e"></span>  }
+}
+
+
+<span style="color:#75715e">// the operators ===  and !== can be used to check real equality
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">1</span><span style="color:#f92672">===</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">//true
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#39;1&#39;</span><span style="color:#f92672">===</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// false
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#39;1&#39;</span><span style="color:#f92672">!==</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// true
+</span></code></pre></div><h1 id="oop">OOP</h1>
+<h2 id="basic">Basic</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// anonymous object
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myObject</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">firstname</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;John&#39;</span>,
+  <span style="color:#a6e22e">surname</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;Doe&#39;</span>,
+  <span style="color:#a6e22e">sayHello</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>() {<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;hello&#39;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstname</span>)}
+}
+
+<span style="color:#75715e">// an object is also a dictionary
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">myObject</span>.<span style="color:#a6e22e">firstname</span>)
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">myObject</span>[<span style="color:#e6db74">&#39;firstname&#39;</span>])
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Person</span>(<span style="color:#a6e22e">firstname</span>, <span style="color:#a6e22e">surname</span>){
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstname</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">firstname</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">surname</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">surname</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sayHello</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">w</span>) { <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">w</span><span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstname</span>); };
+}
+
+<span style="color:#75715e">// the keyword &#39;new&#39; creates a new local object named &#39;this&#39;
+</span><span style="color:#75715e">// in this case, the function behaves like a constructor
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myObject</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span>(<span style="color:#e6db74">&#39;John&#39;</span>,<span style="color:#e6db74">&#39;Doe&#39;</span>);
+<span style="color:#a6e22e">myObject</span>.<span style="color:#a6e22e">sayHello</span>(); <span style="color:#75715e">// writes &#39;hello John&#39; in the console
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// the function MyClass can also be called. However, in this case, &#39;this&#39; has not been created!
+</span><span style="color:#75715e">// by default, &#39;this&#39; points to the global scope &#39;window&#39;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myObject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Person</span>(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;ok&#39;</span>); <span style="color:#75715e">// null
+</span><span style="color:#75715e"></span>window.<span style="color:#a6e22e">sayHello</span>(); <span style="color:#75715e">// writes &#39;hello 1&#39; in the console
+</span></code></pre></div><h2 id="prototypes">Prototypes</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Person</span>(<span style="color:#a6e22e">firstname</span>, <span style="color:#a6e22e">surname</span>){
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstname</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">firstname</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">surname</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">surname</span>;
+}
+<span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">sayHello</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;hello&#39;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstname</span>)};
+<span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">someVar</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+
+<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span>(<span style="color:#e6db74">&#39;John&#39;</span>, <span style="color:#e6db74">&#39;Doe&#39;</span>).<span style="color:#a6e22e">sayHello</span>() <span style="color:#75715e">// &#39;hello John&#39;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span>(<span style="color:#e6db74">&#39;John&#39;</span>, <span style="color:#e6db74">&#39;Doe&#39;</span>).<span style="color:#a6e22e">someVar</span> <span style="color:#75715e">// 42
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// alternative syntax:
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">someVar</span><span style="color:#f92672">:</span><span style="color:#ae81ff">42</span>,
+  <span style="color:#a6e22e">sayHello</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;hello&#39;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstname</span>)}
+}
+<span style="color:#75715e">// or
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sayHelloGlobal</span>() {<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;hello&#39;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstname</span>)}
+<span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">someVar</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+<span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">sayHello</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sayHelloGlobal</span>;
+</code></pre></div><h2 id="advanced">Advanced</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// any function can be called as if it was a method of the class
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sayHello</span>(<span style="color:#a6e22e">helloInEnglish</span>, <span style="color:#a6e22e">somethingElse</span>) {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">helloInEnglish</span><span style="color:#f92672">+</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstName</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;. &#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">somethingElse</span>)
+};
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myObject</span> <span style="color:#f92672">=</span> {<span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;John&#39;</span>, <span style="color:#a6e22e">surname</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;Doe&#39;</span>};
+<span style="color:#a6e22e">sayHello</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">myObject</span>, <span style="color:#e6db74">&#39;hello&#39;</span>, <span style="color:#e6db74">&#39;How are you?&#39;</span>) <span style="color:#75715e">// writes &#39;hello John. How are you?&#39; in the console
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">sayHello</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">myObject</span>, [<span style="color:#e6db74">&#39;hello&#39;</span>, <span style="color:#e6db74">&#39;How are you?&#39;</span>]) <span style="color:#75715e">// same as above
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newFuncWithObjectInContext</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sayHello</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">myObject</span>);   <span style="color:#a6e22e">newFuncWithObjectInContext</span>(<span style="color:#e6db74">&#39;Hello&#39;</span>, <span style="color:#e6db74">&#39;How are you?&#39;</span>) <span style="color:#75715e">// same as above. here, the variable &#39;this&#39; contains &#39;o&#39;
+</span><span style="color:#75715e"></span>
+
+<span style="color:#75715e">// reflexion
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">memberName</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">myObject</span>) {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">memberName</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">myObject</span>[<span style="color:#a6e22e">memberName</span>])
+}
+</code></pre></div><h1 id="functional-programming">Functional programming</h1>
+<h2 id="functions-are-first-class-citizens">Functions are first-class citizens</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// anonymous function declaration assigned to a named variable
+</span><span style="color:#75715e">// exactely equivalent to: function myFunction(a,b,c,d) {
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myFunction</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+<span style="color:#75715e">// again, same function declaration...
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myOtherFunction</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myFunction</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">c</span>,<span style="color:#a6e22e">d</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+<span style="color:#a6e22e">myOtherFunction</span>(<span style="color:#e6db74">&#39;axx&#39;</span>,<span style="color:#e6db74">&#39;bxx&#39;</span>,<span style="color:#e6db74">&#39;cxx&#39;</span>,<span style="color:#e6db74">&#39;dxx&#39;</span>);
+
+<span style="color:#75715e">// anonymous function immediately executed with parameters
+</span><span style="color:#75715e"></span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">s</span>,<span style="color:#a6e22e">n</span>) {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;s=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">s</span>);
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;n=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">n</span>);
+})(<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#ae81ff">1</span>)
+
+<span style="color:#75715e">// functions can be passed as arguments and executed/manipulated
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myFunction2</span>(<span style="color:#a6e22e">predicate1</span>, <span style="color:#a6e22e">predicate2</span>, <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">predicate1</span>(<span style="color:#a6e22e">a</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">predicate2</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>)) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">myFunction</span>;
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span>() { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>; };
+  }
+}
+
+<span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>(){ <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;hello&#39;</span>) }, <span style="color:#ae81ff">1000</span>);
+<span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">myFunction</span>, <span style="color:#ae81ff">1000</span>);
+
+</code></pre></div><h2 id="closures">Closures</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sayHelloInFiveSeconds</span>(<span style="color:#a6e22e">name</span>){
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">prompt</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;!&#34;</span>;
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">inner</span>(){
+        <span style="color:#a6e22e">alert</span>(<span style="color:#a6e22e">prompt</span>);
+    }
+    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">inner</span>, <span style="color:#ae81ff">5000</span>);
+}
+<span style="color:#a6e22e">sayHelloInFiveSeconds</span>(<span style="color:#e6db74">&#34;Adam&#34;</span>); <span style="color:#75715e">// will open a popup with &#34;Hello, Adam!&#34; in 5s
+</span></code></pre></div><h2 id="binding-and-currying">Binding and Currying</h2>
+<h1 id="advances-oop-and-oop-design-patterns-applied-to-javascript">Advances OOP and OOP Design patterns applied to javascript</h1>
+<h2 id="namespaces-and-modules">Namespaces and Modules</h2>
+<p>// TODO</p>
+<h2 id="singleton">Singleton</h2>
+<p>// TODO</p>
+<h2 id="factory-and-builders">Factory and Builders</h2>
+<p>// TODO</p>
+<h2 id="strategy">Strategy</h2>
+<p>// TODO</p>
+<h2 id="wrapper--proxy">Wrapper / Proxy</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span>(<span style="color:#e6db74">&#39;John&#39;</span>, <span style="color:#e6db74">&#39;Doe&#39;</span>);
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">traceAllFunctions</span>(<span style="color:#a6e22e">myObject</span>) {
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">memberName</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">myObject</span>) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">myObject</span>[<span style="color:#a6e22e">memberName</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">memberName</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">value</span>)
+    <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;function&#39;</span>) {
+      <span style="color:#a6e22e">myObject</span>[<span style="color:#a6e22e">memberName</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#75715e">/*a,b,c,d,e,f,g,h,i,j,k,l,m,n*/</span>) {
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;function &#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">memberName</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39; is being called&#39;</span>);
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">returnValue</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">myObject</span>, <span style="color:#a6e22e">arguments</span><span style="color:#75715e">/* [a,b,c,d,e,f,g,h,i,j,k,l,m,n] */</span>);
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;function &#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">memberName</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39; finished exec&#39;</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">returnValue</span>;
+      }
+    }
+  }
+}
+
+<span style="color:#a6e22e">traceAllFunctions</span>(<span style="color:#a6e22e">p</span>);
+<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">sayHello</span>(); <span style="color:#75715e">// writes &#39;function sayHello is being called&#39;, &#39;hello John&#39;, &#39;function sayHello finished exec&#39;
+</span><span style="color:#75715e"></span>
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Combine/Permutate a list of list in F#</title>
+            <link>http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/</link>
+            <pubDate>Fri, 27 Nov 2015 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/</guid>
+            <description>Problem Given the following data :
+[ [&amp;#34;1&amp;#34;;&amp;#34;2&amp;#34;]; []; [&amp;#34;5&amp;#34;;&amp;#34;6&amp;#34;;&amp;#34;7&amp;#34;] ] Find all possible combinations.
+Solution let rec _combine (acc:&amp;#39;T list) (ll: &amp;#39;T list list) : &amp;#39;T list list = match ll with | [] -&amp;gt; [acc] | heads :: rest -&amp;gt; match heads with | [] -&amp;gt; _combine (null::acc) (rest) | _ -&amp;gt; heads |&amp;gt; List.collect (fun h -&amp;gt; _combine (h :: acc) (rest)) let combine (ll:&amp;#39;T list list) : &amp;#39;T list list = _combine [] ll |&amp;gt; List.</description>
+            <content type="html"><![CDATA[<h1 id="problem">Problem</h1>
+<p>Given the following data :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fs" data-lang="fs"><span style="color:#a6e22e">[</span>
+	<span style="color:#a6e22e">[&#34;1&#34;;&#34;2&#34;];</span>
+	<span style="color:#a6e22e">[];</span>
+	<span style="color:#a6e22e">[&#34;5&#34;;&#34;6&#34;;&#34;7&#34;]</span>
+<span style="color:#a6e22e">]</span>
+</code></pre></div><p>Find all possible combinations.</p>
+<h1 id="solution">Solution</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fs" data-lang="fs"><span style="color:#a6e22e">let</span> <span style="color:#a6e22e">rec</span> <span style="color:#a6e22e">_combine</span> <span style="color:#a6e22e">(acc:&#39;T</span> <span style="color:#a6e22e">list)</span> <span style="color:#a6e22e">(ll:</span> <span style="color:#a6e22e">&#39;T</span> <span style="color:#66d9ef">list </span><span style="color:#a6e22e">list)</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">&#39;T</span> <span style="color:#66d9ef">list list </span><span style="color:#a6e22e">=</span>
+    <span style="color:#a6e22e">match</span> <span style="color:#a6e22e">ll</span> <span style="color:#a6e22e">with</span>
+    <span style="color:#a6e22e">|</span> <span style="color:#a6e22e">[]</span> <span style="color:#a6e22e">-&gt;</span>  <span style="color:#a6e22e">[acc]</span>
+    <span style="color:#a6e22e">|</span> <span style="color:#a6e22e">heads</span> <span style="color:#a6e22e">::</span> <span style="color:#a6e22e">rest</span> <span style="color:#a6e22e">-&gt;</span>
+        <span style="color:#a6e22e">match</span> <span style="color:#a6e22e">heads</span> <span style="color:#a6e22e">with</span>
+        <span style="color:#a6e22e">|</span> <span style="color:#a6e22e">[]</span> <span style="color:#a6e22e">-&gt;</span> <span style="color:#a6e22e">_combine</span> <span style="color:#a6e22e">(null::acc)</span> <span style="color:#a6e22e">(rest)</span>
+        <span style="color:#a6e22e">|</span> <span style="color:#a6e22e">_</span> <span style="color:#a6e22e">-&gt;</span>  <span style="color:#a6e22e">heads</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">List.collect</span> <span style="color:#a6e22e">(fun</span> <span style="color:#a6e22e">h</span> <span style="color:#a6e22e">-&gt;</span> <span style="color:#a6e22e">_combine</span> <span style="color:#a6e22e">(h</span> <span style="color:#a6e22e">::</span> <span style="color:#a6e22e">acc)</span> <span style="color:#a6e22e">(rest))</span>
+
+<span style="color:#a6e22e">let</span> <span style="color:#a6e22e">combine</span> <span style="color:#a6e22e">(ll:&#39;T</span> <span style="color:#66d9ef">list </span><span style="color:#a6e22e">list)</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">&#39;T</span> <span style="color:#66d9ef">list list </span><span style="color:#a6e22e">=</span>
+    <span style="color:#a6e22e">_combine</span> <span style="color:#a6e22e">[]</span> <span style="color:#a6e22e">ll</span>
+        <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">List.map</span> <span style="color:#a6e22e">(List.rev)</span>
+
+<span style="color:#a6e22e">let</span> <span style="color:#a6e22e">combineCsharpCompliant</span> <span style="color:#a6e22e">(ll:&#39;T</span> <span style="color:#a6e22e">IList</span> <span style="color:#a6e22e">IList)</span> <span style="color:#a6e22e">=</span>
+	<span style="color:#a6e22e">ll</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">Seq.map</span> <span style="color:#a6e22e">(List.ofSeq)</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">List.ofSeq</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">combine</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">List.map</span> <span style="color:#a6e22e">(System.Linq.Enumerable.ToList)</span> <span style="color:#a6e22e">|&gt;</span> <span style="color:#a6e22e">System.Linq.Enumerable.ToList</span>
+
+<span style="color:#a6e22e">let</span> <span style="color:#a6e22e">ll</span> <span style="color:#a6e22e">=</span> <span style="color:#a6e22e">[[&#34;1&#34;;&#34;2&#34;];[];[&#34;5&#34;;&#34;6&#34;;&#34;7&#34;]]</span>
+<span style="color:#a6e22e">combine</span> <span style="color:#a6e22e">ll</span>
+<span style="color:#a6e22e">///</span> <span style="color:#a6e22e">val</span> <span style="color:#a6e22e">it</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span> <span style="color:#66d9ef">list list </span><span style="color:#a6e22e">=</span>
+<span style="color:#a6e22e">///</span>    <span style="color:#a6e22e">[[&#34;1&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;5&#34;];</span> <span style="color:#a6e22e">[&#34;1&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;6&#34;];</span> <span style="color:#a6e22e">[&#34;1&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;7&#34;];</span> <span style="color:#a6e22e">[&#34;2&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;5&#34;];</span>
+<span style="color:#a6e22e">///</span>       <span style="color:#a6e22e">[&#34;2&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;6&#34;];</span> <span style="color:#a6e22e">[&#34;2&#34;;</span> <span style="color:#a6e22e">null;</span> <span style="color:#a6e22e">&#34;7&#34;]]</span>
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>CSV output formatter for WCF Data Services</title>
+            <link>http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/</link>
+            <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2015-11-09-csv-format-for-wcf-data-services-odata/</guid>
+            <description>The OData URL conventions says that one can specify the media type of the response in the query, using the query parameter $format. The requested media type can also be negociated through http content-type headers. However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).
+With the code below, you can query a OData WCF Data Service and receive a csv file in the response.</description>
+            <content type="html"><![CDATA[<p>The <a href="http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part2-url-conventions/odata-v4.0-errata02-os-part2-url-conventions-complete.html#_Toc406398169">OData URL conventions</a> says that one can specify the media type of the response in the query, using the query parameter <code>$format</code>.
+The requested media type can also be negociated through http content-type headers.
+However, Microsoft included only the default Atom formatter in their implementation (WCF Data Services). A Json formatter can be included with a quick workaround).</p>
+<p>With the code below, you can query a <strong>OData WCF Data Service</strong> and receive a <strong>csv</strong> file in the response.</p>
+<h2 id="usage">Usage</h2>
+<p>Just add the attribute <code>[CsvSupportBehavior]</code> to your service class and add  the parameter <code>$format=txt</code> in the URL.</p>
+<p>You can customize the output with <code>$format=txt:[separator?]:[csvHeader?]</code> (e.g.  <code>$format=txt:,:colHeader1,col2,col3</code> )</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">namespace</span> SampleDataService
+{
+<span style="color:#a6e22e">    [CsvSupportBehavior]</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WcfDataService1</span> : DataService&lt; sampleEntities &gt;
+    {
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> InitializeService(DataServiceConfiguration config)
+        {
+          config.SetEntitySetAccessRule(<span style="color:#e6db74">&#34;*&#34;</span>, EntitySetRights.AllRead);
+          config.SetEntitySetPageSize(<span style="color:#e6db74">&#34;*&#34;</span>, <span style="color:#ae81ff">10</span>);
+          config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
+        }
+    }
+}
+</code></pre></div><h2 id="code">Code</h2>
+<blockquote>
+<p>clone from gist.github : <a href="https://gist.github.com/andriniaina/01fb854e449376c75185">https://gist.github.com/andriniaina/01fb854e449376c75185</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#75715e">//-----------------------------------------------------------------------
+</span><span style="color:#75715e">// http://andriniaina.github.io
+</span><span style="color:#75715e">//-----------------------------------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">namespace</span> WCFDataServiceFormatExtensions
+{
+    <span style="color:#66d9ef">using</span> System;
+    <span style="color:#66d9ef">using</span> System.Collections.Generic;
+    <span style="color:#66d9ef">using</span> System.IO;
+    <span style="color:#66d9ef">using</span> System.Linq;
+    <span style="color:#66d9ef">using</span> System.ServiceModel;
+    <span style="color:#66d9ef">using</span> System.ServiceModel.Channels;
+    <span style="color:#66d9ef">using</span> System.ServiceModel.Description;
+    <span style="color:#66d9ef">using</span> System.ServiceModel.Dispatcher;
+    <span style="color:#66d9ef">using</span> System.Text;
+    <span style="color:#66d9ef">using</span> System.Xml;
+    <span style="color:#66d9ef">using</span> System.Xml.Linq;
+
+
+    <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// This Class provide an attribute that need to be applied on data service class in order to enable text output
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">    [AttributeUsage(AttributeTargets.Class)]</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CsvSupportBehaviorAttribute</span> : Attribute, IServiceBehavior
+    {
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Provides the ability to pass custom data to binding elements to support the contract implementation.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceDescription&#34;&gt;The service description of the service.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceHostBase&#34;&gt;The host of the service.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;endpoints&#34;&gt;The service endpoints.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;bindingParameters&#34;&gt;Custom objects to which binding elements have access.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">void</span> IServiceBehavior.AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, System.Collections.ObjectModel.Collection&lt;ServiceEndpoint&gt; endpoints, BindingParameterCollection bindingParameters)
+        {
+        }
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Provides the ability to change run-time property values or insert custom extension objects such as error handlers, message or parameter interceptors, security extensions, and other custom extension objects.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceDescription&#34;&gt;The service description.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceHostBase&#34;&gt;The host that is currently being built.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">void</span> IServiceBehavior.ApplyDispatchBehavior(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+        {
+            <span style="color:#66d9ef">foreach</span> (ChannelDispatcher cd <span style="color:#66d9ef">in</span> serviceHostBase.ChannelDispatchers)
+            {
+                <span style="color:#66d9ef">foreach</span> (EndpointDispatcher ed <span style="color:#66d9ef">in</span> cd.Endpoints)
+                {
+                    ed.DispatchRuntime.MessageInspectors.Add(<span style="color:#66d9ef">new</span> CsvDataServiceFormatInspector());
+                }
+            }
+        }
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Provides the ability to inspect the service host and the service description to confirm that the service can run successfully.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceDescription&#34;&gt;The service description.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;serviceHostBase&#34;&gt;The service host that is currently being constructed.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">void</span> IServiceBehavior.Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+        {
+        }
+    }
+
+    <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// Inspect incoming outgoing message and transform them in text version if required.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CsvDataServiceFormatInspector</span> : IDispatchMessageInspector
+    {
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// This is invoked automatically by data service calls.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;request&#34;&gt;Incoming request message.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;channel&#34;&gt;Request channel&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;instanceContext&#34;&gt;Operation Context for this instance.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;returns&gt;Returns null.&lt;/returns&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">object</span> AfterReceiveRequest(<span style="color:#66d9ef">ref</span> Message request, IClientChannel channel, InstanceContext instanceContext)
+        {
+            <span style="color:#66d9ef">object</span> token = <span style="color:#66d9ef">null</span>;
+            <span style="color:#66d9ef">if</span> (request.Properties.ContainsKey(<span style="color:#e6db74">&#34;UriTemplateMatchResults&#34;</span>))
+            {
+                <span style="color:#66d9ef">string</span> requestType = <span style="color:#e6db74">&#34;RequestType=TXT&#34;</span>;
+                UriTemplateMatch match = (UriTemplateMatch)request.Properties[<span style="color:#e6db74">&#34;UriTemplateMatchResults&#34;</span>];
+                <span style="color:#66d9ef">string</span> format = match.QueryParameters[<span style="color:#e6db74">&#34;$format&#34;</span>];
+                <span style="color:#66d9ef">string</span> selectors = match.QueryParameters[<span style="color:#e6db74">&#34;$select&#34;</span>];
+
+                <span style="color:#66d9ef">if</span> (format != <span style="color:#66d9ef">null</span> &amp;&amp; format.StartsWith(<span style="color:#e6db74">&#34;txt&#34;</span>, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    <span style="color:#75715e">/*
+</span><span style="color:#75715e">                    string customheader = match.QueryParameters[&#34;$customCsvHeader&#34;];
+</span><span style="color:#75715e">                    if (customheader != null)
+</span><span style="color:#75715e">                    {
+</span><span style="color:#75715e">                        match.QueryParameters.Remove(&#34;$customCsvHeader&#34;);
+</span><span style="color:#75715e">                    }
+</span><span style="color:#75715e">                    */</span>
+                    <span style="color:#75715e">////check if separator found 
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">var</span> spec = format.Split(<span style="color:#e6db74">&#39;:&#39;</span>);
+                    <span style="color:#66d9ef">var</span> separator = spec.Length &gt; <span style="color:#ae81ff">1</span> ? spec[<span style="color:#ae81ff">1</span>] : <span style="color:#e6db74">&#34;\t&#34;</span>;
+                    <span style="color:#66d9ef">var</span> header = spec.Length &gt; <span style="color:#ae81ff">2</span> ? spec[<span style="color:#ae81ff">2</span>] : <span style="color:#e6db74">&#34;&#34;</span>;
+
+                    match.QueryParameters.Remove(<span style="color:#e6db74">&#34;$format&#34;</span>);
+                    token = <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;{0}¤separator={1}¤selectors={2}¤header={3}&#34;</span>, requestType, separator, selectors, header);
+                }
+            }
+
+            <span style="color:#66d9ef">return</span> token;
+        }
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// This is invoked automatically by data service calls.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;reply&#34;&gt;Actual responce from service.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;correlationState&#34;&gt;Correlation token returned in “AfterRequestReceived ”function.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> BeforeSendReply(<span style="color:#66d9ef">ref</span> Message reply, <span style="color:#66d9ef">object</span> correlationState)
+        {
+            <span style="color:#66d9ef">string</span> requestType = <span style="color:#e6db74">&#34;RequestType=TXT&#34;</span>;
+
+            HttpResponseMessageProperty response = reply.Properties[HttpResponseMessageProperty.Name] <span style="color:#66d9ef">as</span> HttpResponseMessageProperty;
+
+            <span style="color:#66d9ef">if</span> (correlationState != <span style="color:#66d9ef">null</span> &amp;&amp; correlationState <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">string</span>)
+            {
+                <span style="color:#66d9ef">if</span> (response != <span style="color:#66d9ef">null</span>)
+                {
+                    <span style="color:#66d9ef">string</span> contentType = response.Headers[<span style="color:#e6db74">&#34;Content-Type&#34;</span>];
+                    <span style="color:#66d9ef">if</span> (contentType != <span style="color:#66d9ef">null</span>)
+                    {
+                        <span style="color:#66d9ef">bool</span> isRequestTypeTXT = ((<span style="color:#66d9ef">string</span>)correlationState).ToLower().StartsWith(requestType.ToLower());
+                        <span style="color:#66d9ef">if</span> (isRequestTypeTXT &amp;&amp; contentType.StartsWith(<span style="color:#e6db74">&#34;application/atom&#34;</span>, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            response.Headers[<span style="color:#e6db74">&#34;Content-Type&#34;</span>] = <span style="color:#e6db74">&#34;text/csv;charset=utf-8&#34;</span>;
+                            <span style="color:#66d9ef">var</span> stateDic = ((<span style="color:#66d9ef">string</span>)correlationState).Split(<span style="color:#e6db74">&#39;¤&#39;</span>).Select(x =&gt; x.Split(<span style="color:#66d9ef">new</span>[] { <span style="color:#e6db74">&#39;=&#39;</span> }, <span style="color:#ae81ff">2</span>)).ToDictionary(x =&gt; x[<span style="color:#ae81ff">0</span>], x =&gt; x[<span style="color:#ae81ff">1</span>]);
+
+                            <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> bodyReader = reply.GetReaderAtBodyContents())
+                            {
+                                bodyReader.ReadStartElement();
+                                <span style="color:#66d9ef">var</span> txt = Encoding.UTF8.GetString(bodyReader.ReadContentAsBase64());
+                                <span style="color:#66d9ef">var</span> separator = stateDic[<span style="color:#e6db74">&#34;separator&#34;</span>];
+                                <span style="color:#66d9ef">var</span> selectors = stateDic[<span style="color:#e6db74">&#34;selectors&#34;</span>].Split(<span style="color:#e6db74">&#39;,&#39;</span>).Select(x =&gt; x.Trim()).Select(getXPath).ToList();
+
+                                <span style="color:#66d9ef">var</span> csvHeaders = <span style="color:#66d9ef">string</span>.IsNullOrWhiteSpace(stateDic[<span style="color:#e6db74">&#34;header&#34;</span>]) ?
+                                    <span style="color:#66d9ef">string</span>.Join(separator, stateDic[<span style="color:#e6db74">&#34;selectors&#34;</span>].Split(<span style="color:#e6db74">&#39;,&#39;</span>).Select(s =&gt; s.Split(<span style="color:#e6db74">&#39;/&#39;</span>).Last())) 
+                                    :
+                                    stateDic[<span style="color:#e6db74">&#34;header&#34;</span>];
+
+                                <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> reader = <span style="color:#66d9ef">new</span> StringReader(txt))
+                                {
+                                    <span style="color:#66d9ef">var</span> doc = <span style="color:#66d9ef">new</span> System.Xml.XmlDocument();
+                                    doc.Load(reader);
+                                    <span style="color:#66d9ef">var</span> nsmgr = <span style="color:#66d9ef">new</span> XmlNamespaceManager(doc.NameTable);
+                                    nsmgr.AddNamespace(<span style="color:#e6db74">&#34;base&#34;</span>, <span style="color:#e6db74">&#34;http://localhost:8080/WcfDataService1.svc/&#34;</span>);
+                                    nsmgr.AddNamespace(<span style="color:#e6db74">&#34;d&#34;</span>, <span style="color:#e6db74">&#34;http://schemas.microsoft.com/ado/2007/08/dataservices&#34;</span>);
+                                    nsmgr.AddNamespace(<span style="color:#e6db74">&#34;m&#34;</span>, <span style="color:#e6db74">&#34;http://schemas.microsoft.com/ado/2007/08/dataservices/metadata&#34;</span>);
+                                    nsmgr.AddNamespace(<span style="color:#e6db74">&#34;atom&#34;</span>, doc.DocumentElement.NamespaceURI);
+                                    <span style="color:#66d9ef">var</span> n = doc.DocumentElement.SelectNodes(<span style="color:#e6db74">&#34;/atom:feed&#34;</span>, nsmgr);
+
+                                    <span style="color:#66d9ef">var</span> csv = <span style="color:#66d9ef">new</span> StringBuilder();
+                                    <span style="color:#66d9ef">var</span> lines = <span style="color:#66d9ef">new</span> List&lt;<span style="color:#66d9ef">string</span>&gt;();
+                                    <span style="color:#66d9ef">foreach</span> (XmlNode entry <span style="color:#66d9ef">in</span> doc.DocumentElement.SelectNodes(<span style="color:#e6db74">&#34;/atom:feed/atom:entry&#34;</span>, nsmgr))
+                                    {
+                                        <span style="color:#66d9ef">var</span> grapes = selectors.Select(x =&gt; entry.SelectNodes(x, nsmgr).Cast&lt;XmlNode&gt;().ToList()).Cast&lt;IList&lt;XmlNode&gt;&gt;().ToList();
+                                        <span style="color:#66d9ef">var</span> innerJoinedLines = Utils.x.combineClrCompliant(grapes).Select(x =&gt; <span style="color:#66d9ef">string</span>.Join(separator, x.Select(node =&gt; node.InnerText))).ToList();
+                                        lines.AddRange(innerJoinedLines);
+                                    }
+
+                                    <span style="color:#66d9ef">var</span> csvContent = <span style="color:#66d9ef">string</span>.Join(<span style="color:#e6db74">&#34;\r\n&#34;</span>, <span style="color:#66d9ef">new</span>[] { csvHeaders }.Concat( lines));
+                                    Encoding encoding = GetReplyEncoding(response);
+                                    Message newreply = Message.CreateMessage(MessageVersion.None, <span style="color:#66d9ef">string</span>.Empty, <span style="color:#66d9ef">new</span> CustomBinaryWriter(csvContent, encoding));
+                                    newreply.Properties.CopyProperties(reply.Properties);
+                                    
+                                    <span style="color:#66d9ef">var</span> continuationUrl = doc.SelectSingleNode(<span style="color:#e6db74">&#34;/atom:feed/atom:link[@rel=&#39;next&#39;]/@href&#34;</span>, nsmgr);
+                                    <span style="color:#66d9ef">if</span> (continuationUrl != <span style="color:#66d9ef">null</span>)
+                                    {
+                                        <span style="color:#66d9ef">var</span> httpmsg = (HttpResponseMessageProperty)reply.Properties[System.ServiceModel.Channels.HttpResponseMessageProperty.Name];
+                                        httpmsg.Headers.Add(<span style="color:#e6db74">&#34;Continuation-Url&#34;</span>, continuationUrl.Value);
+                                    }
+                                    reply = newreply;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">string</span> getXPath(<span style="color:#66d9ef">string</span> selector)
+        {
+            <span style="color:#66d9ef">var</span> parts = selector.Split(<span style="color:#e6db74">&#39;/&#39;</span>);
+            <span style="color:#66d9ef">if</span> (parts.Length == <span style="color:#ae81ff">1</span>)
+            {
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;atom:content/m:properties/d:{0}&#34;</span>, parts[<span style="color:#ae81ff">0</span>]);
+            }
+            <span style="color:#66d9ef">else</span>
+            {
+                <span style="color:#66d9ef">var</span> xpath1 = <span style="color:#66d9ef">new</span> StringBuilder();
+                xpath1.AppendFormat(<span style="color:#e6db74">&#34;atom:link[@title=&#39;{0}&#39;]&#34;</span>, parts[<span style="color:#ae81ff">0</span>]);
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">1</span>; i &lt; parts.Length - <span style="color:#ae81ff">1</span>; i++)
+                {
+                    xpath1.AppendFormat(<span style="color:#e6db74">&#34;/m:inline/atom:entry/atom:link[@title=&#39;{0}&#39;]&#34;</span>, parts[i]);
+                }
+                xpath1.AppendFormat(<span style="color:#e6db74">&#34;/m:inline/atom:entry/atom:content/m:properties/d:{0}&#34;</span>, parts.Last());
+
+
+                <span style="color:#66d9ef">var</span> xpath2 = <span style="color:#66d9ef">new</span> StringBuilder();
+                xpath2.AppendFormat(<span style="color:#e6db74">&#34;atom:link[@title=&#39;{0}&#39;]&#34;</span>, parts[<span style="color:#ae81ff">0</span>]);
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">1</span>; i &lt; parts.Length - <span style="color:#ae81ff">1</span>; i++)
+                {
+                    xpath2.AppendFormat(<span style="color:#e6db74">&#34;/m:inline/atom:feed/atom:entry/atom:link[@title=&#39;{0}&#39;]&#34;</span>, parts[i]);
+                }
+                xpath2.AppendFormat(<span style="color:#e6db74">&#34;/m:inline/atom:feed/atom:entry/atom:content/m:properties/d:{0}&#34;</span>, parts.Last());
+                <span style="color:#66d9ef">return</span> xpath1 + <span style="color:#e6db74">&#34;|&#34;</span> + xpath2;
+            }
+        }
+
+        Encoding GetReplyEncoding(HttpResponseMessageProperty response)
+        {
+            Encoding encoding = Encoding.UTF8;
+            <span style="color:#66d9ef">string</span> charset = response.Headers[<span style="color:#e6db74">&#34;Content-Type&#34;</span>];
+            <span style="color:#66d9ef">int</span> loc = charset.IndexOf(<span style="color:#e6db74">&#34;charset&#34;</span>, StringComparison.InvariantCultureIgnoreCase);
+            <span style="color:#66d9ef">if</span> (loc &gt; <span style="color:#ae81ff">0</span>)
+            {
+                charset = charset.Substring(loc, charset.Length - loc);
+                loc = charset.IndexOf(<span style="color:#e6db74">&#34;=&#34;</span>);
+                charset = charset.Substring(charset.IndexOf(<span style="color:#e6db74">&#34;=&#34;</span>) + <span style="color:#ae81ff">1</span>, charset.Length - loc - <span style="color:#ae81ff">1</span>);
+                <span style="color:#66d9ef">if</span> (charset.IndexOf(<span style="color:#e6db74">&#34;;&#34;</span>) &gt; <span style="color:#ae81ff">0</span>)
+                {
+                    loc = charset.IndexOf(<span style="color:#e6db74">&#34;;&#34;</span>);
+                    charset = charset.Substring(charset.IndexOf(<span style="color:#e6db74">&#34;;&#34;</span>) + <span style="color:#ae81ff">1</span>, charset.Length - loc - <span style="color:#ae81ff">1</span>);
+                }
+
+                encoding = Encoding.GetEncoding(charset);
+            }
+
+            <span style="color:#66d9ef">return</span> encoding;
+        }
+    }
+
+    <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// Custom binary writer class for writing WCF binary messages body.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomBinaryWriter</span> : BodyWriter
+    {
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Content to write.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">string</span> content;
+
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Initializes a new instance of the CustomBinaryWriter class.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;content&#34;&gt;Content to write&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> CustomBinaryWriter(<span style="color:#66d9ef">string</span> content, Encoding encoding)
+            : <span style="color:#66d9ef">base</span>(<span style="color:#66d9ef">false</span>)
+        {
+            <span style="color:#66d9ef">this</span>.content = content;
+            <span style="color:#66d9ef">this</span>.encoding = encoding;
+        }
+
+        Encoding encoding;
+        <span style="color:#75715e">/// &lt;summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// Called by service implementatio. 
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;/summary&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/// &lt;param name=&#34;writer&#34;&gt;XmlDictionaryWriter instance provided by service.&lt;/param&gt;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> OnWriteBodyContents(XmlDictionaryWriter writer)
+        {
+            writer.WriteStartElement(<span style="color:#e6db74">&#34;Binary&#34;</span>);
+            <span style="color:#66d9ef">byte</span>[] buffer = <span style="color:#66d9ef">this</span>.encoding.GetBytes(<span style="color:#66d9ef">this</span>.content);
+            writer.WriteBase64(buffer, <span style="color:#ae81ff">0</span>, buffer.Length);
+            writer.WriteEndElement();
+        }
+    }
+}
+
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>How to clone Windows to a new drive/partition</title>
+            <link>http://andri.rocks/posts/2014-12-26-clone-windows-system-drive/</link>
+            <pubDate>Fri, 26 Dec 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-12-26-clone-windows-system-drive/</guid>
+            <description>I just bought a new SSD to replace my old HDD. I did not want to reinstall Windows because I did not want to lose all my settings and apps.
+Some guides are available but none was completely satisfying. I tried to clone my drive using EaseUS ToDo Backup Free Tools but the process seemed to be stuck at some point, occupying 100% of my CPU. I would later learn that it cannot clone a drive with defective sectors.</description>
+            <content type="html"><![CDATA[<p>I just bought a new SSD to replace my old HDD. I did not want to reinstall Windows because I did not want to lose all my settings and apps.</p>
+<p>Some <a href="http://lifehacker.com/5837543/how-to-migrate-to-a-solid-state-drive-without-reinstalling-windows">guides</a> are available but none was completely satisfying. I tried to clone my drive using <a href="http://www.easeus.com/backup-software/tb-free.html">EaseUS ToDo Backup Free Tools</a> but the process seemed to be stuck at some point, occupying 100% of my CPU. I would later learn that it cannot clone a drive with defective sectors. Also, the software is apparently throttled in order to encourage people to buy the faster non-free version.</p>
+<p>So, I just spent 2 days reading blogs, forum posts, technet articles, cloning/copying/repairing my system.
+Here are the steps if you want to do the same things as me.</p>
+<ol>
+<li>Using <a href="http://unetbootin.sourceforge.net/">Unetbootin</a>, install <a href="http://clonezilla.org/">CloneZilla Live</a> on the same bootable drive as Windows.</li>
+<li>Reboot and clone the drive to the new SSD (see tutorials <a href="http://www.bing.com/search?q=clonezilla+tutorial&amp;setmkt=en-US">here</a>)
+<ul>
+<li>If you have bad sectors like me, you <strong>must</strong> use the expert mode and select the <code>rescue</code> option</li>
+<li>You can select multiple partitions</li>
+<li>If you are copying from one drive to another, chances are that both drives do not have the same sizes. In this case, select the <code>-k1</code> option. For some reason, this did not work for me (see below for fix). Note that this option is not in the same dialog as the <code>rescue</code> option.</li>
+</ul>
+</li>
+</ol>
+<p>Now the hard part: In my case, Clonezilla correctly cloned the partition but I did not clone the 100MB system partition (this partition is automatically created by Win8 and contains the boot files). Actually I was not even aware that an Win8 installation requires a separate 100MB system partition&hellip; Also, Clonezilla <em>cloned</em> my drive, meaning that it created a 70Gb partition that somehow occupies the whole capacity of the new drive&hellip;</p>
+<ol start="3">
+<li>Resize the cloned partition, using the <strong>old</strong> Windows installation. This step cannot be done with the disk tools from Microsoft. Windows will think that the new partition fully occupies the drive. I used <a href="http://www.easeus.com/partition-manager/epm-free.html">EaseUS Partition Manager Free</a>. I had to shrink the partition first and then re-expand it.</li>
+<li>Now that you have more space on the new drive, create the system boot partition
+<ul>
+<li>Still in EaseUS, create an empty partition of 100MB</li>
+</ul>
+</li>
+<li>Clone the old system partition to the new partition</li>
+<li>Mount both drives (the new system partition and the new windows partition) respectively in <code>X:</code> and <code>Z:</code> (don&rsquo;t worry, these are just alias letters and will not be used in the new Windows installation. Windows uses only device ids. See below)</li>
+<li>Edit the BCD (Boot Configuration Data) using <a href="http://www.boyans.net/DownloadVisualBCD.html">Visual BCD editor</a>
+<ul>
+<li>create a new OS entry, by copying the old loader information (you can use <code>bcdedit /copy {current} /d xxxxxx</code> in command line).</li>
+<li>adapt the new entry: make it point to the new Windows partition (<code>Z:</code>). You need to change both the <code>ApplicationDevice</code> and <code>OSDevice</code> properties</li>
+<li>copy the boot records to the new drive: in the menu, select <em>Repair &gt; Repair boot records</em> and <em>Repair &gt; Repair bcd</em>, each time selecting <code>X:</code> as the system partition and <code>z:\Windows</code> as the Windows installation folder.</li>
+<li>again, don&rsquo;t worry about the X: and Z: drive names. Windows will remap the drives in the new OS.</li>
+</ul>
+</li>
+<li>Reboot, select the new Windows, log in</li>
+</ol>
+<p>At this point, everything is probably fucked up because Windows does not care if you cloned the drive; Windows only uses the device ids and still assigned the old drive to the letter <code>C:</code>, which would be great&hellip; in other circumstances. The system boots but reads most system files from <code>C:</code> (the old partition) and everything point to <code>C:</code>. Your new partition probably was probably assigned to the letter <code>D:</code> or <code>E:</code>. <code>Explorer.exe</code> will keep crashing and restarting.</p>
+<ol start="8">
+<li>Now reboot in the <strong>old</strong> Windows again (The point of the previous step was just to create the correct drive ids in the new registry)</li>
+<li>Reassign drive letters (you can&rsquo;t do this directly in the new Windows installation; you can&rsquo;t reassign the drive letter of the running windows partition):
+<ul>
+<li>Open <code>regedit</code></li>
+<li>select the root node <code>HKEY_LOCAL_MACHINE</code></li>
+<li>open the registry of the new Windows: select the menu <em>File &gt; Load hive&hellip;</em>, open the hive <code>Z:\Windows\System32\config\SYSTEM</code>, give it a temporary key name of you choice</li>
+<li>in the new hive, you will need to edit the keys in <code>HKLM\SYSTEM\MountedDevices</code>; Delete the key <code>\DosDevices\C:</code>, rename <code>\DosDevices\L:</code> to <code>\DosDevices\C:</code> (where L: is the letter that windows automatically assigned to the new drive)</li>
+</ul>
+</li>
+<li>Reboot in the <strong>new</strong> Windows</li>
+<li>Enjoy</li>
+</ol>
+<blockquote>
+<p><strong>Conclusion</strong>: You&rsquo;ve made it to here and survived :)  but you probably realize now that it was not worth it. It&rsquo;s just faster and easier to start with a fresh Windows installation&hellip;</p>
+</blockquote>
+]]></content>
+        </item>
+        
+        <item>
+            <title>QR code accelerator for Internet Explorer</title>
+            <link>http://andri.rocks/posts/2014-12-19-qr-code-accelerator-iexplore/</link>
+            <pubDate>Wed, 19 Nov 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-12-19-qr-code-accelerator-iexplore/</guid>
+            <description>Generates a QR code for the selected link or highlighted text (uses Google&amp;rsquo;s API &amp;amp; servers; will probably never be taken down). </description>
+            <content type="html"><![CDATA[<p>Generates a QR code for the selected link or highlighted text (uses Google&rsquo;s API &amp; servers; will probably never be taken down).
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+]]></content>
+        </item>
+        
+        <item>
+            <title>Useful web resources</title>
+            <link>http://andri.rocks/posts/2014-11-15-web-dev-resources/</link>
+            <pubDate>Sat, 15 Nov 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-11-15-web-dev-resources/</guid>
+            <description>Best tools for designers
+Random color scheme generator
+Twitter Bootstrap Bootstrap css
+Google material design Material Design css on github.com/google
+(see https://365webresources.com/10-free-design-resources-android-l-google-material-design/)
+ Material UI Google material design + reactjs. Also, see github. Material design UI kit  Leaf leaf github  Riplecator
+Materialize
+ Icons Freebiesbug free svg icons Material Design Icons github  [Material Design – Sidebar(http://codepen.io/zavoloklom/pen/dIgco)
+L Bootstrap Freebie
+Material Design (CSS-based) – Tiles
+Material icons
+Microsoft modern design  Metro UI CSS 2.</description>
+            <content type="html"><![CDATA[<p><a href="http://www.producthunt.com/saijo_george/collections/best-tools-for-designers">Best tools for designers</a></p>
+<p><a href="http://codecrafted.net/randommaterial/">Random color scheme generator</a></p>
+<h2 id="twitter-bootstrap">Twitter Bootstrap</h2>
+<p><a href="http://getbootstrap.com/">Bootstrap css</a></p>
+<h2 id="google-material-design">Google material design</h2>
+<p><a href="http://www.getmdl.io/">Material Design css on github.com/google</a></p>
+<p>(see <a href="https://365webresources.com/10-free-design-resources-android-l-google-material-design/">https://365webresources.com/10-free-design-resources-android-l-google-material-design/</a>)</p>
+<dl>
+<dt><a href="http://material-ui.com/#/">Material UI</a></dt>
+<dd>Google material design + reactjs. Also, see github.</dd>
+<dt><a href="http://theultralinx.com/2014/11/material-design-ui-kit-free-download.html">Material design UI kit</a></dt>
+<dd></dd>
+<dt><a href="http://getleaf.com/">Leaf</a></dt>
+<dd><a href="https://github.com/kkortes/leaf">leaf github</a></dd>
+</dl>
+<p><a href="http://codepen.io/SomeStuffer/pen/kuobE">Riplecator</a></p>
+<p><a href="https://github.com/Dogfalo/materialize">Materialize</a></p>
+<dl>
+<dt>Icons</dt>
+<dd><a href="http://freebiesbug.com/psd-freebies/google-material-design-icons-svg-png-css/">Freebiesbug</a> free svg icons</dd>
+<dd><a href="https://github.com/google/material-design-icons">Material Design Icons github</a></dd>
+</dl>
+<p>[Material Design – Sidebar(http://codepen.io/zavoloklom/pen/dIgco)</p>
+<p><a href="https://www.behance.net/gallery/20188269/L-Bootstrap-Freebie-UI-Kit-Inspired-by-Android-L">L Bootstrap Freebie</a></p>
+<p><a href="http://codepen.io/zavoloklom/pen/wtApI">Material Design (CSS-based) – Tiles</a></p>
+<p><a href="https://dribbble.com/shots/1697054--SVG-Sketch-Material-Icons-Pack">Material icons</a></p>
+<h2 id="microsoft-modern-design">Microsoft modern design</h2>
+<dl>
+<dt><a href="http://metroui.org.ua/">Metro UI CSS 2.0</a></dt>
+<dd>Microsoft modern design + css</dd>
+</dl>
+<p><a href="http://talkslab.github.io/metro-bootstrap/">Metro for Bootstrap</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Things .NET can do that java can&#39;t</title>
+            <link>http://andri.rocks/posts/2014-11-12-java-vs-net/</link>
+            <pubDate>Wed, 12 Nov 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-11-12-java-vs-net/</guid>
+            <description>A few years ago, I left the java in favor of .net in my job. I started using java again recently for a project and it reminded me why java was so behind and counter-productive.
+Here is a list of what java does wrong (or does not do at all) that I now miss:
+Productive code  Generics Yes I know, java has generics since 2004. But it&amp;rsquo;s commonly admitted that it&amp;rsquo;s a broken implementation.</description>
+            <content type="html"><![CDATA[<p>A few years ago, I left the java in favor of .net in my job.  I started using java again recently for a project and it reminded me why java was so behind and counter-productive.</p>
+<p>Here is a list of what java does wrong (or does not do at all) that I now miss:</p>
+<h1 id="productive-code">Productive code</h1>
+<dl>
+<dt><strong>Generics</strong></dt>
+<dd>Yes I know, java has generics since 2004. But it&rsquo;s commonly admitted that it&rsquo;s a broken implementation. Java does not have:
+<ul>
+<li>Runtime generics (create a type-safe generic class by reflection)</li>
+<li>Generics of primitive types</li>
+</ul>
+</dd>
+<dt><strong>Generics</strong></dt>
+<dd>Did I mention runtime generics? (think injection frameworks).</dd>
+<dt><strong>Closures</strong></dt>
+<dd>Retain bound variables and pass them around.</dd>
+<dt><strong>Extension methods</strong></dt>
+<dd>Decorator pattern out-of-the-box. Of course it&rsquo;s not the full decorator pattern because these are static classes that you cannot replace at runtime. However, it covers 90% of all my use-cases.</dd>
+<dt><strong>Inner classes</strong></dt>
+<dd>as opposed to nested classes.</dd>
+<dt><strong>Iterators and <code>yield</code></strong></dt>
+<dd>Implement a true iterable/iterator in a few lines of code instead of storing everything in a temporary array/list.</dd>
+<dt><strong>Nullable primitives</strong></dt>
+<dd> </dd>
+<dt><strong>A solid foundation</strong></dt>
+<dd>a.k.a. &ldquo;open&rdquo; source gone wrong: Why are there N buggy implementations of the same damn feature in the java world? Work together and provide a single working  implementation of the core features and the runtime!
+Also, notice the quotes around &ldquo;open&rdquo;.</dd>
+<dt><strong>A good documentation</strong></dt>
+<dd>a.k.a. open source gone wrong again: java could learn a lot from MSDN (even 2008 msdn).</dd>
+<dt><strong>Partial classes</strong></dt>
+<dd>Mix autogenerated code and user code.</dd>
+</dl>
+<h1 id="clean-code">Clean code</h1>
+<dl>
+<dt><strong>Delegates</strong></dt>
+<dd>Strategy Pattern out-of-the-box, in a single line of code, without anonymous classes.</dd>
+<dt><strong>Events</strong></dt>
+<dd>Observable pattern out-of-the-box, listeners, in a single line of code, without anonymous classes.</dd>
+<dt><strong>Operator overloading, Indexers</strong></dt>
+<dd> </dd>
+<dt><strong>Type inference</strong></dt>
+<dd><code>var i = new MyClass()</code></dd>
+<dt><strong>Properties</strong></dt>
+<dd>Unless you like useless parentheses, writing <code>display(x.MyProp)</code> and <code>x.MyProp = 1</code> is so much readable than <code>display(x.getMyProp())</code> or <code>x.setMyProp(1)</code></dd>
+<dt><strong>Auto-implemented properties</strong></dt>
+<dd>Removes code clutter. Make code more readable. Compare this single line <code>public string Name { get; set; }</code> to its equivalent in java.</dd>
+<dt><strong>LINQ language, and expression trees</strong></dt>
+<dd>Brings type-safe queries directly to the core language.</dd>
+<dt><strong>Dynamic types</strong></dt>
+<dd>Love it or not, admit that it&rsquo;s quite useful sometimes to avoid excessive casting (especially when dealing with complex COM objects).</dd>
+</dl>
+<!-- raw HTML omitted -->
+<p>And now, a (short) list of what java does better:</p>
+<dl>
+<dt><strong>Virtual methods by default</strong></dt>
+<dd>This is basically the only thing I miss on .Net</dd>
+<dt><strong>Cross-platform</strong></dt>
+<dd>Yes. I know. There is <a href="http://www.mono-project.com/">Mono</a> and <a href="http://xamarin.com/">Xamarin</a>. But we are still waiting for a cross-platform runtime from Microsoft (should come in 2015).</dd>
+</dl>
+<blockquote>
+<p>A good part of .Net is now open-source <a href="http://blogs.msdn.com/b/dotnet/archive/2014/11/12/net-core-is-open-source.aspx?amp&amp;amp">.NET Core open source</a>, Roslyn (compiler api and tools), F# (fully open-source), asp.NET 5 (vNext), Entity Framework, &hellip;</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<p>Other features that I don&rsquo;t miss in C#:</p>
+<dl>
+<dt><strong>Checked exceptions</strong></dt>
+<dd>Controversial. Language honesty is theoretically a good thing but in this case I observed that many devs (including me sometimes) end up writing:</dd>
+</dl>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{}</span>
+</code></pre></div><p>or</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+        doSomethingWrong<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span><span style="color:#f92672">(</span>Exception ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">/* just log the error, do nothing at all that contributes to honesty */</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Useful Vim tips</title>
+            <link>http://andri.rocks/posts/2014-11-02-usefull-vim-tips/</link>
+            <pubDate>Sun, 02 Nov 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-11-02-usefull-vim-tips/</guid>
+            <description>My vimrc can be viewed here.
+.gitconfig Use vim as the default diff tool [diff] tool = vimdiff guitool = gvim_andri [merge] tool = gvim_andri [mergetool &amp;quot;gvim_andri&amp;quot;] cmd = &amp;quot;\&amp;quot;D:/Program Files/Vim/vim74/gvim.exe\&amp;quot; -d &amp;quot;$(pwd -W)/$BASE&amp;quot; &amp;quot;$(pwd -W)/$MERGED&amp;quot; &amp;quot;$(pwd -W)/$LOCAL&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$(pwd -W)/$BASE&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$(pwd -W)/$LOCAL&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$(pwd -W)/$REMOTE&amp;quot; &amp;quot; [difftool &amp;quot;gvim_andri&amp;quot;] cmd = &amp;quot;\&amp;quot;D:/Program Files/Vim/vim74/gvim.exe\&amp;quot; -d &amp;quot;$LOCAL&amp;quot; &amp;quot;$(pwd -W)/$MERGED&amp;quot; &amp;amp;&amp;amp; rm &amp;quot;$LOCAL&amp;quot; &amp;quot;  .vimrc Use persistent_undo Undo changes even after closing vim!</description>
+            <content type="html"><![CDATA[<p>My vimrc can be viewed <a href="https://github.com/andriniaina/playground/tree/master/vim">here</a>.</p>
+<h1 id="gitconfig">.gitconfig</h1>
+<h2 id="use-vim-as-the-default-diff-tool">Use vim as the default diff tool</h2>
+<pre><code>[diff]
+    tool = vimdiff
+    guitool = gvim_andri
+[merge]
+    tool = gvim_andri
+[mergetool &quot;gvim_andri&quot;]
+    cmd = &quot;\&quot;D:/Program Files/Vim/vim74/gvim.exe\&quot; -d &quot;$(pwd -W)/$BASE&quot; &quot;$(pwd -W)/$MERGED&quot; &quot;$(pwd -W)/$LOCAL&quot; &amp;&amp; rm &quot;$(pwd -W)/$BASE&quot; &amp;&amp; rm &quot;$(pwd -W)/$LOCAL&quot; &amp;&amp; rm &quot;$(pwd -W)/$REMOTE&quot;   &quot;
+[difftool &quot;gvim_andri&quot;]
+    cmd = &quot;\&quot;D:/Program Files/Vim/vim74/gvim.exe\&quot; -d &quot;$LOCAL&quot; &quot;$(pwd -W)/$MERGED&quot; &amp;&amp; rm &quot;$LOCAL&quot; &quot;
+</code></pre>
+<h1 id="vimrc">.vimrc</h1>
+<h2 id="use-persistent_undo">Use persistent_undo</h2>
+<p>Undo changes even after closing vim!</p>
+<pre><code>&quot; persistent undo
+if has(&quot;persistent_undo&quot;)
+    set undodir=c:\temp\vim_undo
+    if !isdirectory(&amp;undodir)
+        call mkdir(&amp;undodir)
+    end
+    set undofile
+endif
+</code></pre>
+<h2 id="put-your-vimrc-in-another-folder-use-a-git-repo-to-sync-your-vim-files">Put your vimrc in another folder (Use a git repo to sync your vim files)</h2>
+<p>In \users\USERID\_vimrc:</p>
+<pre><code>let $HOME='PATH_TO_GIT_REPO_CLONE'
+set runtimepath+=$HOME\vimfiles    &quot; point to a new HOME
+source $HOME\_vimrc                &quot; read the real vimrc from the git repo
+</code></pre>
+<h2 id="put-plugins-in-another-folder-use-git-submodules-to-manage-plugins-instead-of-copying-the-files-in-your-vimfiles">Put plugins in another folder (Use git submodules to manage plugins instead of copying the files in your ~/vimfiles)</h2>
+<p>Use this <a href="http://www.vim.org/scripts/script.php?script_id=2332">pathogen.vim</a> plugin.</p>
+<p>In your vimrc, add:</p>
+<pre><code>execute pathogen#infect('~/submodules/{}')
+</code></pre>
+<p>Now clone any plugin in the submodules folder</p>
+<pre><code>cd submodules
+git submodule add https://github.com/vim-scripts/FuzzyFinder.git
+</code></pre>
+<p>Always use the <a href="https://github.com/vim-scripts">git mirror of vim-script</a> instead of donwloading a static copy from <a href="http://www.vim.org">http://www.vim.org</a>.</p>
+<h2 id="tidy-code-sql-xml-html">Tidy code (SQL, xml, html)</h2>
+<p>Use this <a href="https://github.com/andriniaina/playground/blob/master/vim/vimfiles/plugin/tidy.vim">tidy.vim</a> plugin. And then add these command mappings:</p>
+<pre><code>command! -range=% TidySQL &lt;line1&gt;,&lt;line2&gt;call TidySQL()
+command! -range=% TidyXml &lt;line1&gt;,&lt;line2&gt;call TidyXml()
+command! TidyHtml call TidyHtml()
+command! TidyHtml5 call TidyHtml5()
+</code></pre>
+<p>You will also need to download a copy of <a href="http://www.architectshack.com/PoorMansTSqlFormatter.ashx">Poor man&rsquo;s T-SQL formatter</a> and put it in your <code>$HOME</code> folder</p>
+<h2 id="toggle-fullscreen-with-f11">Toggle fullscreen with F11</h2>
+<p>Use this <a href="https://github.com/andriniaina/playground/blob/master/vim/vimfiles/plugin/fullscreen.vim">fullscreen.vim</a> plugin. And then add these command mappings</p>
+<pre><code>noremap &lt;F11&gt; :call ToggleFullscreen()&lt;Cr&gt;
+</code></pre>
+<h2 id="search">Search</h2>
+<pre><code>set hlsearch  &quot; highlight search
+set incsearch  &quot; incremental search, search as you type
+set ignorecase &quot; Ignore case when searching 
+set smartcase &quot; Ignore case when searching lowercase
+
+&quot; re-enable incremental search and then search
+nnoremap / :set incsearch \| set wrapscan&lt;Cr&gt;/
+nnoremap &lt;C-h&gt; :%s/
+
+&quot; Substitute in selection
+vnoremap &lt;C-h&gt; :s/
+&quot; Disable incremental search and search in selection
+vnoremap / :&lt;c-u&gt;set noincsearch \| set nowrapscan&lt;Cr&gt;gv/\%&gt;'&lt;\%&lt;'&gt;
+</code></pre>
+<h1 id="useful-plugins">Useful plugins</h1>
+<h2 id="command-t-or-ctrlp-or-fuzzyfinder">Command-t or CtrlP or FuzzyFinder</h2>
+<p>Open/filter files and buffers quickly</p>
+<ul>
+<li>FuzzyFinder is in native viml.</li>
+<li>Command-t and CtrlP respectively require Ruby and Python but are faster.</li>
+<li>asyncfinder.vim is even supposedly faster but is for linux only (uses the fnctl Python module).</li>
+</ul>
+<h2 id="largefile">Largefile</h2>
+<p>Open/edit large files quickly (disables all syntax and other slow plugins)</p>
+<h2 id="vim-fugitive">Vim-fugitive</h2>
+<p>git integration</p>
+<h2 id="vim-airline-or-powerline">vim-airline or powerline</h2>
+<p>Cool colorful status bar.</p>
+<ul>
+<li>vim-airline is native viml.</li>
+<li>powerline requires python</li>
+</ul>
+<p><!-- raw HTML omitted --></p>
+<p>To enable the fancy characters:</p>
+<ol>
+<li>Download the <a href="https://github.com/eugeneching/consolas-powerline-vim">patched fonts by eugeneching</a>. <a href="/assets/consolas-powerline-vim/CONSOLA-Powerline.ttf">Mirror</a></li>
+<li>activate the font in your vimrc:</li>
+</ol>
+<pre><code>set guifont=Consolas_for_Powerline_FixedD:h11,Consolas:h11 &quot; you can additional alternative fonts here if it's not available on a particular host or terminal
+let g:airline_powerline_fonts = 1
+let g:airline_symbols = {}
+let g:airline_left_sep = &quot;\u2b80&quot;
+let g:airline_left_alt_sep = &quot;\u2b81&quot;
+let g:airline_right_sep = &quot;\u2b82&quot;
+let g:airline_right_alt_sep = &quot;\u2b83&quot;
+let g:airline_symbols.branch = &quot;\u2b60&quot;
+let g:airline_symbols.readonly = &quot;\u2b64&quot;
+let g:airline_symbols.linenr = &quot;\u2b61&quot;
+let g:airline_symbols.space = &quot; &quot;
+let g:airline_symbols.whitespace = &quot;\u02fd&quot;
+let g:airline_symbols.modified = &quot;*&quot;
+</code></pre>]]></content>
+        </item>
+        
+        <item>
+            <title>A challenge a day: How to partially import data from one MsSql database to another, using DTS/SSIS</title>
+            <link>http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/</link>
+            <pubDate>Thu, 12 Jun 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-06-12-data-copy-disable-fk/</guid>
+            <description>The challenge at my job: insert and replace the data from table [A] from one environment (e.g. PROD) to another (e.g. UAT). However, data in table [B] reference the data in table [A]. Do this for N tables in a bloated database with hundreds of tables each cross-referencing each other.
+The solution -- BEFORE importing the data -- Disable all constraints -- This prevents the foreign keys constraints in `[B]` to block the import EXEC sp_msforeachtable &amp;#34;ALTER TABLE ?</description>
+            <content type="html"><![CDATA[<p><strong>The challenge at my job</strong>: insert and replace the data from table <code>[A]</code> from one environment (e.g. PROD) to another (e.g. UAT). However, data in table <code>[B]</code> reference the data in table <code>[A]</code>.
+Do this for N tables in a bloated database with hundreds of tables each cross-referencing each other.</p>
+<h1 id="the-solution">The solution</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- BEFORE importing the data
+</span><span style="color:#75715e">-- Disable all constraints
+</span><span style="color:#75715e">--     This prevents the foreign keys constraints in `[B]` to block the import
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">EXEC</span> sp_msforeachtable <span style="color:#e6db74">&#34;ALTER TABLE ? NOCHECK CONSTRAINT all&#34;</span>
+
+<span style="color:#75715e">-- Delete the data the table to be copied
+</span><span style="color:#75715e">--      TRUNCATE is not allowed even if the constraints are disabled.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> [A] <span style="color:#75715e">-- do this for each table to be imported
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> [X] 
+<span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> [Y] 
+<span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> [Z] 
+
+
+
+</code></pre></div><p>Now, Import the data with SQL Server Import and Export Wizard, or SSIS, or whatever.</p>
+<p>With the SQL Server Import and Export Wizard, no need to backup the data in a csv and import from it.
+It&rsquo;s faster to use the <a href="http://dynamicsgpblogster.wordpress.com/category/sql-server/page/3/">SQL Server Import and Export Wizard</a>
+and select the tables to be exported.</p>
+<p>In the mapping properties, make sure to select only the <a href="http://bergdaniel.se/wp-content/upload/legacy/enable%20identity%20insert.png">option &lsquo;enable identity insert&rsquo;</a>.
+<strong>DO NOT</strong> select &lsquo;Delete rows in existing destination tables&rsquo; because it will send a <code>TRUNCATE</code> command, which is not allowed by the foreign keys.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">
+
+
+<span style="color:#75715e">-- AFTER importing the data:
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">-- Clean the database
+</span><span style="color:#75715e">--       **This is the challenging part**
+</span><span style="color:#75715e">--       Now that the data is imported, your database is a mess:
+</span><span style="color:#75715e">--       rows in table  `[B]` reference rows that do not exist anymore in table `[A]` !
+</span><span style="color:#75715e">--
+</span><span style="color:#75715e">--       Fix it with this script generator:
+</span><span style="color:#75715e">--       Warning: This works only if you don&#39;t have any composite keys,
+</span><span style="color:#75715e">--        which is most of the time the case.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39; DELETE FROM [&#39;</span> <span style="color:#f92672">+</span> OBJECT_NAME(f.parent_object_id) <span style="color:#f92672">+</span>
+	<span style="color:#e6db74">&#39;] WHERE &#39;</span> <span style="color:#f92672">+</span> COL_NAME(fc.parent_object_id, fc.parent_column_id) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; not in &#39;</span><span style="color:#f92672">+</span>
+	<span style="color:#e6db74">&#39; (select &#39;</span> <span style="color:#f92672">+</span> COL_NAME(fc.referenced_object_id, fc.referenced_column_id) <span style="color:#f92672">+</span>
+	<span style="color:#e6db74">&#39; from [&#39;</span> <span style="color:#f92672">+</span> OBJECT_NAME(f.referenced_object_id) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;])&#39;</span> <span style="color:#66d9ef">AS</span> Scripts
+<span style="color:#66d9ef">FROM</span>.sys.foreign_keys <span style="color:#66d9ef">AS</span> f
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span>.sys.foreign_key_columns <span style="color:#66d9ef">AS</span> fc <span style="color:#66d9ef">ON</span> f.OBJECT_ID <span style="color:#f92672">=</span> fc.constraint_object_id
+<span style="color:#75715e">-- the generated script must be run twice
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">-- Re-enable all constraints
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">EXEC</span> sp_msforeachtable 
+	<span style="color:#f92672">@</span>command1<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;print &#39;?&#39;&#34;</span>,
+	<span style="color:#f92672">@</span>command2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all&#34;</span>
+
+<span style="color:#75715e">-- if some of the tables have identity columns we may want to reseed them
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">EXEC</span> sp_msforeachtable <span style="color:#e6db74">&#34;DBCC CHECKIDENT ( &#39;?&#39;, RESEED)&#34;</span> 
+</code></pre></div><p>Done!</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Test doubles and mocks, dummies, stubs, spies, fakes - some vocabulary</title>
+            <link>http://andri.rocks/posts/2014-05-15-mocking-vocabulary/</link>
+            <pubDate>Thu, 15 May 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-05-15-mocking-vocabulary/</guid>
+            <description>A test double (or mock object) is an object that mimics the real object by reimplementing its members. It will be used during tests to isolate the domain/class to be tested.
+Test doubles can be categorized into 4 groups: Dummies, Stubs, Spies, Fakes.
+Dummies A dummy is a basic object whose methods always return the default value of a given type (null, 0, false, etc.).
+Build a dummy when the domain to be tested should never use it, but still requires it in the API.</description>
+            <content type="html"><![CDATA[<p>A test double (or mock object) is an object that mimics the real object by reimplementing its members. It will be used during tests to isolate the domain/class to be tested.</p>
+<p>Test doubles can be categorized into 4 groups: Dummies, Stubs, Spies, Fakes.</p>
+<h1 id="dummies">Dummies</h1>
+<p>A dummy is a basic object whose methods always return the default value of a given type (<code>null</code>, <code>0</code>, <code>false</code>, etc.).</p>
+<p>Build a dummy when the domain to be tested should never use it, but still requires it in the API.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MembershipManagerDummy</span> : IMembershipManager
+{
+	<span style="color:#66d9ef">public</span> User GetUser(<span style="color:#66d9ef">int</span> userId)
+	{
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+	}
+}
+</code></pre></div><blockquote>
+<p>instead of returning a default value, it is also common to <code>throw new NotImplementedException()</code></p>
+</blockquote>
+<h1 id="stubs">Stubs</h1>
+<p>A stub is a basic object whose methods always return the same constant value.</p>
+<p>Many stubs can be created in order to test different aspects of the domain to be tested.
+For example, one can create a stub <code>MembershipManagerStub_AlwaysReturnGeorge</code> and another stub <code>MembershipManagerStub_AlwaysReturnPatricia</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MembershipManagerStub_AlwaysReturnGeorge</span> : IMembershipManager
+{
+	<span style="color:#66d9ef">public</span> User GetUser(<span style="color:#66d9ef">int</span> userId)
+	{
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> User(){ FirstName=<span style="color:#e6db74">&#34;George&#34;</span>};
+	}
+}
+</code></pre></div><blockquote>
+<p>A dummy is a kind of stub that returns the type&rsquo;s default value</p>
+</blockquote>
+<h1 id="spies">Spies</h1>
+<p>A spy (aka verified mock) is a an object that tests and verifies how the domain uses the object. It tests the domain&rsquo;s <strong>behavior</strong> and is an assertion in itself.
+As such, a spy must keep track of all the expected calls and be able to check if it has been properly used.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MembershipManagerSpy</span> : IMembershipManager
+{
+	<span style="color:#66d9ef">int</span> GetUser_CallsCount = <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">public</span> User GetUser(<span style="color:#66d9ef">int</span> userId)
+	{
+		GetUser_CallsCount += <span style="color:#ae81ff">1</span>;
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> User(){ FirstName=<span style="color:#e6db74">&#34;George&#34;</span>};
+	}
+
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Verify()
+	{
+		<span style="color:#66d9ef">if</span>(GetUser_CallsCount!=<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> AssertionException(<span style="color:#e6db74">&#34;Wrong usage&#34;</span>);
+	}
+}
+</code></pre></div><blockquote>
+<p>A stub is a kind of spy that does not verify anything</p>
+</blockquote>
+<h1 id="fakes">Fakes</h1>
+<p>A fake implements a complex behavior, different from the object it is mocking.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MembershipManagerSpy</span> : IMembershipManager
+{
+	<span style="color:#66d9ef">public</span> User GetUser(<span style="color:#66d9ef">int</span> userId)
+	{
+		<span style="color:#66d9ef">if</span>(userId&lt;<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> ArgumentException();
+
+		<span style="color:#66d9ef">switch</span>(userId)
+		{
+			<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4</span>:
+				<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> User(){ FirstName=<span style="color:#e6db74">&#34;George&#34;</span>};
+			<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">5</span>:
+				<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> User(){ FirstName=<span style="color:#e6db74">&#34;Patricia&#34;</span>};
+			<span style="color:#66d9ef">default</span>:
+				<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+		}
+	}
+}
+</code></pre></div><blockquote>
+<p>A fake is neither a spy, nor a stub, nor a dummy.
+It just emulates the real object and provides a different (simpler) implementation.</p>
+</blockquote>
+<h1 id="mock-frameworks">Mock frameworks</h1>
+<p>Of course, you don&rsquo;t have to write any of these verbose code.</p>
+<p>You can build dummies, spies, stubs, fakes on the fly and in a few lines with mock frameworks (<code>Rhino.Mocks</code>, <code>Moq</code>, <code>NMock</code>, <code>FakeItEasy</code>, etc.)</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Definition of &#34;production-ready&#34;</title>
+            <link>http://andri.rocks/posts/2014-04-30-production-ready/</link>
+            <pubDate>Wed, 30 Apr 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-04-30-production-ready/</guid>
+            <description>Programmer&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs its design was well thought out it&amp;rsquo;s maintainable  Analyst&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it satisfies the project requirements  User&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it satisfies the his/her requirements  Operation and Support&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it&amp;rsquo;s stable it&amp;rsquo;s scalable it&amp;rsquo;s documented  Management&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it&amp;rsquo;ll turn a profit   Warning: this was a joke.</description>
+            <content type="html"><![CDATA[<p><strong>Programmer</strong>&rsquo;s definition of &ldquo;production-ready&rdquo;:</p>
+<ul>
+<li>it runs</li>
+<li>its design was well thought out</li>
+<li>it&rsquo;s maintainable</li>
+</ul>
+<p><strong>Analyst</strong>&rsquo;s definition of &ldquo;production-ready&rdquo;:</p>
+<ul>
+<li>it runs</li>
+<li>it satisfies the project requirements</li>
+</ul>
+<p><strong>User</strong>&rsquo;s definition of &ldquo;production-ready&rdquo;:</p>
+<ul>
+<li>it runs</li>
+<li>it satisfies the his/her requirements</li>
+</ul>
+<p><strong>Operation and Support</strong>&rsquo;s definition of &ldquo;production-ready&rdquo;:</p>
+<ul>
+<li>it runs</li>
+<li>it&rsquo;s stable</li>
+<li>it&rsquo;s scalable</li>
+<li>it&rsquo;s documented</li>
+</ul>
+<p><strong>Management</strong>&rsquo;s definition of &ldquo;production-ready&rdquo;:</p>
+<ul>
+<li><!-- raw HTML omitted -->it runs<!-- raw HTML omitted --></li>
+<li>it&rsquo;ll turn a profit</li>
+</ul>
+<blockquote>
+<p><strong>Warning</strong>: this was a joke. Well&hellip; not really.</p>
+</blockquote>
+<p><!-- raw HTML omitted -->OOps&hellip; somebody forgot security<!-- raw HTML omitted --></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>F# as a testing tool</title>
+            <link>http://andri.rocks/posts/2014-04-24-f-testing-tools/</link>
+            <pubDate>Thu, 24 Apr 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-04-24-f-testing-tools/</guid>
+            <description>F# as a language has many features that makes writing test easier and faster compared to other .NET languages. Most of the time, if I really have to write C# code (which I rarely do now), I usually end up writing the test cases with F# because its much more productive.
+Test frameworks xUnit is the most adapted test framework because it accepts static classes/methods as test fixtures (F# modules are compiled as static classes).</description>
+            <content type="html"><![CDATA[<p>F# as a language has many features that makes writing test easier and faster compared to other .NET languages.
+Most of the time, if I really have to write C# code (which I rarely do now), I usually end up writing the test cases with F# because its much more productive.</p>
+<h1 id="test-frameworks">Test frameworks</h1>
+<p><strong><a href="https://github.com/xunit/xunit">xUnit</a></strong> is the most adapted test framework because it accepts static classes/methods as test fixtures (F# modules are compiled as static classes). In the beginning, I found that the absence of <code>[TestFixture]</code>or <code>[TestClass]</code> was counterproductive but it is actually a good thing: it forces you to never use a context outside of the function and prevents problems caused by mutiple test threads concurrency.</p>
+<h1 id="why-f-is-better-than-c-at-least-for-tests">Why F# is better than C# (at least for tests)</h1>
+<h2 id="write-unit-testable-code">Write unit-testable code</h2>
+<p>F# is a functional language. Consequently, most functions in a well written code in F# is unit-testable out-of-the-box. Your code (well&hellip; most of it) should be stateless.</p>
+<p>Because F# must be compatible with the .NET  CLI and runtime, it is not a pure functional language, so it&rsquo;s still possible to create an ugly stateful program with a lot of mutable variables (But thanks to the language syntax, you probably won&rsquo;t).</p>
+<h2 id="readable-function-names">Readable function names</h2>
+<p>Member names in F# accept any character (including punctuation and spaces). You don&rsquo;t need to add a test description anymore: your test method name fully describes what the test tries to validate.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#66d9ef">module</span> ``User visits the Homepage`` <span style="color:#f92672">=</span>
+	<span style="color:#66d9ef">let</span> <span style="color:#f92672">[&lt;</span>Fact<span style="color:#f92672">&gt;]</span> ``Show list of Stories in rank order`` <span style="color:#f92672">=</span>
+		raise <span style="color:#f92672">(</span>NotImplementedException()<span style="color:#f92672">)</span>
+</code></pre></div><p>The equivalent in <a href="https://gist.github.com/andriniaina/11304542#file-visithomepage-cs"><strong>C#</strong></a> takes 2x more lines with</p>
+<ul>
+<li>code attributes that clutters the code</li>
+<li>LongFunctionNamesThatAreNotFriendly()</li>
+</ul>
+<h2 id="test-specific-languages-dsls">Test specific languages (DSLs)</h2>
+<p><a href="http://fstest.codeplex.com/">FsTest</a> and <a href="https://github.com/fsharp/fsunit">FsUnit</a> are wrappers around the popular tests frameworks (including xUnit) that let you write your assertions in a DSL specific to testing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp">1 <span style="color:#f92672">|&gt;</span> should equal 1
+<span style="color:#e6db74">&#34;foobar&#34;</span> <span style="color:#f92672">|&gt;</span> should contain <span style="color:#e6db74">&#34;foo&#34;</span>
+</code></pre></div><h2 id="mock-specific-languages">Mock specific languages</h2>
+<p>In the same way, <a href="https://github.com/andriniaina/FsMocks">FsMocks</a> is a wrapper around Rhino.Mocks  (not threadsafe)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp">o<span style="color:#f92672">.</span>Call<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> returns 1 <span style="color:#f92672">|&gt;</span> only_if_argument <span style="color:#f92672">[</span>Is.NotNull()<span style="color:#f92672">]</span> <span style="color:#f92672">|&gt;</span> expected at_least_once
+</code></pre></div><p><a href="https://foq.codeplex.com/">Foq</a> is a threadsafe mocking library for F#, but without the fancy DSL language.</p>
+<h2 id="create-stubs-on-the-fly">Create stubs on the fly</h2>
+<p><a href="http://msdn.microsoft.com/en-us/library/dd233237.aspx">F# Object Expressions</a> creates a new anonymous instance of an interface, without the need to declare a new class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#66d9ef">let</span> myComparer <span style="color:#f92672">=</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">new</span> IComparer<span style="color:#f92672">&lt;_&gt;</span> <span style="color:#66d9ef">with</span> <span style="color:#66d9ef">member</span> x.<span style="color:#a6e22e">Compare</span><span style="color:#f92672">(</span>l<span style="color:#f92672">,</span>r<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1 <span style="color:#f92672">}</span>
+</code></pre></div><h2 id="interactive-testing">Interactive testing</h2>
+<p>If your code is well written (i.e. without complicated dependecies or unnecessary injections), you can test and prototype directly your program in Visual Studio with the interactive F# interpreter.</p>
+<h2 id="test-without-writing-any-test-case">Test without writing any test case</h2>
+<p>Well&hellip; not really but almost. <a href="https://github.com/fsharp/FsCheck">FsCheck</a> is a tool for testing .NET programs automatically.</p>
+<blockquote>
+<p>The programmer provides a specification of the program, in the form of properties which functions, methods or objects should satisfy, and FsCheck then tests that the properties hold in a large number of randomly generated cases.</p>
+</blockquote>
+<p>Read the <a href="https://github.com/fsharp/FsCheck/blob/master/Docs/Documentation.md">documentation</a> to understand how powerful it is for some test cases.</p>
+<h2 id="behaviour-driven-development">Behaviour Driven Development</h2>
+<p><a href="http://tickspec.codeplex.com/">TickSpec</a> is a lightweight framework with its own Gherkin interpreter.
+Combined with the power of F# and backticks, it simplifies the steps implementation:</p>
+<pre><code>Scenario 1: Refunded items should be returned to stock
+	Given a customer buys a black jumper
+	And I have 3 black jumpers left in stock 
+	When he returns the jumper for a refund 
+	Then I should have 4 black jumpers in stock 
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// a step definition
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#f92672">[&lt;</span>Given<span style="color:#f92672">&gt;]</span> ``I have (.*) black jumpers left in stock`` <span style="color:#f92672">(</span>n<span style="color:#f92672">:</span>int<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>  
+    stockItem <span style="color:#f92672">&lt;-</span> <span style="color:#f92672">{</span> stockItem <span style="color:#66d9ef">with</span> Count <span style="color:#f92672">=</span> n <span style="color:#f92672">}</span>
+</code></pre></div><p>Phil describes on <a href="http://trelford.com/blog/post/FunkyBDD.aspx">his blog</a> how to make it simpler (if your team has only programmers (who understand F#)), in a more functional manner &ndash; without mutable state variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#66d9ef">let</span> performStep <span style="color:#f92672">(</span>calc<span style="color:#f92672">:</span>Calculator<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>step<span style="color:#f92672">,</span>line<span style="color:#f92672">:</span>LineSource<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>
+    <span style="color:#66d9ef">match</span> step <span style="color:#66d9ef">with</span>
+    <span style="color:#f92672">|</span> Given <span style="color:#e6db74">&#34;I have entered (.*) into the calculator&#34;</span> <span style="color:#f92672">[</span>Int n<span style="color:#f92672">]</span> <span style="color:#f92672">-&gt;</span>
+        calc<span style="color:#f92672">.</span>Push n                        
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Mocking objects with F# and FsMocks</title>
+            <link>http://andri.rocks/posts/2014-04-16-mocking-in-f/</link>
+            <pubDate>Wed, 16 Apr 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-04-16-mocking-in-f/</guid>
+            <description>FsMocks is a wrapper around Rhino.Mocks that simplifies mocking with F#. The API is simple and straightforward because it uses a human-friendly DSL syntax. It can be combined with other test frameworks (NUnit, xUnit, FsUnit, etc.).
+It is intended to be readable, simple to use, strong typed (and refactor-friendly):
+o.Call(1) |&amp;gt; returns 1 |&amp;gt; only_if_argument [Is.NotNull()] |&amp;gt; expected at_least_once Below, I show FsMocks&amp;rsquo; syntax, compared to traditional Rhino/Moq/C# mocks.
+We suppose that we work with the MyService class here</description>
+            <content type="html"><![CDATA[<p><a href="https://github.com/andriniaina/FsMocks">FsMocks</a> is a wrapper around <a href="http://ayende.com/wiki/Rhino+Mocks+Documentation.ashx">Rhino.Mocks</a> that simplifies <a href="http://en.wikipedia.org/wiki/Mock_object">mocking</a> with F#. The API is simple and straightforward because it uses a human-friendly DSL syntax. It can be combined with other test frameworks (NUnit, xUnit, FsUnit, etc.).<br>
+It is intended to be readable, simple to use, strong typed (and refactor-friendly):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp">o<span style="color:#f92672">.</span>Call<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> returns 1 <span style="color:#f92672">|&gt;</span> only_if_argument <span style="color:#f92672">[</span>Is.NotNull()<span style="color:#f92672">]</span> <span style="color:#f92672">|&gt;</span> expected at_least_once
+</code></pre></div><p>Below, I show FsMocks&rsquo; syntax, compared to traditional Rhino/Moq/C# mocks.</p>
+<p>We suppose that we work with the <a href="https://gist.github.com/andriniaina/10923310">MyService class here</a></p>
+<h1 id="specifying-mock-behavior-via-simple-declarative-specifications">Specifying mock behavior via simple declarative specifications</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#66d9ef">module</span> myTests <span style="color:#f92672">=</span>
+    <span style="color:#66d9ef">open</span> FsMocks.Syntax
+
+    <span style="color:#f92672">[&lt;</span>Xunit.Fact<span style="color:#f92672">&gt;]</span>
+    <span style="color:#66d9ef">let</span> ``When MyService Builds Int 9999, we should write &#34;Wrote int: 9999&#34; in the text writer`` () <span style="color:#f92672">=</span>
+        <span style="color:#66d9ef">use</span> repo <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FsMockRepository()
+        <span style="color:#66d9ef">let</span> writer<span style="color:#f92672">:</span>ITextWriter <span style="color:#f92672">=</span> repo<span style="color:#f92672">.</span>strict []
+
+        repo<span style="color:#f92672">.</span>define Unordered <span style="color:#f92672">{</span>
+            writer<span style="color:#f92672">.</span>WriteLine<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Wrote int: 9999&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> returns <span style="color:#66d9ef">true</span> <span style="color:#f92672">|&gt;</span> expected once
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">let</span> service <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyService<span style="color:#f92672">(</span>writer<span style="color:#f92672">)</span>
+        service<span style="color:#f92672">.</span>BuildInt<span style="color:#f92672">(</span>9999<span style="color:#f92672">)</span>
+</code></pre></div><p>That&rsquo;s it!! You can compare with the with the <a href="https://gist.github.com/andriniaina/10933483">equivalent C# code</a></p>
+<ul>
+<li>no ReplayAll()</li>
+<li>no VerifyAll() because it is always systematically called</li>
+<li>no unreadable method names and no <code>DisplayName</code> attribute parameters</li>
+<li>no clutered lambdas</li>
+</ul>
+<p>Now, compare this <a href="https://gist.github.com/andriniaina/10933673">trivial test in C#</a>
+with this one in F# :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp">    <span style="color:#66d9ef">let</span> <span style="color:#f92672">[&lt;</span>Fact<span style="color:#f92672">&gt;]</span> ``1) 2 Ordered nested in 1 Unordered``() <span style="color:#f92672">=</span>
+        <span style="color:#66d9ef">use</span> mock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FsMockRepository()
+        <span style="color:#66d9ef">let</span> list<span style="color:#f92672">:</span>int IList <span style="color:#f92672">=</span> mock<span style="color:#f92672">.</span>strict []
+        mock<span style="color:#f92672">.</span>define Unordered <span style="color:#f92672">{</span>
+            mock<span style="color:#f92672">.</span>define Ordered <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> expected once
+                <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> expected once
+            <span style="color:#f92672">}</span>
+            mock<span style="color:#f92672">.</span>define Ordered <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> expected once
+                <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> expected once
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+</code></pre></div><h2 id="documentation">Documentation</h2>
+<p>You can find more info on the <a href="https://github.com/andriniaina/FsMocks">FsMocks</a> homepage.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Solving a problem with various languages</title>
+            <link>http://andri.rocks/posts/2014-04-15-project-euler/</link>
+            <pubDate>Tue, 15 Apr 2014 00:00:00 +0000</pubDate>
+            
+            <guid>http://andri.rocks/posts/2014-04-15-project-euler/</guid>
+            <description>The idea of the following posts are to show the differences and strength of different languages (elegance, readability, conciseness).
+I will try to use my best syntax for each language but you will notice that I am most of time biased towards concise languages like F# or python :)
+I will regularly update the post with different problems.
+Project Euler problem 1  If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.</description>
+            <content type="html"><![CDATA[<p>The idea of the following posts are to show the differences and strength of different languages (elegance, readability, conciseness).</p>
+<p>I will try to use my best syntax for each language  but you will notice that I am most of time biased towards concise languages like F# or python :)</p>
+<p>I will regularly update the post with different problems.</p>
+<h1 id="project-euler-problem-1httpprojecteulernetproblem1">Project Euler <a href="http://projecteuler.net/problem=1">problem 1</a></h1>
+<blockquote>
+<p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
+<p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
+</blockquote>
+<h2 id="f">F#</h2>
+<p>It&rsquo;s the most concise language I know.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#66d9ef">let</span> isMultipleOf n i <span style="color:#f92672">=</span> i <span style="color:#f92672">%</span> n <span style="color:#f92672">=</span> 0
+<span style="color:#66d9ef">let</span> isMultipleOf3or5 i <span style="color:#f92672">=</span> isMultipleOf 3 i <span style="color:#f92672">||</span> isMultipleOf 5 i
+
+seq <span style="color:#f92672">{</span>1<span style="color:#f92672">..</span>999<span style="color:#f92672">}</span>
+	<span style="color:#f92672">|&gt;</span> Seq.filter isMultipleOf3or5
+	<span style="color:#f92672">|&gt;</span> Seq.sum
+</code></pre></div><p>So elegant!
+Note that we could have defined curried versions of <code>isMultipleOf</code> by writing: <code>let isMultipleOf3 = isMultipleOf 3</code></p>
+<h2 id="python">Python</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">isMultipleOf</span> (n,i): <span style="color:#66d9ef">return</span> i <span style="color:#f92672">%</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">isMultipleOf3or5</span> (i): <span style="color:#66d9ef">return</span> isMultipleOf(<span style="color:#ae81ff">3</span>,i) <span style="color:#f92672">||</span> isMultipleOf(<span style="color:#ae81ff">5</span>,i)
+
+sum(filter(isMultipleOf3or5, range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1000</span>)))
+<span style="color:#75715e"># range(1, 1000) does not include 1000. How odd.</span>
+</code></pre></div><p>Without F#&rsquo;s <code>|&gt;</code> operator that inverts the position of the argument and the function, and therefore lets you read from left to right, it&rsquo;s less natural in my opinion. But it&rsquo;s still readable.</p>
+<h2 id="c">C#</h2>
+<p>Still elegant thanks to Linq but so verbose&hellip; You can see why I prefer to use other .NET languages when I have the choice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">static</span> IEnumerable&lt;<span style="color:#66d9ef">int</span>&gt; numbersTo(<span style="color:#66d9ef">int</span> n)
+{
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> i = <span style="color:#ae81ff">0</span>; i &lt; n; ++i )
+		<span style="color:#66d9ef">yield</span> <span style="color:#66d9ef">return</span> i;
+}
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> isMultipleOf(<span style="color:#66d9ef">int</span> n, <span style="color:#66d9ef">int</span> i)
+{
+	<span style="color:#66d9ef">return</span> i % n == <span style="color:#ae81ff">0</span>;
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args)
+{
+	<span style="color:#75715e">// using the simpler &#34;functional&#34; style instead of imperative code
+</span><span style="color:#75715e"></span>	(
+		<span style="color:#66d9ef">from</span> n <span style="color:#66d9ef">in</span> numbersTo(<span style="color:#ae81ff">1000</span>)
+		<span style="color:#66d9ef">where</span> isMultipleOf(<span style="color:#ae81ff">3</span>, n) || isMultipleOf(<span style="color:#ae81ff">5</span>, n)
+		<span style="color:#66d9ef">select</span> n
+	)
+	.Sum();
+}
+</code></pre></div><p>So; many; lines; of; code;</p>
+<p>At least you don&rsquo;t have to write imperative-style code like in javascript:</p>
+<h2 id="javascript">javascript</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isMultipleOf</span>(<span style="color:#a6e22e">n</span>,<span style="color:#a6e22e">i</span>) {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">%</span><span style="color:#a6e22e">n</span><span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+}
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sum</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1000</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>)
+{
+	<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">isMultipleOf</span>(<span style="color:#ae81ff">3</span>,<span style="color:#a6e22e">i</span>) <span style="color:#f92672">||</span> <span style="color:#a6e22e">isMultipleOf</span>(<span style="color:#ae81ff">5</span>,<span style="color:#a6e22e">i</span>))
+	{
+		<span style="color:#a6e22e">sum</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">i</span>;
+	}
+}
+</code></pre></div><p>After having practiced F# these last years, I really miss the functional helpers like filter/map/reduce. Also, there seem to be so many ways to introduce bugs just because of the language:
+(mutable <code>sum</code> variable,  manual imperative loops, weak typing, no compilation and therefore no type checking, &hellip;)</p>
+<p>I really like javascript but to be honest it&rsquo;s maybe the worst language for algorithms (<a href="http://www.typescriptlang.org/">typescript</a> solves some of its problems)&hellip;
+Even C++ seems better:</p>
+<h2 id="c-1">C++</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">isMultipleOf</span>(<span style="color:#66d9ef">int</span> n, <span style="color:#66d9ef">int</span> i)
+{
+	<span style="color:#66d9ef">return</span> i<span style="color:#f92672">%</span>n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">_tmain</span>(<span style="color:#66d9ef">int</span> argc, _TCHAR<span style="color:#f92672">*</span> argv[])
+{
+	<span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1000</span>; i<span style="color:#f92672">++</span>)
+	{
+		<span style="color:#66d9ef">if</span> (isMultipleOf(<span style="color:#ae81ff">3</span>, i) <span style="color:#f92672">||</span> isMultipleOf(<span style="color:#ae81ff">5</span>, i))
+		{
+			sum <span style="color:#f92672">+=</span> i;
+		}
+	}
+}
+</code></pre></div><p>Mandatory type declarations, imperative programming, no simple way to define sequences/enumerables, &hellip;</p>
+<p>Fortunately, it&rsquo;s compiled and statically typed</p>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>

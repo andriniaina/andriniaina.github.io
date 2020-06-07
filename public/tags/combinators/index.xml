@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>combinators on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/combinators/</link>
+    <description>Recent content in combinators on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 27 Nov 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/combinators/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Combine/Permutate a list of list in F#</title>
+      <link>http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/</link>
+      <pubDate>Fri, 27 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2015-11-27-list-of-list-combinators-fsharp-f/</guid>
+      <description>Problem Given the following data :
+[ [&amp;#34;1&amp;#34;;&amp;#34;2&amp;#34;]; []; [&amp;#34;5&amp;#34;;&amp;#34;6&amp;#34;;&amp;#34;7&amp;#34;] ] Find all possible combinations.
+Solution let rec _combine (acc:&amp;#39;T list) (ll: &amp;#39;T list list) : &amp;#39;T list list = match ll with | [] -&amp;gt; [acc] | heads :: rest -&amp;gt; match heads with | [] -&amp;gt; _combine (null::acc) (rest) | _ -&amp;gt; heads |&amp;gt; List.collect (fun h -&amp;gt; _combine (h :: acc) (rest)) let combine (ll:&amp;#39;T list list) : &amp;#39;T list list = _combine [] ll |&amp;gt; List.</description>
+    </item>
+    
+  </channel>
+</rss>

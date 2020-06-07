@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>csharp on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/csharp/</link>
+    <description>Recent content in csharp on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 13 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/csharp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Async/Await easy cancellation in c#</title>
+      <link>http://andri.rocks/posts/2019-04-13-cancel-after/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2019-04-13-cancel-after/</guid>
+      <description>I am not the original author of this extension
+ Usage await ATask().CancelAfter(2000); Code public static class TaskCancellationExtension { /// &amp;lt;summary&amp;gt;  /// add cancellation functionality to Task&amp;lt;T&amp;gt;  /// &amp;lt;/summary&amp;gt;  /// &amp;lt;param name=&amp;#34;task&amp;#34;&amp;gt;&amp;lt;/param&amp;gt;  /// &amp;lt;param name=&amp;#34;cancellationToken&amp;#34;&amp;gt;&amp;lt;/param&amp;gt;  /// &amp;lt;typeparam name=&amp;#34;T&amp;#34;&amp;gt;&amp;lt;/typeparam&amp;gt;  /// &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;  /// &amp;lt;exception cref=&amp;#34;OperationCanceledException&amp;#34;&amp;gt;&amp;lt;/exception&amp;gt;  public static async Task&amp;lt;T&amp;gt; CancelAfter&amp;lt;T&amp;gt;( this Task&amp;lt;T&amp;gt; task, CancellationToken cancellationToken) { var tcs = new TaskCompletionSource&amp;lt;bool&amp;gt;(); using (cancellationToken.Register( s =&amp;gt; ((TaskCompletionSource&amp;lt;bool&amp;gt;) s).</description>
+    </item>
+    
+  </channel>
+</rss>

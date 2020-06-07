@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>software quality on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/software-quality/</link>
+    <description>Recent content in software quality on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 30 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/software-quality/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Definition of &#34;production-ready&#34;</title>
+      <link>http://andri.rocks/posts/2014-04-30-production-ready/</link>
+      <pubDate>Wed, 30 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-04-30-production-ready/</guid>
+      <description>Programmer&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs its design was well thought out it&amp;rsquo;s maintainable  Analyst&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it satisfies the project requirements  User&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it satisfies the his/her requirements  Operation and Support&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it&amp;rsquo;s stable it&amp;rsquo;s scalable it&amp;rsquo;s documented  Management&amp;rsquo;s definition of &amp;ldquo;production-ready&amp;rdquo;:
+ it runs it&amp;rsquo;ll turn a profit   Warning: this was a joke.</description>
+    </item>
+    
+  </channel>
+</rss>

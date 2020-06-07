@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="FsMocks is a wrapper around Rhino.Mocks that simplifies mocking with F#. The API is simple and straightforward because it uses a human-friendly DSL syntax. It can be combined with other test frameworks (NUnit, xUnit, FsUnit, etc.).
+It is intended to be readable, simple to use, strong typed (and refactor-friendly):
+o.Call(1) |&amp;gt; returns 1 |&amp;gt; only_if_argument [Is.NotNull()] |&amp;gt; expected at_least_once Below, I show FsMocks&amp;rsquo; syntax, compared to traditional Rhino/Moq/C# mocks.
+We suppose that we work with the MyService class here" />
+<meta name="keywords" content=", testing, EN" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://andri.rocks/posts/2014-04-16-mocking-in-f/" />
+
+
+    <title>
+        
+            Mocking objects with F# and FsMocks :: Andri Rakotomalala  — Exercices de style
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4d47f42ed7664c4ff52d3035fb624de3131ad1179b4c29db606e5997ef525366.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Mocking objects with F# and FsMocks">
+<meta itemprop="description" content="FsMocks is a wrapper around Rhino.Mocks that simplifies mocking with F#. The API is simple and straightforward because it uses a human-friendly DSL syntax. It can be combined with other test frameworks (NUnit, xUnit, FsUnit, etc.).
+It is intended to be readable, simple to use, strong typed (and refactor-friendly):
+o.Call(1) |&gt; returns 1 |&gt; only_if_argument [Is.NotNull()] |&gt; expected at_least_once Below, I show FsMocks&rsquo; syntax, compared to traditional Rhino/Moq/C# mocks.
+We suppose that we work with the MyService class here">
+<meta itemprop="datePublished" content="2014-04-16T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2014-04-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="249">
+<meta itemprop="image" content="http://andri.rocks"/>
+
+
+
+<meta itemprop="keywords" content="testing,EN," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://andri.rocks"/>
+
+<meta name="twitter:title" content="Mocking objects with F# and FsMocks"/>
+<meta name="twitter:description" content="FsMocks is a wrapper around Rhino.Mocks that simplifies mocking with F#. The API is simple and straightforward because it uses a human-friendly DSL syntax. It can be combined with other test frameworks (NUnit, xUnit, FsUnit, etc.).
+It is intended to be readable, simple to use, strong typed (and refactor-friendly):
+o.Call(1) |&gt; returns 1 |&gt; only_if_argument [Is.NotNull()] |&gt; expected at_least_once Below, I show FsMocks&rsquo; syntax, compared to traditional Rhino/Moq/C# mocks.
+We suppose that we work with the MyService class here"/>
+
+
+
+    <meta property="og:title" content="Mocking objects with F# and FsMocks" />
+<meta property="og:description" content="FsMocks is a wrapper around Rhino.Mocks that simplifies mocking with F#. The API is simple and straightforward because it uses a human-friendly DSL syntax. It can be combined with other test frameworks (NUnit, xUnit, FsUnit, etc.).
+It is intended to be readable, simple to use, strong typed (and refactor-friendly):
+o.Call(1) |&gt; returns 1 |&gt; only_if_argument [Is.NotNull()] |&gt; expected at_least_once Below, I show FsMocks&rsquo; syntax, compared to traditional Rhino/Moq/C# mocks.
+We suppose that we work with the MyService class here" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://andri.rocks/posts/2014-04-16-mocking-in-f/" />
+<meta property="og:image" content="http://andri.rocks"/>
+<meta property="article:published_time" content="2014-04-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-04-16T00:00:00+00:00" /><meta property="og:site_name" content="Andri Rakotomalala" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2014-04-16 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+        <span class="logo__mark">~</span>
+        <span class="logo__text" style="white-space: nowrap; text-overflow: ellipsis; max-width: 30em; overflow: hidden;">andri.rocks://posts/2014-04-16-mocking-in-f/</span>
+        <span class="logo__text">&gt;</span>
+        <span class="logo__cursor" style="
+                   
+                   ">
+            </span> 
+    </div>
+</a>
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://andri.rocks/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>2 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://andri.rocks/posts/2014-04-16-mocking-in-f/">Mocking objects with F# and FsMocks</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p><a href="https://github.com/andriniaina/FsMocks">FsMocks</a> is a wrapper around <a href="http://ayende.com/wiki/Rhino+Mocks+Documentation.ashx">Rhino.Mocks</a> that simplifies <a href="http://en.wikipedia.org/wiki/Mock_object">mocking</a> with F#. The API is simple and straightforward because it uses a human-friendly DSL syntax. It can be combined with other test frameworks (NUnit, xUnit, FsUnit, etc.).<br>
+It is intended to be readable, simple to use, strong typed (and refactor-friendly):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp">o<span style="color:#f92672">.</span>Call<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> returns 1 <span style="color:#f92672">|&gt;</span> only_if_argument <span style="color:#f92672">[</span>Is.NotNull()<span style="color:#f92672">]</span> <span style="color:#f92672">|&gt;</span> expected at_least_once
+</code></pre></div><p>Below, I show FsMocks&rsquo; syntax, compared to traditional Rhino/Moq/C# mocks.</p>
+<p>We suppose that we work with the <a href="https://gist.github.com/andriniaina/10923310">MyService class here</a></p>
+<h1 id="specifying-mock-behavior-via-simple-declarative-specifications">Specifying mock behavior via simple declarative specifications</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#66d9ef">module</span> myTests <span style="color:#f92672">=</span>
+    <span style="color:#66d9ef">open</span> FsMocks.Syntax
+
+    <span style="color:#f92672">[&lt;</span>Xunit.Fact<span style="color:#f92672">&gt;]</span>
+    <span style="color:#66d9ef">let</span> ``When MyService Builds Int 9999, we should write &#34;Wrote int: 9999&#34; in the text writer`` () <span style="color:#f92672">=</span>
+        <span style="color:#66d9ef">use</span> repo <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FsMockRepository()
+        <span style="color:#66d9ef">let</span> writer<span style="color:#f92672">:</span>ITextWriter <span style="color:#f92672">=</span> repo<span style="color:#f92672">.</span>strict []
+
+        repo<span style="color:#f92672">.</span>define Unordered <span style="color:#f92672">{</span>
+            writer<span style="color:#f92672">.</span>WriteLine<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Wrote int: 9999&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> returns <span style="color:#66d9ef">true</span> <span style="color:#f92672">|&gt;</span> expected once
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">let</span> service <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyService<span style="color:#f92672">(</span>writer<span style="color:#f92672">)</span>
+        service<span style="color:#f92672">.</span>BuildInt<span style="color:#f92672">(</span>9999<span style="color:#f92672">)</span>
+</code></pre></div><p>That&rsquo;s it!! You can compare with the with the <a href="https://gist.github.com/andriniaina/10933483">equivalent C# code</a></p>
+<ul>
+<li>no ReplayAll()</li>
+<li>no VerifyAll() because it is always systematically called</li>
+<li>no unreadable method names and no <code>DisplayName</code> attribute parameters</li>
+<li>no clutered lambdas</li>
+</ul>
+<p>Now, compare this <a href="https://gist.github.com/andriniaina/10933673">trivial test in C#</a>
+with this one in F# :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp">    <span style="color:#66d9ef">let</span> <span style="color:#f92672">[&lt;</span>Fact<span style="color:#f92672">&gt;]</span> ``1) 2 Ordered nested in 1 Unordered``() <span style="color:#f92672">=</span>
+        <span style="color:#66d9ef">use</span> mock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FsMockRepository()
+        <span style="color:#66d9ef">let</span> list<span style="color:#f92672">:</span>int IList <span style="color:#f92672">=</span> mock<span style="color:#f92672">.</span>strict []
+        mock<span style="color:#f92672">.</span>define Unordered <span style="color:#f92672">{</span>
+            mock<span style="color:#f92672">.</span>define Ordered <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> expected once
+                <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> expected once
+            <span style="color:#f92672">}</span>
+            mock<span style="color:#f92672">.</span>define Ordered <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> expected once
+                <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> expected once
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">list</span><span style="color:#f92672">.</span>Add<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
+</code></pre></div><h2 id="documentation">Documentation</h2>
+<p>You can find more info on the <a href="https://github.com/andriniaina/FsMocks">FsMocks</a> homepage.</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://andri.rocks/tags/testing">testing</a></span><span class="tag"><a href="http://andri.rocks/tags/en">EN</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>249 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2014-04-16 02:00 &#43;0200</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Read other posts</span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="http://andri.rocks/posts/2014-04-24-f-testing-tools/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">F# as a testing tool</span>
+                            </a>
+                        </span>
+                    
+
+                    
+                        <span class="button next">
+                            <a href="http://andri.rocks/posts/2014-04-15-project-euler/">
+                                <span class="button__text">Solving a problem with various languages</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>  
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span> 
+            <span> <a href="http://andri.rocks/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    
+</footer>
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

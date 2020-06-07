@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>type provider on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/type-provider/</link>
+    <description>Recent content in type provider on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 06 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/type-provider/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Type provider for command-line arguments (WIP)</title>
+      <link>http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/</link>
+      <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2016-05-06-command-line-args-type-provider/</guid>
+      <description>Usage // set all possible switches // switches are all optional and unordered type CustomArgsParser = Andri.TypeProviders.CliParametersParser&amp;lt;&amp;#34;-switch2 -a -b -c&amp;#34;&amp;gt; [&amp;lt;EntryPoint&amp;gt;] let main args = let parsedArgs = CustomArgsParser(args) printfn &amp;#34;switch2: %s&amp;#34; (parsedArgs.switch2) // displays Option&amp;lt;string&amp;gt; = Some &amp;#34;11&amp;#34; myApp.exe -switch2 11 -b Source namespace Andri open System open System.Reflection open Microsoft.FSharp.Core.CompilerServices open Microsoft.FSharp.Quotations open Samples.FSharp.ProvidedTypes module utils = let argsToDict (args:string list) = Seq.append args ([&amp;#34;&amp;#34;]) |&amp;gt; Seq.pairwise |&amp;gt; Seq.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>testing on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/testing/</link>
+    <description>Recent content in testing on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 15 May 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Test doubles and mocks, dummies, stubs, spies, fakes - some vocabulary</title>
+      <link>http://andri.rocks/posts/2014-05-15-mocking-vocabulary/</link>
+      <pubDate>Thu, 15 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-05-15-mocking-vocabulary/</guid>
+      <description>A test double (or mock object) is an object that mimics the real object by reimplementing its members. It will be used during tests to isolate the domain/class to be tested.
+Test doubles can be categorized into 4 groups: Dummies, Stubs, Spies, Fakes.
+Dummies A dummy is a basic object whose methods always return the default value of a given type (null, 0, false, etc.).
+Build a dummy when the domain to be tested should never use it, but still requires it in the API.</description>
+    </item>
+    
+    <item>
+      <title>F# as a testing tool</title>
+      <link>http://andri.rocks/posts/2014-04-24-f-testing-tools/</link>
+      <pubDate>Thu, 24 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-04-24-f-testing-tools/</guid>
+      <description>F# as a language has many features that makes writing test easier and faster compared to other .NET languages. Most of the time, if I really have to write C# code (which I rarely do now), I usually end up writing the test cases with F# because its much more productive.
+Test frameworks xUnit is the most adapted test framework because it accepts static classes/methods as test fixtures (F# modules are compiled as static classes).</description>
+    </item>
+    
+    <item>
+      <title>Mocking objects with F# and FsMocks</title>
+      <link>http://andri.rocks/posts/2014-04-16-mocking-in-f/</link>
+      <pubDate>Wed, 16 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2014-04-16-mocking-in-f/</guid>
+      <description>FsMocks is a wrapper around Rhino.Mocks that simplifies mocking with F#. The API is simple and straightforward because it uses a human-friendly DSL syntax. It can be combined with other test frameworks (NUnit, xUnit, FsUnit, etc.).
+It is intended to be readable, simple to use, strong typed (and refactor-friendly):
+o.Call(1) |&amp;gt; returns 1 |&amp;gt; only_if_argument [Is.NotNull()] |&amp;gt; expected at_least_once Below, I show FsMocks&amp;rsquo; syntax, compared to traditional Rhino/Moq/C# mocks.
+We suppose that we work with the MyService class here</description>
+    </item>
+    
+  </channel>
+</rss>

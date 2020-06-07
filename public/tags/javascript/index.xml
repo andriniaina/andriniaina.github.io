@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/javascript/</link>
+    <description>Recent content in javascript on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 17 Dec 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Javascript (ECMAScript) in 30 minutes</title>
+      <link>http://andri.rocks/posts/2015-12-17-javascript-ecmascript-in-30-minutes/</link>
+      <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://andri.rocks/posts/2015-12-17-javascript-ecmascript-in-30-minutes/</guid>
+      <description>Simple values 155 10.23 true false &amp;#39;test&amp;#39; &amp;#34;test&amp;#34; null undefined NaN // 0/0 Not a Number Infinity // 1/0 // array declaration [1,2,3,4] // anonymous object declaration with properties firstName and surname {firstName:&amp;#39;John&amp;#39;, surname:&amp;#39;Doe&amp;#39;} Basic syntax doStuff(); // Statements **can** be terminated by ; doStuff() // or not...  // variable declaration var a = 1; var a=1, b=2, c=3; // multiple declarations  // a variable can be initialized without a declaration!</description>
+    </item>
+    
+  </channel>
+</rss>
