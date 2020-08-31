@@ -6,8 +6,272 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sat, 13 Apr 2019 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Mon, 31 Aug 2020 12:36:40 +0200</lastBuildDate>
         <atom:link href="http://andri.rocks/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Data science basics</title>
+            <link>http://andri.rocks/posts/2020-08-31-ds-basics/</link>
+            <pubDate>Mon, 31 Aug 2020 12:36:40 +0200</pubDate>
+            
+            <guid>http://andri.rocks/posts/2020-08-31-ds-basics/</guid>
+            <description>Exploring data Analyse distribution  df[&#39;Grade&#39;].describe(): if mean==median, then try normal distribution vizualize distribution: plt.hist(df[&#39;Grade&#39;]) &amp;amp; plt.boxplot(df[&#39;Grade&#39;], vert=False) df_students[&#39;Grade&#39;] : directly compute density graph (smoothed distribution)  Regression  for each dimension: analyse distribution, draw histograms, boxplots clean NaN data: .isnull() use sklearn.pipeline.Pipeline to  normalize, e.g. StandardScaler() encode categorical data: OneHotEncoder()   compute correlation of dimension vs feature  pandas corr(): bike_data[dimension].corr(bike_data[feature]) vizualise possible linear correlation: plt.scatter(x=feature, y=label) for a given dimension, display boxplot for each dimension value:  for col in categorical_features: fig = plt.</description>
+            <content type="html"><![CDATA[<h1 id="exploring-data">Exploring data</h1>
+<h2 id="analyse-distribution">Analyse distribution</h2>
+<ol>
+<li><code>df['Grade'].describe()</code>: if mean==median, then try normal distribution</li>
+<li>vizualize distribution: <code>plt.hist(df['Grade'])</code> &amp; <code>plt.boxplot(df['Grade'], vert=False)</code></li>
+<li><code>df_students['Grade']</code> : directly compute density graph (smoothed distribution)</li>
+</ol>
+<h1 id="regression">Regression</h1>
+<ol>
+<li>for each dimension: analyse distribution, draw histograms, boxplots</li>
+<li>clean NaN data: <code>.isnull()</code></li>
+<li>use sklearn.pipeline.Pipeline to
+<ul>
+<li>normalize, e.g. <code>StandardScaler()</code></li>
+<li>encode categorical data: <code>OneHotEncoder()</code></li>
+</ul>
+</li>
+<li>compute correlation of dimension vs feature
+<ul>
+<li>pandas corr(): <code>bike_data[dimension].corr(bike_data[feature])</code></li>
+<li>vizualise possible linear correlation: <code>plt.scatter(x=feature,  y=label)</code></li>
+<li>for a given dimension, display boxplot for each dimension value:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#66d9ef">for</span> col <span style="color:#f92672">in</span> categorical_features:
+ fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">6</span>))
+ ax <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>gca()
+ df<span style="color:#f92672">.</span>boxplot(column <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;rentals&#39;</span>, by <span style="color:#f92672">=</span> col, ax <span style="color:#f92672">=</span> ax)
+</code></pre></div></li>
+<li>split training and test (validation) data: <code>X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=0)</code></li>
+<li><code>model = LinearRegression(normalize=False).fit(X_train, y_train); model.predict()</code>: note that normalize=False because data should have been already normalized</li>
+<li>validate model
+<ul>
+<li>plot actual vs predictions: <code>plt.scatter(y_test, predictions</code></li>
+<li>plot actual vs predictions theretical regression line <code>np.poly1d(np.polyfit(y_test, predictions, 1))</code></li>
+<li>metrics: <code>np.sqrt(mean_squared_error(y_test, predictions))</code> &amp; <code>r2_score(y_test, predictions)</code></li>
+</ul>
+</li>
+<li>save model for future exectution: <code>joblib.dump(model, filename); joblib.load(filename).predict()</code></li>
+</ol>
+<h1 id="binary-classification">Binary Classification</h1>
+<p><strong>Exactly</strong> same as above but with <code>model = LogisticRegression(C=1/reg, solver=&quot;liblinear&quot;).fit(X_train, y_train)</code> reg=0.01 being the learning rate.</p>
+<p>But you really should try <code>RandomForestClassifier()</code></p>
+<p>And then validate:</p>
+<ol>
+<li><code>sklearn.metrics.classification_report(y_test, predictions)</code>
+<pre><code>           precision    recall  f1-score   support
+
+   class0       0.81      0.88      0.85      2986
+   class1       0.72      0.60      0.66      1514
+
+micro avg       0.79      0.79      0.79      4500
+macro avg       0.77      0.74      0.75      4500
+weighted avg       0.78      0.79      0.78      4500
+</code></pre><p>or <code>from sklearn.metrics import precision_score, recall_score</code></p>
+</li>
+<li><code>sklearn.metrics.confusion_matrix(y_test, predictions)</code>.
+Recall=TP/(TP+FN)  and  Precision=TP/(TP+FP)</li>
+<li>further analysis, get score for each class: <code>y_scores = model.predict_proba(X_test)</code></li>
+<li>received operator characteristic (ROC) chart:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">false_positive_rate, true_positive_rate, thresholds <span style="color:#f92672">=</span> sklearn<span style="color:#f92672">.</span>metrics<span style="color:#f92672">.</span>roc_curve(y_test, y_scores[:,<span style="color:#ae81ff">1</span>])  <span style="color:#75715e"># ROC for class1</span>
+plt<span style="color:#f92672">.</span>plot([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;k--&#39;</span>)  <span style="color:#75715e"># draw straight line</span>
+plt<span style="color:#f92672">.</span>plot(false_positive_rate, true_positive_rate)  <span style="color:#75715e"># draw ROC</span>
+</code></pre></div><p>ROC should e</p>
+</li>
+<li><code>sklearn.metrics.roc_auc_score(y_test,y_scores[:,1])</code>: 0.5 &lt; AUC &lt; 1 . 0.5 being a random coin toss for a binary classification</li>
+</ol>
+<h1 id="multiclass-classification">Multiclass classification</h1>
+<p>Most sklearn algorithms inherently support multiclass. Maybe use Support Vector Machine <code>from sklearn.svm import SVC</code>.</p>
+<p>So, do everything above and then validate:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">mcm <span style="color:#f92672">=</span> sklearn<span style="color:#f92672">.</span>metrics<span style="color:#f92672">.</span>confusion_matrix(y_penguin_test, penguin_predictions)
+plt<span style="color:#f92672">.</span>imshow(mcm, interpolation<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nearest&#34;</span>, cmap<span style="color:#f92672">=</span>plt<span style="color:#f92672">.</span>cm<span style="color:#f92672">.</span>Blues)
+</code></pre></div><h1 id="clustering">Clustering</h1>
+<h2 id="using-kmeans">using KMeans</h2>
+<p>KMeans is scalable</p>
+<ol>
+<li>Normalize, Reduce and Visualize if data can be clustered:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># Normalize the numeric features so they&#39;re on the same scale</span>
+penguin_features[penguins<span style="color:#f92672">.</span>columns[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">4</span>]] <span style="color:#f92672">=</span> MinMaxScaler()<span style="color:#f92672">.</span>fit_transform(penguin_features[penguins<span style="color:#f92672">.</span>columns[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">4</span>]])
+<span style="color:#75715e"># Reduce dimensions in order to get 2 principal dimensions</span>
+pca <span style="color:#f92672">=</span> PCA(n_components<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>fit(penguin_features<span style="color:#f92672">.</span>values)
+penguins_2d <span style="color:#f92672">=</span> pca<span style="color:#f92672">.</span>transform(penguin_features<span style="color:#f92672">.</span>values)
+plt<span style="color:#f92672">.</span>scatter(penguins_2d[:,<span style="color:#ae81ff">0</span>],penguins_2d[:,<span style="color:#ae81ff">1</span>])
+</code></pre></div><ol start="2">
+<li>find optimal cluster count (tightness). Calculate <em>within cluster sum of squares</em> (WCSS):</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11</span>):
+    algo <span style="color:#f92672">=</span> KMeans(n_clusters <span style="color:#f92672">=</span> i)
+    KMeans(n_clusters<span style="color:#f92672">=</span>i)<span style="color:#f92672">.</span>fit(penguin_features<span style="color:#f92672">.</span>values)
+    wcss<span style="color:#f92672">.</span>append(algo<span style="color:#f92672">.</span>inertia_)
+plt<span style="color:#f92672">.</span>plot(range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11</span>), wcss)
+</code></pre></div><ol start="3">
+<li>create model: <code>KMeans(n_clusters=3, init='k-means++', n_init=20, max_iter=200).fit_predict(penguin_features.values)</code></li>
+<li>validate:
+<ul>
+<li>plot predictions: <code>plt.scatter(color=)</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="agglometarive-or-destructive-clustering">Agglometarive or destructive clustering</h2>
+<p>agglomerative: group nearest pairs and then group again until n_clusters is reached. see <code>AgglomerativeClustering</code></p>
+<h1 id="deep-learning">Deep learning</h1>
+<p>deep learning: given a known input vector X and a known output vector Y, guess f where f(X,w,b)=Y ; and where w=node_weights and b=node_bias.</p>
+<h2 id="pytorch">PyTorch</h2>
+<p>see <a href="https://github.com/MicrosoftDocs/ml-basics">https://github.com/MicrosoftDocs/ml-basics</a></p>
+<ol>
+<li>As usual, start by cleaning+normalizing the data</li>
+<li>train in batches (pick the correct size!)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># Number of hidden layer nodes</span>
+hl <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+   
+<span style="color:#75715e"># Define the neural network</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PenguinNet</span>(nn<span style="color:#f92672">.</span>Module):
+    <span style="color:#66d9ef">def</span> __init__(self):
+        super(PenguinNet, self)<span style="color:#f92672">.</span>__init__()
+        self<span style="color:#f92672">.</span>fc1 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(len(features), hl)
+        self<span style="color:#f92672">.</span>fc2 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(hl, hl)
+        self<span style="color:#f92672">.</span>fc3 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(hl, len(penguin_classes))
+   
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x):
+        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>fc1(x))
+        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>fc2(x))
+        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>softmax(self<span style="color:#f92672">.</span>fc3(x),dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        <span style="color:#66d9ef">return</span> x
+   
+<span style="color:#75715e"># Create a model instance from the network</span>
+model <span style="color:#f92672">=</span> PenguinNet()
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train</span>(model, data_loader, optimizer):
+    <span style="color:#75715e"># Set the model to training mode</span>
+    model<span style="color:#f92672">.</span>train()
+    train_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+       
+    <span style="color:#66d9ef">for</span> batch, tensor <span style="color:#f92672">in</span> enumerate(data_loader):
+        data, target <span style="color:#f92672">=</span> tensor
+        <span style="color:#75715e">#feedforward</span>
+        optimizer<span style="color:#f92672">.</span>zero_grad()
+        out <span style="color:#f92672">=</span> model(data)
+        loss <span style="color:#f92672">=</span> loss_criteria(out, target)
+        train_loss <span style="color:#f92672">+=</span> loss<span style="color:#f92672">.</span>item()
+   
+        <span style="color:#75715e"># backpropagate</span>
+        loss<span style="color:#f92672">.</span>backward()
+        optimizer<span style="color:#f92672">.</span>step()
+   
+    <span style="color:#75715e">#Return average loss</span>
+    avg_loss <span style="color:#f92672">=</span> train_loss <span style="color:#f92672">/</span> (batch<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Training set: Average loss: {:.6f}&#39;</span><span style="color:#f92672">.</span>format(avg_loss))
+    <span style="color:#66d9ef">return</span> avg_loss
+              
+               
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test</span>(model, data_loader):
+    <span style="color:#75715e"># Switch the model to evaluation mode (so we don&#39;t backpropagate)</span>
+    model<span style="color:#f92672">.</span>eval()
+    test_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    correct <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+   
+    <span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+        batch_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> batch, tensor <span style="color:#f92672">in</span> enumerate(data_loader):
+            batch_count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            data, target <span style="color:#f92672">=</span> tensor
+            <span style="color:#75715e"># Get the predictions</span>
+            out <span style="color:#f92672">=</span> model(data)
+   
+            <span style="color:#75715e"># calculate the loss</span>
+            test_loss <span style="color:#f92672">+=</span> loss_criteria(out, target)<span style="color:#f92672">.</span>item()
+   
+            <span style="color:#75715e"># Calculate the accuracy</span>
+            _, predicted <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>max(out<span style="color:#f92672">.</span>data, <span style="color:#ae81ff">1</span>)
+            correct <span style="color:#f92672">+=</span> torch<span style="color:#f92672">.</span>sum(target<span style="color:#f92672">==</span>predicted)<span style="color:#f92672">.</span>item()
+               
+    <span style="color:#75715e"># Calculate the average loss and total accuracy for this epoch</span>
+    avg_loss <span style="color:#f92672">=</span> test_loss<span style="color:#f92672">/</span>batch_count
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Validation set: Average loss: {:.6f}, Accuracy: {}/{} ({:.0f}%)    </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(
+        avg_loss, correct, len(data_loader<span style="color:#f92672">.</span>dataset),
+        <span style="color:#ae81ff">100.</span> <span style="color:#f92672">*</span> correct <span style="color:#f92672">/</span> len(data_loader<span style="color:#f92672">.</span>dataset)))
+       
+    <span style="color:#75715e"># return average loss for the epoch</span>
+    <span style="color:#66d9ef">return</span> avg_loss
+
+
+<span style="color:#75715e"># Specify the loss criteria (CrossEntropyLoss for multi-class     classification)</span>
+loss_criteria <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>Adam(model<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.001</span>)
+optimizer<span style="color:#f92672">.</span>zero_grad()
+<span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> <span style="color:#ae81ff">15</span>:
+    <span style="color:#75715e"># Feed training data into the model to optimize the weights</span>
+    train_loss <span style="color:#f92672">=</span> train(model, train_loader, optimizer)
+    <span style="color:#75715e"># Feed the test data into the model to check its performance</span>
+    test_loss <span style="color:#f92672">=</span> test(model, test_loader)
+    training_loss<span style="color:#f92672">.</span>append(train_loss)
+    validation_loss<span style="color:#f92672">.</span>append(test_loss)
+</code></pre></div></li>
+<li>validate: The loss (difference between actual vs predicted values) must be minimal after a few epochs
+<pre><code>plt.plot(epoch_nums, training_loss)
+plt.plot(epoch_nums, validation_loss)
+</code></pre></li>
+<li>draw confusion matrix</li>
+</ol>
+<h2 id="tensorflow">Tensorflow</h2>
+<p>same as above</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> tensorflow
+<span style="color:#f92672">from</span> tensorflow <span style="color:#f92672">import</span> keras
+<span style="color:#f92672">from</span> tensorflow.keras <span style="color:#f92672">import</span> models
+<span style="color:#f92672">from</span> tensorflow.keras.models <span style="color:#f92672">import</span> Sequential
+<span style="color:#f92672">from</span> tensorflow.keras.layers <span style="color:#f92672">import</span> Dense
+<span style="color:#f92672">from</span> tensorflow.keras <span style="color:#f92672">import</span> utils
+<span style="color:#f92672">from</span> tensorflow.keras <span style="color:#f92672">import</span> optimizers
+
+<span style="color:#75715e"># Set random seed for reproducability</span>
+tensorflow<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>set_seed(<span style="color:#ae81ff">0</span>)
+<span style="color:#75715e"># Set data types for float features</span>
+x_train <span style="color:#f92672">=</span> x_train<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;float32&#39;</span>)
+x_test <span style="color:#f92672">=</span> x_test<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;float32&#39;</span>)
+
+<span style="color:#75715e"># Set data types for categorical labels</span>
+y_train <span style="color:#f92672">=</span> utils<span style="color:#f92672">.</span>to_categorical(y_train)
+y_test <span style="color:#f92672">=</span> utils<span style="color:#f92672">.</span>to_categorical(y_test)
+
+hl <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e"># Number of hidden layer nodes</span>
+model <span style="color:#f92672">=</span> Sequential()
+model<span style="color:#f92672">.</span>add(Dense(hl, input_dim<span style="color:#f92672">=</span>len(features), activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>))
+model<span style="color:#f92672">.</span>add(Dense(hl, input_dim<span style="color:#f92672">=</span>hl, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>))
+model<span style="color:#f92672">.</span>add(Dense(len(penguin_classes), input_dim<span style="color:#f92672">=</span>hl, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;softmax&#39;</span>))
+
+learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.001</span>
+opt <span style="color:#f92672">=</span> optimizers<span style="color:#f92672">.</span>Adam(lr<span style="color:#f92672">=</span>learning_rate)
+
+model<span style="color:#f92672">.</span>compile(loss<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;categorical_crossentropy&#39;</span>,
+              optimizer<span style="color:#f92672">=</span>opt,
+              metrics<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;accuracy&#39;</span>])
+
+<span style="color:#75715e"># Train the model over 50 epochs using 10-observation batches and using the test holdout dataset for validation</span>
+num_epochs <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>
+history <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>fit(x_train, y_train, epochs<span style="color:#f92672">=</span>num_epochs, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, validation_data<span style="color:#f92672">=</span>(x_test, y_test))
+
+training_loss <span style="color:#f92672">=</span> history<span style="color:#f92672">.</span>history[<span style="color:#e6db74">&#34;loss&#34;</span>]
+validation_loss <span style="color:#f92672">=</span> history<span style="color:#f92672">.</span>history[<span style="color:#e6db74">&#34;val_loss&#34;</span>]
+plt<span style="color:#f92672">.</span>plot(epoch_nums, training_loss)
+plt<span style="color:#f92672">.</span>plot(epoch_nums, validation_loss)
+</code></pre></div><h1 id="notes-cheatsheet">Notes: cheatsheet</h1>
+<p>Download the cheat sheet here: <a href="https://download.microsoft.com/download/3/5/b/35bb997f-a8c7-485d-8c56-19444dafd757/azure-machine-learning-algorithm-cheat-sheet-nov2019.pdf?WT.mc_id=docs-article-lazzeri">Machine Learning Algorithm Cheat Sheet</a></p>
+<h1 id="notes-pandasnumpy-basics">Notes: Pandas/Numpy basics</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">df_students<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">5</span>]  <span style="color:#75715e">#get first rows 0 to 4 included</span>
+df_students<span style="color:#f92672">.</span>loc[<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#39;Grade&#39;</span>]  <span style="color:#75715e"># get cell</span>
+df_students<span style="color:#f92672">.</span>loc[df_students[<span style="color:#e6db74">&#39;Name&#39;</span>]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;Aisha&#39;</span>]  <span style="color:#75715e"># filter</span>
+df_students<span style="color:#f92672">.</span>plot<span style="color:#f92672">.</span>bar(x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Name&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;StudyHours&#39;</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;teal&#39;</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>))  <span style="color:#75715e"># directly display a histogram without having to deal with graphing libraries</span>
+
+<span style="color:#f92672">%</span>matplotlib inline
+<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> plt
+plt<span style="color:#f92672">.</span>bar(x<span style="color:#f92672">=</span>df_students<span style="color:#f92672">.</span>Name, height<span style="color:#f92672">=</span>df_students<span style="color:#f92672">.</span>Grade)
+d<span style="color:#f92672">=</span>df_students[<span style="color:#e6db74">&#39;Pass&#39;</span>]<span style="color:#f92672">.</span>value_counts(); plt<span style="color:#f92672">.</span>pie(d, labels<span style="color:#f92672">=</span>d)
+plt<span style="color:#f92672">.</span>hist(df_students[<span style="color:#e6db74">&#39;Grade&#39;</span>])
+</code></pre></div>]]></content>
+        </item>
         
         <item>
             <title>Async/Await easy cancellation in c#</title>

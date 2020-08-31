@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pytorch on Andri Rakotomalala</title>
+    <link>http://andri.rocks/tags/pytorch/</link>
+    <description>Recent content in pytorch on Andri Rakotomalala</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 31 Aug 2020 12:36:40 +0200</lastBuildDate>
+    
+	<atom:link href="http://andri.rocks/tags/pytorch/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data science basics</title>
+      <link>http://andri.rocks/posts/2020-08-31-ds-basics/</link>
+      <pubDate>Mon, 31 Aug 2020 12:36:40 +0200</pubDate>
+      
+      <guid>http://andri.rocks/posts/2020-08-31-ds-basics/</guid>
+      <description>Exploring data Analyse distribution  df[&#39;Grade&#39;].describe(): if mean==median, then try normal distribution vizualize distribution: plt.hist(df[&#39;Grade&#39;]) &amp;amp; plt.boxplot(df[&#39;Grade&#39;], vert=False) df_students[&#39;Grade&#39;] : directly compute density graph (smoothed distribution)  Regression  for each dimension: analyse distribution, draw histograms, boxplots clean NaN data: .isnull() use sklearn.pipeline.Pipeline to  normalize, e.g. StandardScaler() encode categorical data: OneHotEncoder()   compute correlation of dimension vs feature  pandas corr(): bike_data[dimension].corr(bike_data[feature]) vizualise possible linear correlation: plt.scatter(x=feature, y=label) for a given dimension, display boxplot for each dimension value:  for col in categorical_features: fig = plt.</description>
+    </item>
+    
+  </channel>
+</rss>

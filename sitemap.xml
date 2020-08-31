@@ -4,7 +4,42 @@
   
   <url>
     <loc>http://andri.rocks/</loc>
-    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-31T12:36:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/data-science/</loc>
+    <lastmod>2020-08-31T12:36:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/2020-08-31-ds-basics/</loc>
+    <lastmod>2020-08-31T12:36:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/posts/</loc>
+    <lastmod>2020-08-31T12:36:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/python/</loc>
+    <lastmod>2020-08-31T12:36:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/pytorch/</loc>
+    <lastmod>2020-08-31T12:36:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/</loc>
+    <lastmod>2020-08-31T12:36:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://andri.rocks/tags/tensorflow/</loc>
+    <lastmod>2020-08-31T12:36:40+02:00</lastmod>
   </url>
   
   <url>
@@ -19,16 +54,6 @@
   
   <url>
     <loc>http://andri.rocks/tags/en/</loc>
-    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://andri.rocks/posts/</loc>
-    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://andri.rocks/tags/</loc>
     <lastmod>2019-04-13T00:00:00+00:00</lastmod>
   </url>
   
