@@ -41,7 +41,7 @@ How to use
 The extension works exactly like the interactive fsharp interpreter (FSI) but with an additional panel that displays formatted data.
 When one of the `Notebook.*` helpers are called, a cell will be added to the panel.
 
-In order to get play with a notebook:
+In order to play with a notebook:
 1. Edit VSCode ```settings.json``` in the workspace folder:
     ```json
     {
@@ -87,13 +87,14 @@ Charts
 
 ```fsharp
 // Ctrl+Alt+P : F# Notebook: Open Panel
+open XPlot.Plotly
 let chart =
     Chart.Line
         [ 1, 1
           2, 2 ]
     |> Chart.WithWidth 400
     |> Chart.WithHeight 300
-    |> Chart.WithLayout(Layout(title = "ok", margin = margin))
+    |> Chart.WithLayout(Layout(title = "my title"))
 Notebook.Plotly chart
 ```
 ![screenshot](/img/fsharp-notebook/4.png)
@@ -161,8 +162,6 @@ Conclusion
 ===
 This extension is not the only one that offers an interactive environment for F#. There are other projects that offer a similar functionality, notably the jupyter kernel for C#/F#.
 
-But none of these projects offer the same ease of installation and level of integration with Visual Studio code (code completion, code lenses, integration with other F# extensions for formatting or code quality etc.).
+But none of them offer the same ease of installation and level of integration with Visual Studio code (code completion, code lenses, integration with other F# extensions for formatting or code quality etc.).
 
 That’s all from this article. In the next article, I will do a quick round on machine learning with F#.
-
-If you have any questions or just want to chat with me feel free to leave a comment below or contact me on social media.
