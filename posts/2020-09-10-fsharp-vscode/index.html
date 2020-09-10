@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="When thinking of data science or machine learning, Python immediately come to mind. No other production-ready programming language can match its extensive set of libraries (pandas, numpy, scikit, etc.) paired with proven experimentation tools (jupyter, dash plotly, etc.).
+Other ecosystems are trying to catch up in terms of libraries but, when it comes to producing analysis and insight in a short timeframe, almost none have the tooling that still makes python the champion of productivity." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://andri.rocks/posts/2020-09-10-fsharp-vscode/" />
+
+
+    <title>
+        
+            Data Science in F#5/.NET with VsCode :: Andri Rakotomalala  — Exercices de style
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4d47f42ed7664c4ff52d3035fb624de3131ad1179b4c29db606e5997ef525366.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Data Science in F#5/.NET with VsCode">
+<meta itemprop="description" content="When thinking of data science or machine learning, Python immediately come to mind. No other production-ready programming language can match its extensive set of libraries (pandas, numpy, scikit, etc.) paired with proven experimentation tools (jupyter, dash plotly, etc.).
+Other ecosystems are trying to catch up in terms of libraries but, when it comes to producing analysis and insight in a short timeframe, almost none have the tooling that still makes python the champion of productivity.">
+<meta itemprop="datePublished" content="2020-09-10T17:11:18&#43;02:00" />
+<meta itemprop="dateModified" content="2020-09-10T17:11:18&#43;02:00" />
+<meta itemprop="wordCount" content="792">
+<meta itemprop="image" content="http://andri.rocks"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://andri.rocks"/>
+
+<meta name="twitter:title" content="Data Science in F#5/.NET with VsCode"/>
+<meta name="twitter:description" content="When thinking of data science or machine learning, Python immediately come to mind. No other production-ready programming language can match its extensive set of libraries (pandas, numpy, scikit, etc.) paired with proven experimentation tools (jupyter, dash plotly, etc.).
+Other ecosystems are trying to catch up in terms of libraries but, when it comes to producing analysis and insight in a short timeframe, almost none have the tooling that still makes python the champion of productivity."/>
+
+
+
+    <meta property="og:title" content="Data Science in F#5/.NET with VsCode" />
+<meta property="og:description" content="When thinking of data science or machine learning, Python immediately come to mind. No other production-ready programming language can match its extensive set of libraries (pandas, numpy, scikit, etc.) paired with proven experimentation tools (jupyter, dash plotly, etc.).
+Other ecosystems are trying to catch up in terms of libraries but, when it comes to producing analysis and insight in a short timeframe, almost none have the tooling that still makes python the champion of productivity." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://andri.rocks/posts/2020-09-10-fsharp-vscode/" />
+<meta property="og:image" content="http://andri.rocks"/>
+<meta property="article:published_time" content="2020-09-10T17:11:18+02:00" />
+<meta property="article:modified_time" content="2020-09-10T17:11:18+02:00" /><meta property="og:site_name" content="Andri Rakotomalala" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-10 17:11:18 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+        <span class="logo__mark">~</span>
+        <span class="logo__text" style="white-space: nowrap; text-overflow: ellipsis; max-width: 30em; overflow: hidden;">andri.rocks://posts/2020-09-10-fsharp-vscode/</span>
+        <span class="logo__text">&gt;</span>
+        <span class="logo__cursor" style="
+                   
+                   ">
+            </span> 
+    </div>
+</a>
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://andri.rocks/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>4 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://andri.rocks/posts/2020-09-10-fsharp-vscode/">Data Science in F#5/.NET with VsCode</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p>When thinking of data science or machine learning, Python immediately come to mind. No other production-ready programming language can match its extensive set of libraries (pandas, numpy, scikit, etc.) paired with proven experimentation tools (jupyter, dash plotly, etc.).</p>
+<p>Other ecosystems are trying to catch up in terms of libraries but, when it comes to producing analysis and insight in a short timeframe, almost none have the tooling that still makes python the champion of productivity.</p>
+<p>On the other hand, there is one field where python is lagging compared to other languages: performance. Even though most of the supporting libraries for data science and machine learning in python are written in native languages, <a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/python3-gcc.html">python will never have the same performance as pure native code</a>.
+In a world where milliseconds (or even microseconds in some fields) matter to deliver information, some data science projects have to go through the following steps:</p>
+<ol>
+<li>Data scientists write a Proof Of Concept in python/jupyter.</li>
+<li>When going to production:</li>
+</ol>
+<ul>
+<li>-either- Software Engineers re-translate the logic to another language</li>
+<li>-or- Data Scientists have to expose the logic as a micro-service (and therefore need knowledge in api authoring)</li>
+</ul>
+<p>Thankfully, .NET now brings the best of both worlds:</p>
+<ul>
+<li>Safety: by default, the code runs in a sandbox</li>
+<li>Productive languages: the .NET ecosystem supports <a href="https://en.wikipedia.org/wiki/Category:.NET_programming_languages">dozens of languages that you can choose from</a> (including python!) that can talk with each other</li>
+<li>High performance: <a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/csharpcore-gpp.html">C# has almost the same performance as native C++</a></li>
+<li>An <a href="https://fsharp.org/guides/data-science/#integrated-packages">extensive set of libraries</a> including dataframes, bindings to numpy and tensorflow, and charting libraries.</li>
+<li>A <a href="https://marketplace.visualstudio.com/items?itemName=andriniaina.fsharp-interactive-datascience">jupyter-like interactive notebook for F#</a> with support for charts and custom formatters</li>
+</ul>
+<p>In this article I will show you how to install and use the interactive console notebook for F#. I will discuss the technical implementations like performance and libraries in other future articles.</p>
+<h1 id="installing-the-f-notebook-for-vscode">Installing the F# notebook for VsCode</h1>
+<ol>
+<li>Install .NET Core 5: The extension uses F#5 syntax and therefore is only compatible with dotnet core 5.</li>
+<li>Install the <a href="https://marketplace.visualstudio.com/items?itemName=andriniaina.fsharp-interactive-datascience">F# notebook extension for Visual Studio Code</a> itself</li>
+<li>Locate where extension is installed (you will need this path in the next step):
+<ul>
+<li><strong>Windows</strong> <code>%USERPROFILE%\.vscode\extensions\andriniaina.fsharp-interactive-datascience-*</code></li>
+<li><strong>macOS</strong> <code>~/.vscode/extensions/andriniaina.fsharp-interactive-datascience-*</code></li>
+<li><strong>Linux</strong> <code>~/.vscode/extensions/andriniaina.fsharp-interactive-datascience-*</code></li>
+</ul>
+</li>
+</ol>
+<h1 id="how-to-use">How to use</h1>
+<p>The extension works exactly like the interactive fsharp interpreter (FSI) but with an additional panel that displays formatted data.
+When one of the <code>Notebook.*</code> helpers are called, a cell will be added to the panel.</p>
+<p>In order to play with a notebook:</p>
+<ol>
+<li>Edit VSCode <code>settings.json</code> in the workspace folder:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;FSharp.fsiExtraParameters&#34;</span>: [
+        <span style="color:#e6db74">&#34;--langversion:preview&#34;</span>,
+        <span style="color:#e6db74">&#34;--load:path/to/extension/scripts/Notebook.fsx&#34;</span> <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">change</span> <span style="color:#960050;background-color:#1e0010">this</span> <span style="color:#960050;background-color:#1e0010">path</span>
+    ]
+}
+</code></pre></div></li>
+<li>open the notebook panel with the command Ctrl+Alt+P &gt; &ldquo;<strong>F# Notebook+DataScience: Open Panel</strong>&rdquo;</li>
+<li>open an *.fsx file and start coding!</li>
+</ol>
+<blockquote>
+<p>Tip: Alt+Enter will execute the current line</p>
+</blockquote>
+<p><img src="https://github.com/andriniaina/fsharp-interactive-datascience/raw/master/demo.gif" alt="demo"></p>
+<h1 id="simple-examples">Simple examples</h1>
+<p>The extension has multiple built-in formatters.</p>
+<h2 id="primitives">Primitives</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span>Notebook.Text <span style="color:#f92672">(</span>1<span style="color:#f92672">+</span>1<span style="color:#f92672">)</span>
+Notebook.Text <span style="color:#e6db74">&#34;Hello world&#34;</span>
+</code></pre></div><p><img src="/img/fsharp-notebook/1.png" alt="screenshot"></p>
+<h2 id="markdown">Markdown</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span>Notebook.Markdown <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74"># Hello, Markdown!
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><h2 id="charts">Charts</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">open</span> XPlot.Plotly
+<span style="color:#66d9ef">let</span> chart <span style="color:#f92672">=</span>
+    Chart.Line
+        <span style="color:#f92672">[</span> 1<span style="color:#f92672">,</span> 1
+          2<span style="color:#f92672">,</span> 2 <span style="color:#f92672">]</span>
+    <span style="color:#f92672">|&gt;</span> Chart.WithWidth 400
+    <span style="color:#f92672">|&gt;</span> Chart.WithHeight 300
+    <span style="color:#f92672">|&gt;</span> Chart.WithLayout<span style="color:#f92672">(</span>Layout<span style="color:#f92672">(</span>title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;my title&#34;</span><span style="color:#f92672">))</span>
+Notebook.Plotly chart
+</code></pre></div><p><img src="/img/fsharp-notebook/4.png" alt="screenshot"></p>
+<h2 id="maps">Maps</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> marginWidth <span style="color:#f92672">=</span> 50<span style="color:#f92672">.</span>0
+<span style="color:#66d9ef">let</span> margin <span style="color:#f92672">=</span> Margin<span style="color:#f92672">(</span>l <span style="color:#f92672">=</span> marginWidth<span style="color:#f92672">,</span> r <span style="color:#f92672">=</span> marginWidth<span style="color:#f92672">,</span> t <span style="color:#f92672">=</span> marginWidth<span style="color:#f92672">,</span> b <span style="color:#f92672">=</span> marginWidth<span style="color:#f92672">)</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">AlcoholConsumption</span> <span style="color:#f92672">=</span> CsvProvider<span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;https://raw.githubusercontent.com/plotly/datasets/master/2010_alcohol_consumption_by_country.csv&#34;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">let</span> consumption <span style="color:#f92672">=</span> AlcoholConsumption.Load<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://raw.githubusercontent.com/plotly/datasets/master/2010_alcohol_consumption_by_country.csv&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">let</span> locations <span style="color:#f92672">=</span> consumption<span style="color:#f92672">.</span>Rows <span style="color:#f92672">|&gt;</span> Seq.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> r <span style="color:#f92672">-&gt;</span> r<span style="color:#f92672">.</span>Location<span style="color:#f92672">)</span>
+<span style="color:#66d9ef">let</span> z <span style="color:#f92672">=</span> consumption<span style="color:#f92672">.</span>Rows <span style="color:#f92672">|&gt;</span> Seq.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> r <span style="color:#f92672">-&gt;</span> r<span style="color:#f92672">.</span>Alcohol<span style="color:#f92672">)</span>
+<span style="color:#66d9ef">let</span> map <span style="color:#f92672">=</span>
+    Chart.Plot<span style="color:#f92672">([</span> Choropleth<span style="color:#f92672">(</span>locations <span style="color:#f92672">=</span> locations<span style="color:#f92672">,</span> locationmode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;country names&#34;</span><span style="color:#f92672">,</span> z <span style="color:#f92672">=</span> z<span style="color:#f92672">,</span> autocolorscale <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">])</span>
+    <span style="color:#f92672">|&gt;</span> Chart.WithLayout<span style="color:#f92672">(</span>Layout<span style="color:#f92672">(</span>title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Alcohol consumption&#34;</span><span style="color:#f92672">,</span> width <span style="color:#f92672">=</span> 700<span style="color:#f92672">.</span>0<span style="color:#f92672">,</span> margin <span style="color:#f92672">=</span> margin<span style="color:#f92672">,</span> geo <span style="color:#f92672">=</span> Geo<span style="color:#f92672">(</span>projection <span style="color:#f92672">=</span> Projection<span style="color:#f92672">(</span>``type`` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mercator&#34;</span><span style="color:#f92672">))))</span>
+
+<span style="color:#75715e">// display chart
+</span><span style="color:#75715e"></span>Notebook.Plotly map
+</code></pre></div><p><img src="/img/fsharp-notebook/2.png" alt="screenshot"></p>
+<h2 id="dataframes">Dataframes</h2>
+<p>(beta)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span>r <span style="color:#e6db74">&#34;nuget: Microsoft.Data.Analysis&#34;</span>
+<span style="color:#66d9ef">open</span> Microsoft.Data.Analysis
+<span style="color:#66d9ef">let</span> locations<span style="color:#f92672">,</span> alcohol <span style="color:#f92672">=</span>
+    consumption<span style="color:#f92672">.</span>Rows
+        <span style="color:#f92672">|&gt;</span> Seq.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> row <span style="color:#f92672">-&gt;</span> row<span style="color:#f92672">.</span>Location<span style="color:#f92672">,</span> row<span style="color:#f92672">.</span>Alcohol<span style="color:#f92672">)</span>
+        <span style="color:#f92672">|&gt;</span> List.ofSeq
+        <span style="color:#f92672">|&gt;</span> List.unzip
+<span style="color:#66d9ef">let</span> df <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataFrame<span style="color:#f92672">(</span>
+    <span style="color:#66d9ef">new</span> StringDataFrameColumn<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;location&#34;</span><span style="color:#f92672">,</span> locations<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> PrimitiveDataFrameColumn<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decimal</span><span style="color:#f92672">&gt;(</span><span style="color:#e6db74">&#34;consumption&#34;</span><span style="color:#f92672">,</span> alcohol<span style="color:#f92672">)</span>
+<span style="color:#f92672">)</span>
+Notebook.DataFrame df
+
+</code></pre></div><p><img src="/img/fsharp-notebook/3.png" alt="screenshot"></p>
+<h1 id="custom-printers">Custom printers</h1>
+<p>You can also add your own formatters that will display the data in your customized format.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#66d9ef">open</span> Notebook
+fsi<span style="color:#f92672">.</span>AddPrinter<span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> <span style="color:#f92672">(</span>data <span style="color:#f92672">:</span> YourType<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span>
+    <span style="color:#f92672">...</span> <span style="color:#75715e">// Format to string
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">|&gt;</span> HTML <span style="color:#75715e">// or SVG or Markdown or Text
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">|&gt;</span> printerNotebook
+<span style="color:#f92672">)</span>
+
+<span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> YourType() <span style="color:#75715e">// this will automatically print x in the notebook panel
+</span></code></pre></div><h1 id="conclusion">Conclusion</h1>
+<p>This extension is not the only one that offers an interactive environment for F#. There are other projects that offer a similar functionality, notably the jupyter kernel for C#/F#.</p>
+<p>But none of them offer the same ease of installation and level of integration with Visual Studio code (code completion, code lenses, integration with other F# extensions for formatting or code quality etc.).</p>
+<p>That’s all from this article. In the next article, I will do a quick round on machine learning with F#.</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>792 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-09-10 17:11 &#43;0200</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Read other posts</span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+
+                    
+                        <span class="button next">
+                            <a href="http://andri.rocks/posts/2020-08-31-ds-basics/">
+                                <span class="button__text">Data science basics</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>  
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span> 
+            <span> <a href="http://andri.rocks/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    
+</footer>
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

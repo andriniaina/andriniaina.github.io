@@ -6,8 +6,142 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Mon, 31 Aug 2020 12:36:40 +0200</lastBuildDate>
+        <lastBuildDate>Thu, 10 Sep 2020 17:11:18 +0200</lastBuildDate>
         <atom:link href="http://andri.rocks/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Data Science in F#5/.NET with VsCode</title>
+            <link>http://andri.rocks/posts/2020-09-10-fsharp-vscode/</link>
+            <pubDate>Thu, 10 Sep 2020 17:11:18 +0200</pubDate>
+            
+            <guid>http://andri.rocks/posts/2020-09-10-fsharp-vscode/</guid>
+            <description>When thinking of data science or machine learning, Python immediately come to mind. No other production-ready programming language can match its extensive set of libraries (pandas, numpy, scikit, etc.) paired with proven experimentation tools (jupyter, dash plotly, etc.).
+Other ecosystems are trying to catch up in terms of libraries but, when it comes to producing analysis and insight in a short timeframe, almost none have the tooling that still makes python the champion of productivity.</description>
+            <content type="html"><![CDATA[<p>When thinking of data science or machine learning, Python immediately come to mind. No other production-ready programming language can match its extensive set of libraries (pandas, numpy, scikit, etc.) paired with proven experimentation tools (jupyter, dash plotly, etc.).</p>
+<p>Other ecosystems are trying to catch up in terms of libraries but, when it comes to producing analysis and insight in a short timeframe, almost none have the tooling that still makes python the champion of productivity.</p>
+<p>On the other hand, there is one field where python is lagging compared to other languages: performance. Even though most of the supporting libraries for data science and machine learning in python are written in native languages, <a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/python3-gcc.html">python will never have the same performance as pure native code</a>.
+In a world where milliseconds (or even microseconds in some fields) matter to deliver information, some data science projects have to go through the following steps:</p>
+<ol>
+<li>Data scientists write a Proof Of Concept in python/jupyter.</li>
+<li>When going to production:</li>
+</ol>
+<ul>
+<li>-either- Software Engineers re-translate the logic to another language</li>
+<li>-or- Data Scientists have to expose the logic as a micro-service (and therefore need knowledge in api authoring)</li>
+</ul>
+<p>Thankfully, .NET now brings the best of both worlds:</p>
+<ul>
+<li>Safety: by default, the code runs in a sandbox</li>
+<li>Productive languages: the .NET ecosystem supports <a href="https://en.wikipedia.org/wiki/Category:.NET_programming_languages">dozens of languages that you can choose from</a> (including python!) that can talk with each other</li>
+<li>High performance: <a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/csharpcore-gpp.html">C# has almost the same performance as native C++</a></li>
+<li>An <a href="https://fsharp.org/guides/data-science/#integrated-packages">extensive set of libraries</a> including dataframes, bindings to numpy and tensorflow, and charting libraries.</li>
+<li>A <a href="https://marketplace.visualstudio.com/items?itemName=andriniaina.fsharp-interactive-datascience">jupyter-like interactive notebook for F#</a> with support for charts and custom formatters</li>
+</ul>
+<p>In this article I will show you how to install and use the interactive console notebook for F#. I will discuss the technical implementations like performance and libraries in other future articles.</p>
+<h1 id="installing-the-f-notebook-for-vscode">Installing the F# notebook for VsCode</h1>
+<ol>
+<li>Install .NET Core 5: The extension uses F#5 syntax and therefore is only compatible with dotnet core 5.</li>
+<li>Install the <a href="https://marketplace.visualstudio.com/items?itemName=andriniaina.fsharp-interactive-datascience">F# notebook extension for Visual Studio Code</a> itself</li>
+<li>Locate where extension is installed (you will need this path in the next step):
+<ul>
+<li><strong>Windows</strong> <code>%USERPROFILE%\.vscode\extensions\andriniaina.fsharp-interactive-datascience-*</code></li>
+<li><strong>macOS</strong> <code>~/.vscode/extensions/andriniaina.fsharp-interactive-datascience-*</code></li>
+<li><strong>Linux</strong> <code>~/.vscode/extensions/andriniaina.fsharp-interactive-datascience-*</code></li>
+</ul>
+</li>
+</ol>
+<h1 id="how-to-use">How to use</h1>
+<p>The extension works exactly like the interactive fsharp interpreter (FSI) but with an additional panel that displays formatted data.
+When one of the <code>Notebook.*</code> helpers are called, a cell will be added to the panel.</p>
+<p>In order to play with a notebook:</p>
+<ol>
+<li>Edit VSCode <code>settings.json</code> in the workspace folder:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;FSharp.fsiExtraParameters&#34;</span>: [
+        <span style="color:#e6db74">&#34;--langversion:preview&#34;</span>,
+        <span style="color:#e6db74">&#34;--load:path/to/extension/scripts/Notebook.fsx&#34;</span> <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">change</span> <span style="color:#960050;background-color:#1e0010">this</span> <span style="color:#960050;background-color:#1e0010">path</span>
+    ]
+}
+</code></pre></div></li>
+<li>open the notebook panel with the command Ctrl+Alt+P &gt; &ldquo;<strong>F# Notebook+DataScience: Open Panel</strong>&rdquo;</li>
+<li>open an *.fsx file and start coding!</li>
+</ol>
+<blockquote>
+<p>Tip: Alt+Enter will execute the current line</p>
+</blockquote>
+<p><img src="https://github.com/andriniaina/fsharp-interactive-datascience/raw/master/demo.gif" alt="demo"></p>
+<h1 id="simple-examples">Simple examples</h1>
+<p>The extension has multiple built-in formatters.</p>
+<h2 id="primitives">Primitives</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span>Notebook.Text <span style="color:#f92672">(</span>1<span style="color:#f92672">+</span>1<span style="color:#f92672">)</span>
+Notebook.Text <span style="color:#e6db74">&#34;Hello world&#34;</span>
+</code></pre></div><p><img src="/img/fsharp-notebook/1.png" alt="screenshot"></p>
+<h2 id="markdown">Markdown</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span>Notebook.Markdown <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74"># Hello, Markdown!
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><h2 id="charts">Charts</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">open</span> XPlot.Plotly
+<span style="color:#66d9ef">let</span> chart <span style="color:#f92672">=</span>
+    Chart.Line
+        <span style="color:#f92672">[</span> 1<span style="color:#f92672">,</span> 1
+          2<span style="color:#f92672">,</span> 2 <span style="color:#f92672">]</span>
+    <span style="color:#f92672">|&gt;</span> Chart.WithWidth 400
+    <span style="color:#f92672">|&gt;</span> Chart.WithHeight 300
+    <span style="color:#f92672">|&gt;</span> Chart.WithLayout<span style="color:#f92672">(</span>Layout<span style="color:#f92672">(</span>title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;my title&#34;</span><span style="color:#f92672">))</span>
+Notebook.Plotly chart
+</code></pre></div><p><img src="/img/fsharp-notebook/4.png" alt="screenshot"></p>
+<h2 id="maps">Maps</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> marginWidth <span style="color:#f92672">=</span> 50<span style="color:#f92672">.</span>0
+<span style="color:#66d9ef">let</span> margin <span style="color:#f92672">=</span> Margin<span style="color:#f92672">(</span>l <span style="color:#f92672">=</span> marginWidth<span style="color:#f92672">,</span> r <span style="color:#f92672">=</span> marginWidth<span style="color:#f92672">,</span> t <span style="color:#f92672">=</span> marginWidth<span style="color:#f92672">,</span> b <span style="color:#f92672">=</span> marginWidth<span style="color:#f92672">)</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">AlcoholConsumption</span> <span style="color:#f92672">=</span> CsvProvider<span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;https://raw.githubusercontent.com/plotly/datasets/master/2010_alcohol_consumption_by_country.csv&#34;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">let</span> consumption <span style="color:#f92672">=</span> AlcoholConsumption.Load<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://raw.githubusercontent.com/plotly/datasets/master/2010_alcohol_consumption_by_country.csv&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">let</span> locations <span style="color:#f92672">=</span> consumption<span style="color:#f92672">.</span>Rows <span style="color:#f92672">|&gt;</span> Seq.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> r <span style="color:#f92672">-&gt;</span> r<span style="color:#f92672">.</span>Location<span style="color:#f92672">)</span>
+<span style="color:#66d9ef">let</span> z <span style="color:#f92672">=</span> consumption<span style="color:#f92672">.</span>Rows <span style="color:#f92672">|&gt;</span> Seq.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> r <span style="color:#f92672">-&gt;</span> r<span style="color:#f92672">.</span>Alcohol<span style="color:#f92672">)</span>
+<span style="color:#66d9ef">let</span> map <span style="color:#f92672">=</span>
+    Chart.Plot<span style="color:#f92672">([</span> Choropleth<span style="color:#f92672">(</span>locations <span style="color:#f92672">=</span> locations<span style="color:#f92672">,</span> locationmode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;country names&#34;</span><span style="color:#f92672">,</span> z <span style="color:#f92672">=</span> z<span style="color:#f92672">,</span> autocolorscale <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">])</span>
+    <span style="color:#f92672">|&gt;</span> Chart.WithLayout<span style="color:#f92672">(</span>Layout<span style="color:#f92672">(</span>title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Alcohol consumption&#34;</span><span style="color:#f92672">,</span> width <span style="color:#f92672">=</span> 700<span style="color:#f92672">.</span>0<span style="color:#f92672">,</span> margin <span style="color:#f92672">=</span> margin<span style="color:#f92672">,</span> geo <span style="color:#f92672">=</span> Geo<span style="color:#f92672">(</span>projection <span style="color:#f92672">=</span> Projection<span style="color:#f92672">(</span>``type`` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mercator&#34;</span><span style="color:#f92672">))))</span>
+
+<span style="color:#75715e">// display chart
+</span><span style="color:#75715e"></span>Notebook.Plotly map
+</code></pre></div><p><img src="/img/fsharp-notebook/2.png" alt="screenshot"></p>
+<h2 id="dataframes">Dataframes</h2>
+<p>(beta)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#75715e">// Ctrl+Alt+P : F# Notebook: Open Panel
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span>r <span style="color:#e6db74">&#34;nuget: Microsoft.Data.Analysis&#34;</span>
+<span style="color:#66d9ef">open</span> Microsoft.Data.Analysis
+<span style="color:#66d9ef">let</span> locations<span style="color:#f92672">,</span> alcohol <span style="color:#f92672">=</span>
+    consumption<span style="color:#f92672">.</span>Rows
+        <span style="color:#f92672">|&gt;</span> Seq.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> row <span style="color:#f92672">-&gt;</span> row<span style="color:#f92672">.</span>Location<span style="color:#f92672">,</span> row<span style="color:#f92672">.</span>Alcohol<span style="color:#f92672">)</span>
+        <span style="color:#f92672">|&gt;</span> List.ofSeq
+        <span style="color:#f92672">|&gt;</span> List.unzip
+<span style="color:#66d9ef">let</span> df <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataFrame<span style="color:#f92672">(</span>
+    <span style="color:#66d9ef">new</span> StringDataFrameColumn<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;location&#34;</span><span style="color:#f92672">,</span> locations<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> PrimitiveDataFrameColumn<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decimal</span><span style="color:#f92672">&gt;(</span><span style="color:#e6db74">&#34;consumption&#34;</span><span style="color:#f92672">,</span> alcohol<span style="color:#f92672">)</span>
+<span style="color:#f92672">)</span>
+Notebook.DataFrame df
+
+</code></pre></div><p><img src="/img/fsharp-notebook/3.png" alt="screenshot"></p>
+<h1 id="custom-printers">Custom printers</h1>
+<p>You can also add your own formatters that will display the data in your customized format.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fsharp" data-lang="fsharp"><span style="color:#66d9ef">open</span> Notebook
+fsi<span style="color:#f92672">.</span>AddPrinter<span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> <span style="color:#f92672">(</span>data <span style="color:#f92672">:</span> YourType<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span>
+    <span style="color:#f92672">...</span> <span style="color:#75715e">// Format to string
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">|&gt;</span> HTML <span style="color:#75715e">// or SVG or Markdown or Text
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">|&gt;</span> printerNotebook
+<span style="color:#f92672">)</span>
+
+<span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> YourType() <span style="color:#75715e">// this will automatically print x in the notebook panel
+</span></code></pre></div><h1 id="conclusion">Conclusion</h1>
+<p>This extension is not the only one that offers an interactive environment for F#. There are other projects that offer a similar functionality, notably the jupyter kernel for C#/F#.</p>
+<p>But none of them offer the same ease of installation and level of integration with Visual Studio code (code completion, code lenses, integration with other F# extensions for formatting or code quality etc.).</p>
+<p>That’s all from this article. In the next article, I will do a quick round on machine learning with F#.</p>
+]]></content>
+        </item>
         
         <item>
             <title>Data science basics</title>
@@ -15,9 +149,9 @@
             <pubDate>Mon, 31 Aug 2020 12:36:40 +0200</pubDate>
             
             <guid>http://andri.rocks/posts/2020-08-31-ds-basics/</guid>
-            <description>Exploring data Analyse distribution  df[&#39;Grade&#39;].describe(): if mean==median, then try normal distribution vizualize distribution: plt.hist(df[&#39;Grade&#39;]) &amp;amp; plt.boxplot(df[&#39;Grade&#39;], vert=False) df_students[&#39;Grade&#39;] : directly compute density graph (smoothed distribution)  Regression  for each dimension: analyse distribution, draw histograms, boxplots clean NaN data: .isnull() use sklearn.pipeline.Pipeline to  normalize, e.g. StandardScaler() encode categorical data: OneHotEncoder()   compute correlation of dimension vs feature  pandas corr(): bike_data[dimension].corr(bike_data[feature]) vizualise possible linear correlation: plt.scatter(x=feature, y=label) for a given dimension, display boxplot for each dimension value:  for col in categorical_features: fig = plt.</description>
+            <description>Exploring data Analyze distribution  df[&#39;Grade&#39;].describe(): if mean==median, then try normal distribution vizualize distribution: plt.hist(df[&#39;Grade&#39;]) &amp;amp; plt.boxplot(df[&#39;Grade&#39;], vert=False) df_students[&#39;Grade&#39;] : directly compute density graph (smoothed distribution)  Regression  for each dimension: analyse distribution, draw histograms, boxplots clean NaN data: .isnull() use sklearn.pipeline.Pipeline to  normalize, e.g. StandardScaler() encode categorical data: OneHotEncoder()   compute correlation of dimension vs feature  pandas corr(): bike_data[dimension].corr(bike_data[feature]) vizualise possible linear correlation: plt.scatter(x=feature, y=label) for a given dimension, display boxplot for each dimension value:  for col in categorical_features: fig = plt.</description>
             <content type="html"><![CDATA[<h1 id="exploring-data">Exploring data</h1>
-<h2 id="analyse-distribution">Analyse distribution</h2>
+<h2 id="analyze-distribution">Analyze distribution</h2>
 <ol>
 <li><code>df['Grade'].describe()</code>: if mean==median, then try normal distribution</li>
 <li>vizualize distribution: <code>plt.hist(df['Grade'])</code> &amp; <code>plt.boxplot(df['Grade'], vert=False)</code></li>
@@ -48,8 +182,8 @@
 <li><code>model = LinearRegression(normalize=False).fit(X_train, y_train); model.predict()</code>: note that normalize=False because data should have been already normalized</li>
 <li>validate model
 <ul>
-<li>plot actual vs predictions: <code>plt.scatter(y_test, predictions</code></li>
-<li>plot actual vs predictions theretical regression line <code>np.poly1d(np.polyfit(y_test, predictions, 1))</code></li>
+<li>plot actual vs predictions: <code>plt.scatter(y_test, predictions)</code></li>
+<li>plot actual vs predictions theoretical regression line <code>np.poly1d(np.polyfit(y_test, predictions, 1))</code></li>
 <li>metrics: <code>np.sqrt(mean_squared_error(y_test, predictions))</code> &amp; <code>r2_score(y_test, predictions)</code></li>
 </ul>
 </li>
@@ -78,7 +212,7 @@ Recall=TP/(TP+FN)  and  Precision=TP/(TP+FP)</li>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">false_positive_rate, true_positive_rate, thresholds <span style="color:#f92672">=</span> sklearn<span style="color:#f92672">.</span>metrics<span style="color:#f92672">.</span>roc_curve(y_test, y_scores[:,<span style="color:#ae81ff">1</span>])  <span style="color:#75715e"># ROC for class1</span>
 plt<span style="color:#f92672">.</span>plot([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;k--&#39;</span>)  <span style="color:#75715e"># draw straight line</span>
 plt<span style="color:#f92672">.</span>plot(false_positive_rate, true_positive_rate)  <span style="color:#75715e"># draw ROC</span>
-</code></pre></div><p>ROC should e</p>
+</code></pre></div><p>0 &lt; ROC &lt; 1 should be as close as possible to 1</p>
 </li>
 <li><code>sklearn.metrics.roc_auc_score(y_test,y_scores[:,1])</code>: 0.5 &lt; AUC &lt; 1 . 0.5 being a random coin toss for a binary classification</li>
 </ol>
@@ -257,7 +391,13 @@ training_loss <span style="color:#f92672">=</span> history<span style="color:#f9
 validation_loss <span style="color:#f92672">=</span> history<span style="color:#f92672">.</span>history[<span style="color:#e6db74">&#34;val_loss&#34;</span>]
 plt<span style="color:#f92672">.</span>plot(epoch_nums, training_loss)
 plt<span style="color:#f92672">.</span>plot(epoch_nums, validation_loss)
-</code></pre></div><h1 id="notes-cheatsheet">Notes: cheatsheet</h1>
+</code></pre></div><h1 id="tune-hyperparameters">Tune hyperparameters</h1>
+<p>do the above but with different hyperparaters, plot the ROC</p>
+<h1 id="detect-and-mitigate-unfairness">Detect and mitigate unfairness</h1>
+<p>Make sure that the data is evenly distributed across all dimensions</p>
+<h1 id="monitor-data-drift">Monitor data drift</h1>
+<p>Always monitor data drift regularly during production: test the model with new data</p>
+<h1 id="notes-cheatsheet">Notes: cheatsheet</h1>
 <p>Download the cheat sheet here: <a href="https://download.microsoft.com/download/3/5/b/35bb997f-a8c7-485d-8c56-19444dafd757/azure-machine-learning-algorithm-cheat-sheet-nov2019.pdf?WT.mc_id=docs-article-lazzeri">Machine Learning Algorithm Cheat Sheet</a></p>
 <h1 id="notes-pandasnumpy-basics">Notes: Pandas/Numpy basics</h1>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">df_students<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">5</span>]  <span style="color:#75715e">#get first rows 0 to 4 included</span>
