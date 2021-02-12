@@ -70,7 +70,7 @@ Boston Consulting Group
 
 **Senior AI Software Engineer**
 
-Bringing data science projects beyond the PoC stage and transforming them into full-fledged products.
+Bringing data science projects beyond the PoC stage and transforming them into full-fledged products, bridging the gap between data science and IT services.
 
 > **Technologies**: AWS and Azure, cloud architecure, Python, Typescript, scalable databases, docker, kubernetes
 
