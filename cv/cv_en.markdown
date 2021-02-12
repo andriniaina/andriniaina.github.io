@@ -27,14 +27,12 @@ Summary
 * Experience with maintaining large and complex enterprise applications
 * Able to bring a new life to legacy software that had a lot of technical debt
 * Strong ability to quickly adapt to new technical environments
-* Full professional proficiency in French and English
 
 
 Education
 =========
 
 | **2005** \ INSA de Lyon -- Master's degree in engineering in Computer Science
-| **2000** \ French Baccalauréat in science with honours
 
 Languages
 =========
@@ -53,9 +51,7 @@ Software engineering
 : Architecture
 : Distributed computing
 : Data Engineering
-: Software development and lifecycle
-: Writing technical and functional documentation, user acceptance tests
-: TDD, BDD, unit tests and refactoring of legacy code that has a lot of technical debt
+: Software development and lifecycle, TDD, BDD, unit tests and refactoring of legacy code that has a lot of technical debt
 : Functional programming
 
 Technologies
