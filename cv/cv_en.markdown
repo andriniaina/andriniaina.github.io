@@ -2,9 +2,9 @@
 title: Andri Rakotomalala
 subtitle: 
     Software Engineer,
-    Fullstack developer & Tech Leader, specialized in .NET+javascript
+    Fullstack developer & Tech Leader, specialized in .NET+typescript, Python
 author:
-- 13 years of experience in enterprise applications, including 8 years in finance
+- 14 years of experience in enterprise applications, including 8 years in finance
 header-includes:
     - \usepackage{graphicx,grffile}
     - \usepackage{fancyhdr}
@@ -18,10 +18,10 @@ geometry:
 
 Summary
 =========
-**Multitechnology developer specialized in .NET(C# or F#) + javascript(reactjs or angularjs)** offering over 13years of experience in building simple yet maintainable and testable enterprise applications.
+**Multitechnology developer specialized in Python, .NET(C# or F#) + typescript(reactjs or angularjs)** offering over 13years of experience in building simple yet maintainable and testable enterprise applications.
 
 * Comfortable with a wide array of IT technologies and languages
-* Top technical skills in .NET
+* Top technical skills in software development
 * Focused on delivering simple yet maintainable and testable applications on time
 * Experience with working on a long project with multiple team interactions, in agile mode
 * Experience with maintaining large and complex enterprise applications
