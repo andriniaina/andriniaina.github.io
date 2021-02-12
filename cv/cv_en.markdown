@@ -65,6 +65,15 @@ Technologies
 Work experience
 =========
 
+Boston Consulting Group
+---
+
+**Senior AI Software Engineer**
+
+Bringing data science projects beyond the PoC stage and transforming them into full-fledged products.
+
+> **Technologies**: AWS and Azure, cloud architecure, Python, Typescript, scalable databases, docker, kubernetes
+
 Glencore UK Ltd - Front Office \hfill\mdseries <span class='date'>06/2019 - 09/2019</span>
 --------------
 
@@ -233,6 +242,3 @@ Amadeus IT Group, Sales and e-commerce platforms \hfill\mdseries  <span class='d
 
 
 > **Technologies:** java/j2ee, xml/xsd/xslt, html/css, javascript, edifact, Visual Studio, Eclipse, Rational Rose, JBoss
-
-[![FR](../assets/FR.png)](cv.html)
-[![EN](../assets/EN.png)](cv_en.html)
