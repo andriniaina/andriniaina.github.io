@@ -51,14 +51,17 @@ Financial Markets
 
 Software engineering
 : Architecture
+: Distributed computing
+: Data Engineering
+: Software development and lifecycle
 : Writing technical and functional documentation, user acceptance tests
 : TDD, BDD, unit tests and refactoring of legacy code that has a lot of technical debt
 : Functional programming
 
 Technologies
-: Client : WPF, Windows Forms, jQuery, ReactJs, AngularJs, html/css
-: Languages : C#, F#, VB.NET, javascript/typescript, java, SQL
-: Databases : MSSQL, Oracle, Sybase ASE, Cassandra
+: Client : WPF, Windows Forms, ReactJs, Angular, html/css
+: Languages : Python, C#, F#, javascript/typescript, java, SQL
+: Databases : Redshift, MongoDb, InfluxDb, MSSQL, Oracle, Sybase ASE, Cassandra
 
 \clearpage
 
