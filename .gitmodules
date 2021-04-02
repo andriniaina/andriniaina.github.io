@@ -1,0 +1,3 @@
+[submodule "cannes_vacation_rental/src/themes/hugo-scroll"]
+	path = cannes_vacation_rental/src/themes/hugo-scroll
+	url = https://github.com/janraasch/hugo-scroll.git
