@@ -96,7 +96,7 @@ To truly savor the luxurious Côte d'Azur lifestyle, visitors should indulge in 
 	</div>
 </div>
 
-All of these sites (except the islands😉) can be accessed within a few minutes walk of the apartment.
+All of these sites (except the islands😉) can be accessed within a few minutes walk from the apartment.
 
 [More information on Cannes](https://theculturetrip.com/europe/france/cannes/)
 
