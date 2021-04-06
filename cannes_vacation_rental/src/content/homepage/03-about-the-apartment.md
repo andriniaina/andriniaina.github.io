@@ -54,6 +54,6 @@ Pets not allowed unless exceptions.
 
 ### Map
 
-Located in city center: High speed train station 🚄 and bus shuttle station 🚍 to airport 🛫 within 2min walk 🚶‍♂️, 2 supermarkets 🛒 nearby, Forville market at 650m, beaches ⛱ and festival palace 💃🎬 at 200m, main shopping area 💶🎁 (rue d'Antibes) at 500m.
+Located in city center: High speed train station 🚄 and bus shuttle station 🚍 to airport 🛫 within 2min walk 🚶‍♂️, 3 supermarkets 🛒 nearby, Forville market at 650m, beaches ⛱ and festival palace 💃🎬 at 200m, main shopping area 💶🎁 (rue d'Antibes) at 400m.
 
 ![map](images/map/map.png)
