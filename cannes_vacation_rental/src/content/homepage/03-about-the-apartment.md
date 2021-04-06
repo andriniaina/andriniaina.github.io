@@ -37,12 +37,14 @@ It is 70m² (750 sqft), can accomodate up to 6 guests (3 beds 🛌) and offers:
     <span class="rounded-badge" style="background: white"><img style="height:1em;" src="images/netflix.svg" /></span> 58" TV, Netflix, Amazon Prime Video
 </div>
 <div class="selling-point">
-<span class="rounded-badge">
-    <i class="fa fa-gamepad" class="rounded-badge" aria-hidden="true"></i></span> Board games, Wii console
+    <span class="rounded-badge"><i class="fa fa-gamepad" class="rounded-badge" aria-hidden="true"></i></span> Board games, Wii console
 </div>
 <div class="selling-point">
     <span class="rounded-badge"><img style="height:1em;" src="images/desk.svg" /></span> Desk with 25 inch screen
 </div>
 <div class="selling-point">
     <span class="rounded-badge"><img style="height:1em;" src="images/washing-machine.svg" /></span> Washing machine
+</div>
+<div class="selling-point">
+    <span class="rounded-badge"><i class="fa fa-car" aria-hidden="true"></i></span> Plenty of parking space (street and underground, paid)
 </div>
