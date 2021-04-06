@@ -52,6 +52,6 @@ It is 70m² (750 sqft), can accomodate up to 6 guests (3 beds 🛌) and offers:
 
 ### Maps
 
-Located in city center: High speed train station 🚄 and bus shuttle station 🚍 to airport 🛫 within 2min walk 🚶‍♂️, 2 supermarkets 🛒 nearby, forville market at 650m, beaches ⛱ and festival palace 💃🎬 at 200m, main shopping street 💶🛒 (rue d'Antibes) at 500m.
+Located in city center: High speed train station 🚄 and bus shuttle station 🚍 to airport 🛫 within 2min walk 🚶‍♂️, 2 supermarkets 🛒 nearby, forville market at 650m, beaches ⛱ and festival palace 💃🎬 at 200m, main shopping area 💶🛒 (rue d'Antibes) at 500m.
 
 ![map](images/map/map.png)
