@@ -47,7 +47,7 @@ Pets not allowed unless exceptions.
     <span class="rounded-badge"><img style="height:1em;" src="images/washing-machine.svg" /></span> Washing machine
 </div>
 <div class="selling-point">
-    <span class="rounded-badge"><i class="fa fa-car" aria-hidden="true"></i></span> Plenty of parking space (street and underground, paid)
+    <span class="rounded-badge"><i class="fa fa-car" aria-hidden="true"></i></span> Plenty of parking space (street and underground, for a fee)
 </div>
 
 &nbsp;
