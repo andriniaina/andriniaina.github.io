@@ -12,7 +12,7 @@ header_menu: true
 ##### The apartment
 -->
 
-Our apartment is ideally located in the heart of Cannes city center, within a 6min walk of the Festival Palace, the Casino, rue Meynadier, Forville market and the old sea port.
+Our apartment is ideally located in a calm neighbourhood in the heart of Cannes city center, within 2min walk from high speed train 🚄 station and bus shuttle station to airport ✈, within 6min walk of the Festival Palace 💃🎬, beaches ⛱, the Casino, rue Meynadier 👁‍🗨, rue d'Antibes 💶🛒, Forville market and the old sea port 🚢.
 
 Whether you are in Cannes for professional reasons or for your holidays, the cozy apartment will satisfy you.
 It is decorated in a modern and elegant style, and offers all amenities you need for a comfortable vacation or relaxed work environment on the Côte d'Azur.
@@ -23,7 +23,6 @@ It is 70m² (750 sqft), can accomodate up to 6 guests (3 beds 🛌) and offers:
 * fully-equiped kitchen (cutlery and dishes and other ustensils or cookware, fridge, dishwasher, stove, espresso coffee machine, boiler, toaster, microwave, etc.)
 * large bathroom
 * a balcony
-
 
 ### Included
 
@@ -52,5 +51,7 @@ It is 70m² (750 sqft), can accomodate up to 6 guests (3 beds 🛌) and offers:
 &nbsp;
 
 ### Location
+
+In city center: High speed train station 🚄 and bus shuttle station 🚍 to airport 🛫 within 2min walk 🚶‍♂️, 2 supermarkets 🛒 nearby, forville market accessible in 8min.
 
 ![map](images/map/map.png)
