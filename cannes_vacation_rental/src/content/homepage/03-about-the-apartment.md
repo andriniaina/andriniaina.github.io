@@ -24,6 +24,8 @@ It is 70m² (750 sqft), can accomodate up to 6 guests (3 beds 🛌) and offers:
 * large bathroom
 * a balcony
 
+Pets not allowed unless exceptions.
+
 ### Included
 
 <div class="selling-point">
