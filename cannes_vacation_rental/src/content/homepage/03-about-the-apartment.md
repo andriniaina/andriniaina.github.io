@@ -48,3 +48,9 @@ It is 70m² (750 sqft), can accomodate up to 6 guests (3 beds 🛌) and offers:
 <div class="selling-point">
     <span class="rounded-badge"><i class="fa fa-car" aria-hidden="true"></i></span> Plenty of parking space (street and underground, paid)
 </div>
+
+&nbsp;
+
+### Location
+
+![map](images/map/map.png)
