@@ -4,8 +4,7 @@ date: 2021-04-18T11:06:39+02:00
 ---
 
 
-Espresso
----
+### Espresso
 
 1. Fill water tank
 1. Switch the machine ON
@@ -16,8 +15,8 @@ Espresso
 1. Screw the coffee receptacle back
 1. Turn the main button to the right position "espresso" ![](./coffee_machine/espresso.png)
 
-Capuccino
----
+### Capuccino
+
 1. Fill water tank
 1. Switch the machine ON
 1. Turn the main button to the left position "capuccino" ![](./coffee_machine/capuccino.png)
