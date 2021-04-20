@@ -13,11 +13,11 @@ date: 2021-04-18T11:19:24+02:00
 
 ### Control panel buttons
 
-![](./dishwasher/control_panel.png)
+![](./control_panel.png)
 
-![](./dishwasher/programmes.png)
+![](./programmes.png)
 
 ### Download detailed manual
 
-[Manual](manuals/vh1772j_en.PDF)
+[Manual](/manuals/vh1772j_en.PDF)
 
